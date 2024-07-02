@@ -1,0 +1,66 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:16.3-alpine
+    restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: glowjobpassword
+      POSTGRES_USER: glowjob
+      POSTGRES_DB: glowjob
+    networks:
+      - glowjob_network
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+  elastic:
+    image: elasticsearch:7.17.22
+    container_name: elasticsearch
+    environment:
+      - node.name=elasticsearch
+      - discovery.type=single-node
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - ELASTIC_USERNAME=elastic
+      - ELASTIC_PASSWORD=elasticpassworddev
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - glowjob_network
+
+  kibana:
+    image: kibana:7.17.22
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elastic:9200
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=elasticpassworddev
+    ports:
+      - 5601:5601
+    depends_on:
+      - elastic
+    networks:
+      - glowjob_network
+
+networks:
+  glowjob_network:
+    driver: "bridge"
+
+volumes:
+  esdata:
+    driver: local
+  dbdata:
+    driver: local
