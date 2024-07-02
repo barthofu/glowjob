@@ -1,16 +1,18 @@
-import { DeepKeys } from '@tanstack/react-table'
+import { DeepKeys } from "@tanstack/react-table"
 
 type AnyObject = {
-	[key: string]: AnyObject
+    [key: string]: AnyObject
 }
-
+  
 export const createObjectFromPath = <TData>(path: DeepKeys<TData>, newValue: any): Partial<TData> => {
+
 	const segments = (path as string).split('.')
 	const result: AnyObject = {}
 
 	let currentObject = result
 
 	for (let i = 0; i < segments.length; i++) {
+
 		const segment = segments[i]
 		currentObject[segment] = {}
 
@@ -24,17 +26,4 @@ export const createObjectFromPath = <TData>(path: DeepKeys<TData>, newValue: any
 	}
 
 	return result as Partial<TData>
-}
-
-export const convertBase64 = (file: File) => {
-	return new Promise((resolve, reject) => {
-		const fileReader = new FileReader()
-		fileReader.readAsDataURL(file)
-		fileReader.onload = () => {
-			resolve(fileReader.result)
-		}
-		fileReader.onerror = (error) => {
-			reject(error)
-		}
-	})
 }

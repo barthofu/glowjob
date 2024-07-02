@@ -5,21 +5,28 @@ import { components, hooks, utils } from '@generouted/react-router/client'
 
 export type Path =
 	| `/`
-	| `/admin/movies`
+	| `/affaires`
+	| `/affaires/:numAffaire`
+	| `/affaires/:numAffaire/fiches/:id`
 	| `/auth/login`
 	| `/auth/logout`
-	| `/auth/me`
-	| `/auth/register`
-	| `/movies/:id`
-	| `/reservation/cancel`
-	| `/reservation/success`
+	| `/machines`
+	| `/modeles`
+	| `/planning/machines`
+	| `/planning/zones`
+	| `/zones`
 
 export type Params = {
-	'/movies/:id': { id: string }
+	'/affaires/:numAffaire': { numAffaire: string }
+	'/affaires/:numAffaire/fiches/:id': { numAffaire: string; id: string }
 }
 
 export type ModalPath = never
 
 export const { Link, Navigate } = components<Path, Params>()
-export const { useModals, useNavigate, useParams } = hooks<Path, Params, ModalPath>()
+export const { useModals, useNavigate, useParams } = hooks<
+	Path,
+	Params,
+	ModalPath
+>()
 export const { redirect } = utils<Path, Params>()

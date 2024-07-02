@@ -1,14 +1,16 @@
-import { AuthService } from '@cinestia/web/auth'
-import { Navigate } from '@cinestia/web/router'
+import { AuthService, useToken } from '@sgm/web/auth'
+import { Navigate } from '@sgm/web/router'
 import React, { useEffect } from 'react'
 
 const LogoutPage: React.FC = () => {
 
-  useEffect(() => {
-    AuthService.logout(true, false)
-  }, [])
+    const { setToken } = useToken()
+    
+    useEffect(() => {
+        AuthService.logout()
+    }, [setToken])
 
-  return <Navigate to='/' />
+	return <Navigate to='/auth/login' />
 }
 
 export default LogoutPage

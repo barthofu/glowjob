@@ -1,21 +1,19 @@
-# secrets
-.env*
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# codegen
-libs/prisma/src/generated/
+# Secrets
+.env
 
-# data
-*.sqlite*
-*.db
+# NX
+.nx
 
-# compiled output
+# Compiled output
 dist
 tmp
 /out-tsc
 
-# dependencies
+# Dependencies
 node_modules
-pnpm-lock.yml
+.cache
 
 # IDEs and editors
 /.idea
@@ -33,7 +31,18 @@ pnpm-lock.yml
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# misc
+# System Files
+.DS_Store
+Thumbs.db
+
+# tests
+reports
+coverage
+
+# Language - Python
+__pycache__/
+
+# Misc
 /.sass-cache
 /connect.lock
 /coverage
@@ -42,7 +51,3 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-
-# system files
-.DS_Store
-Thumbs.db

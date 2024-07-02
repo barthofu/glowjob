@@ -3,5 +3,5 @@
  */
 
 type Rest = {
-	[x: string]: any
+    [x: string]: any
 }

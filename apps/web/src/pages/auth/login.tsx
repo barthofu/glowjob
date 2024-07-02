@@ -1,12 +1,12 @@
-import { Button, FormControl, HStack, Heading, Input, Text, VStack } from '@chakra-ui/react'
-import { AuthService } from '@cinestia/web/auth'
-import { useNavigate } from '@cinestia/web/router'
+import { Button, Flex, FormControl, FormLabel, Heading, Input } from '@chakra-ui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { fetchAuthTokenCreate } from '@sgm/openapi'
+import { Card } from '@sgm/ui'
+import { AuthService, useToken } from '@sgm/web/auth'
+import { useNavigate } from '@sgm/web/router'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { AuthLayout } from '../../components/layouts'
-import { client } from '../../core/libs/http'
 
 const authFormSchema = z.object({
     email: z.string().email(),
@@ -29,55 +29,60 @@ const LoginPage: React.FC = () => {
 
     const onSubmit: SubmitHandler<AuthFormSchema> = ({ email, password }) => {
 
-        client.auth.login({ body: { username: email, password } })
+        fetchAuthTokenCreate({ body: { email, password } })
             .then(data => {
-                if (data.status === 200) {
-                    AuthService.login(data.body.access_token)
-                    navigate('/')
-                }
+                AuthService.login(data.access, data.refresh)
+                navigate('/')
             })
             .catch(err => console.log(err))
     }
 
-    return (
-        <AuthLayout
-            title='Se connecter'
+	return <>
+
+        <Flex
+            width='100vw'
+            height='100vh'
+            justifyContent='center'
+            alignItems='center'
+            backgroundColor='#0f172a'
         >
-            <form onSubmit={handleSubmit(onSubmit)} style={{ width: '100%' }}>
-                <HStack w='100%' justifyContent='center'>
-                    <VStack w='50%' spacing='2em'>
+            <form onSubmit={handleSubmit(onSubmit)}>
 
-                        <Heading as='h1' fontSize='1.5rem'>
-                            Se connecter
-                        </Heading>
+                <Card
+                    center={true}
+                    width='40vw'
+                    mt='-25vh'
+                >
 
-                        <FormControl isRequired>
-                            <Input variant='flushed' placeholder="Email" {...register('email', { required: true })} />
-                        </FormControl>
+                    <Heading as='h1'
+                        fontSize='1.5rem'
+                    >
+                        Se connecter
+                    </Heading>
 
-                        <FormControl isRequired>
-                            <Input variant='flushed' type='password' placeholder="Mot de passe" {...register('password', { required: true })} />
-                        </FormControl>
+                    <FormControl isRequired>
+                        <FormLabel>Email</FormLabel>
+                        <Input placeholder="Email" {...register('email', { required: true })}/>
+                    </FormControl>
 
-                        <VStack spacing='2em'>
-                            <Button
-                                w='100%'
-                                // variant='primary'
-                                mt='1rem'
-                                isLoading={isSubmitting}
-                                type='submit'
-                            >
-                                Se connecter
-                            </Button>
-                            <Text fontSize='sm'>
-                                Vous n'avez pas de compte ? <Text as='span' color='primary.50' cursor='pointer' onClick={() => navigate('/auth/register')}>S'inscrire</Text>
-                            </Text>
-                        </VStack>
-                    </VStack>
-                </HStack>
+                    <FormControl isRequired>
+                        <FormLabel>Mot de passe</FormLabel>
+                        <Input type='password' placeholder="Mot de passe" {...register('password', { required: true })} />
+                    </FormControl>
+
+                    <Button
+                        w='100%'
+                        variant='primary'
+                        mt='1rem'
+                        isLoading={isSubmitting}
+                        type='submit'
+                    >
+                        Se connecter
+                    </Button>
+                </Card>
             </form>
-        </AuthLayout>
-    )
+        </Flex>
+    </>
 }
 
 export default LoginPage

@@ -1,5 +1,5 @@
-import * as defaultTheme from '@cinestia/web/theme'
+import * as defaultTheme from '@sgm/theme'
 
 export const theme = {
-	...defaultTheme.theme,
+    ...defaultTheme.theme
 }

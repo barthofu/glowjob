@@ -1,7 +1,6 @@
-import { Path } from '@cinestia/web/router'
+import { Path } from '@sgm/web/router'
 
 export const bypassUrls: Path[] = [
-	'/auth/login',
-	'/auth/logout',
-	'/auth/register',
+    '/auth/login',
+    '/auth/logout',
 ]

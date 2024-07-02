@@ -9,6 +9,5 @@
 	"singleAttributePerLine": true,
 	"bracketSameLine": false,
 	"bracketSpacing": true,
-	"endOfLine": "auto",
-	"printWidth": 120
+	"endOfLine": "auto"
 }

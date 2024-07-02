@@ -1,7 +1,6 @@
 {
 	"compileOnSave": false,
 	"compilerOptions": {
-		"strict": true,
 		"rootDir": ".",
 		"sourceMap": true,
 		"declaration": false,
@@ -16,24 +15,15 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
-			"@cinestia/api/auth": ["libs/api/auth/src/index.ts"],
-			"@cinestia/contract": ["libs/contract/src/index.ts"],
-			"@cinestia/environments": ["libs/environments/src/index"],
-			"@cinestia/prisma": ["libs/prisma/src/index"],
-			"@cinestia/utils": ["libs/utils/src/index"],
-			"@cinestia/web/auth": ["libs/web/auth/src/index"],
-			"@cinestia/web/router": ["libs/web/router/src/index"],
-			"@cinestia/web/theme": ["libs/web/theme/src/index"],
-			"@cinestia/web/ui": ["libs/web/ui/src/index"]
+			"@sgm/cli": ["libs/cli/src/index.ts"],
+			"@sgm/openapi": ["libs/openapi/src/index.ts"],
+			"@sgm/theme": ["libs/theme/src/index.ts"],
+			"@sgm/ui": ["libs/ui/src/index.ts"],
+			"@sgm/utils": ["libs/utils/src/index.ts"],
+			"@sgm/web/auth": ["libs/web/auth/src/index.ts"],
+			"@sgm/web/environments": ["libs/web/environments/src/index.ts"],
+			"@sgm/web/router": ["libs/web/router/src/index.ts"]
 		}
 	},
-	"exclude": ["node_modules", "tmp"],
-	"ts-node": {
-		"require": ["tsconfig-paths/register"]
-	},
-	"plugins": [
-		{
-			"transform": "ts-macros"
-		}
-	]
+	"exclude": ["node_modules", "tmp"]
 }
