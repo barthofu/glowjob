@@ -9,7 +9,7 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: glowjobpassword
+      POSTGRES_PASSWORD: glowjob
       POSTGRES_USER: glowjob
       POSTGRES_DB: glowjob
     networks:
