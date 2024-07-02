@@ -4,20 +4,22 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "review")
-@DiscriminatorValue("review")
-public class Review {
+@Table(name = "offer")
+public class Offer {
   @Id
   private UUID id;
 
   @ManyToOne(optional = false)
-  private User user;
-
-  @ManyToOne(optional = false)
   private Company company;
+
+  @ManyToMany
+  private List<User> user;
+
+  private String libelle;
 }

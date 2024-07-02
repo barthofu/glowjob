@@ -1,19 +1,33 @@
 package fr.glowjob.hackathon.model.bo;
 
-import fr.glowjob.hackathon.model.bo.generic.Item;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "company")
-public class Company extends Item {
-private String name;
-private String siret;
-private String address;
+public class Company {
+  @Id
+  private UUID id;
 
-private Contact contact;
+  @OneToOne
+  private Contact contact;
+
+  @OneToMany
+  private List<Offer> offer;
+
+  @OneToMany
+  private List<Review> review;
+
+  @ManyToMany
+  private List<User> user;
+
+  private String name;
+  private String siret;
+  private String address;
 }

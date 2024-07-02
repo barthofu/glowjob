@@ -1,16 +1,19 @@
 package fr.glowjob.hackathon.model.bo;
 
-import fr.glowjob.hackathon.model.bo.generic.UuidTable;
 import fr.glowjob.hackathon.model.enums.DiplomeLvl;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "user_info")
-public class UserInfo extends UuidTable {
+public class UserInfo {
+  @Id
+  private UUID id;
   @OneToOne
   private User user;
 

@@ -1,6 +1,5 @@
 package fr.glowjob.hackathon.model.bo;
 
-import fr.glowjob.hackathon.model.bo.generic.UuidTable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -13,7 +12,10 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "contact")
-public class Contact extends UuidTable {
+public class Contact {
+  @Id
+  private UUID id;
+
   private String phone;
   private String email;
   private String website;
