@@ -1,6 +1,6 @@
 import { Box, Button, Grid, HStack, Icon, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Spinner, Text, VStack, useDisclosure } from '@chakra-ui/react'
-import { useApiAffairesStatsRetrieve } from '@sgm/openapi'
-import { Stat } from '@sgm/ui'
+import { useApiAffairesStatsRetrieve } from '@glowjob/openapi'
+import { Stat } from '@glowjob/ui'
 import React from 'react'
 import { TbReload } from 'react-icons/tb'
 import { statusColors } from '../../../pages/affaires'

@@ -1,5 +1,5 @@
 import { Box, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react'
-import { fetchApiModelesFichesCopyCreate, useApiModelesFichesOptionsList } from '@sgm/openapi'
+import { fetchApiModelesFichesCopyCreate, useApiModelesFichesOptionsList } from '@glowjob/openapi'
 import React, { useState } from 'react'
 import { Select } from 'chakra-react-select'
 

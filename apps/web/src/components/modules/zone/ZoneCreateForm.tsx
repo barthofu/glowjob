@@ -1,6 +1,6 @@
 import { Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { fetchApiZonesCreate } from '@sgm/openapi'
+import { fetchApiZonesCreate } from '@glowjob/openapi'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'

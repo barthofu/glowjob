@@ -1,5 +1,5 @@
 import { Box, HStack, Heading, VStack } from '@chakra-ui/react'
-import { BaseBoardColumnProps, BoardCard, CollapsableElement, cardBorderStyle } from '@sgm/ui'
+import { BaseBoardColumnProps, BoardCard, CollapsableElement, cardBorderStyle } from '@glowjob/ui'
 import React from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import { PlanningMachineCard } from '../../../pages/planning/machines'

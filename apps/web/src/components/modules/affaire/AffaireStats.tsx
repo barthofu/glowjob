@@ -1,6 +1,6 @@
 import { HStack, Icon, Spinner, Text, VStack } from '@chakra-ui/react'
-import { useApiAffairesNumsRetrieve } from '@sgm/openapi'
-import { Stat } from '@sgm/ui'
+import { useApiAffairesNumsRetrieve } from '@glowjob/openapi'
+import { Stat } from '@glowjob/ui'
 import React from 'react'
 import { TbReload } from 'react-icons/tb'
 

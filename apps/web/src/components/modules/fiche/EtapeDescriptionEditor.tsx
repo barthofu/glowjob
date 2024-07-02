@@ -1,4 +1,4 @@
-import { EtapeDetailAjustage, fetchApiEtapesPartialUpdate } from '@sgm/openapi'
+import { EtapeDetailAjustage, fetchApiEtapesPartialUpdate } from '@glowjob/openapi'
 import { Row } from '@tanstack/react-table'
 import React, { useEffect, useState } from 'react'
 import DefaultEditor from 'react-simple-wysiwyg'

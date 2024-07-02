@@ -1,5 +1,5 @@
 import { Button, ThemeComponentProps } from '@chakra-ui/react'
-import { environment } from '@sgm/web/environments'
+import { environment } from '@glowjob/web/environments'
 
 import React from 'react'
 

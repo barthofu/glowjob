@@ -62,7 +62,7 @@ jobs:
           context: .
           file: ./infra/docker/${{ matrix.project }}.Dockerfile
           push: true
-          tags: aimerisson/sgm-${{ matrix.project }}-${{ github.ref_name == 'main' && 'prod' || 'staging' }}:${{ steps.commit.outputs.short }}
+          tags: aimerisson/glowjob-${{ matrix.project }}-${{ github.ref_name == 'main' && 'prod' || 'staging' }}:${{ steps.commit.outputs.short }}
 
       - name: Deploy to Kubernetes
         if: startsWith(github.ref, 'refs/heads/release/')

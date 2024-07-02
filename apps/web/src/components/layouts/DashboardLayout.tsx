@@ -1,5 +1,5 @@
 import { Box, Link as ChakraLink, Flex, HStack, Heading, Text, VStack } from '@chakra-ui/react'
-import { Link } from '@sgm/web/router'
+import { Link } from '@glowjob/web/router'
 import React, { JSXElementConstructor, ReactElement } from 'react'
 import useReactRouterBreadcrumbs from 'use-react-router-breadcrumbs'
 import { SideBar } from '../modules'

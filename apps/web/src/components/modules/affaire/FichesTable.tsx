@@ -7,9 +7,9 @@ import {
   fetchApiFichesPartialUpdate,
   fetchApiGroupeMachineList,
   useApiAffairesFichesRetrieve,
-} from '@sgm/openapi'
-import { Table, TableLayout, createColumnMeta } from '@sgm/ui'
-import { useNavigate } from '@sgm/web/router'
+} from '@glowjob/openapi'
+import { Table, TableLayout, createColumnMeta } from '@glowjob/ui'
+import { useNavigate } from '@glowjob/web/router'
 import { createColumnHelper } from '@tanstack/react-table'
 import React from 'react'
 import { LoaderFunction } from 'react-router-typesafe'

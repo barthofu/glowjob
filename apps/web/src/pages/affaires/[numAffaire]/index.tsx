@@ -2,8 +2,8 @@ import { Box } from '@chakra-ui/react'
 import {
 	fetchApiAffairesNumsRetrieve,
 	fetchApiGroupeMachineList,
-} from '@sgm/openapi'
-import { Navigate } from '@sgm/web/router'
+} from '@glowjob/openapi'
+import { Navigate } from '@glowjob/web/router'
 import React from 'react'
 import { LoaderFunction, useLoaderData } from 'react-router-typesafe'
 import { DashboardLayout } from '../../../components/layouts'

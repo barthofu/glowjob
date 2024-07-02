@@ -1,5 +1,5 @@
 import { Button, Circle, Drawer, DrawerBody, DrawerContent, DrawerOverlay, Icon, Spinner, useDisclosure } from '@chakra-ui/react'
-import { useApiAffairesRetrieve, useApiNotesAffaireList } from '@sgm/openapi'
+import { useApiAffairesRetrieve, useApiNotesAffaireList } from '@glowjob/openapi'
 import React, { useEffect, useState } from 'react'
 import { HiOutlineMenu } from 'react-icons/hi'
 import { AffaireNotes } from './AffaireNotes'

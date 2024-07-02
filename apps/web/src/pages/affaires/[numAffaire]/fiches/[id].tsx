@@ -1,5 +1,5 @@
-import { fetchApiGroupeMachineList } from '@sgm/openapi'
-import { useParams } from '@sgm/web/router'
+import { fetchApiGroupeMachineList } from '@glowjob/openapi'
+import { useParams } from '@glowjob/web/router'
 import React from 'react'
 import { LoaderFunction, useLoaderData } from 'react-router-typesafe'
 import { DashboardLayout } from '../../../../components/layouts'

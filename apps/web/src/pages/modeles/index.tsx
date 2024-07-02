@@ -1,6 +1,6 @@
 import { Button } from '@chakra-ui/react'
-import { FicheModeleDetail, fetchApiGroupeMachineList, fetchApiModelesFichesCreate, fetchApiModelesFichesDeleteCreate, fetchApiModelesFichesPartialUpdate, useApiModelesFichesList } from '@sgm/openapi'
-import { Table, TableLayout, createColumnMeta, useTableQueryHelper } from '@sgm/ui'
+import { FicheModeleDetail, fetchApiGroupeMachineList, fetchApiModelesFichesCreate, fetchApiModelesFichesDeleteCreate, fetchApiModelesFichesPartialUpdate, useApiModelesFichesList } from '@glowjob/openapi'
+import { Table, TableLayout, createColumnMeta, useTableQueryHelper } from '@glowjob/ui'
 import { createColumnHelper } from '@tanstack/react-table'
 import React from 'react'
 import { LoaderFunction, useLoaderData } from 'react-router-typesafe'

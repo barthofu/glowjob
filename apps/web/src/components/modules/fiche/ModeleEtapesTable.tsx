@@ -1,6 +1,6 @@
 import { Box, Button, Textarea } from '@chakra-ui/react'
-import { EtapeModeleDetail, GroupeMachine, fetchApiModelesEtapesCreate, fetchApiModelesEtapesDeleteCreate, fetchApiModelesEtapesPartialUpdate, useApiModelesFichesRetrieve } from '@sgm/openapi'
-import { DefaultTableCell, Table, TableLayout, createColumnMeta } from '@sgm/ui'
+import { EtapeModeleDetail, GroupeMachine, fetchApiModelesEtapesCreate, fetchApiModelesEtapesDeleteCreate, fetchApiModelesEtapesPartialUpdate, useApiModelesFichesRetrieve } from '@glowjob/openapi'
+import { DefaultTableCell, Table, TableLayout, createColumnMeta } from '@glowjob/ui'
 import { createColumnHelper } from '@tanstack/react-table'
 import React from 'react'
 import { toast } from 'react-toastify'

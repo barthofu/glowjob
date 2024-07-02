@@ -1,7 +1,7 @@
 import { Button, Flex, HStack, Icon, Input, Spinner, Text, VStack } from '@chakra-ui/react'
-import { fetchApiAffectationsMachinesCreate, fetchApiAffectationsMachinesDestroy, fetchApiAffectationsMachinesPartialUpdate, fetchApiGroupeMachineList, fetchApiSalariesFormOptionsList, useApiFichesMachineAPlanifierList, useApiPlanningMachineList } from '@sgm/openapi'
-import { BaseBoardCardType, Board, BoardColumnType, CUSTOM_FIRST_COLUMN_ID, TextLink } from '@sgm/ui'
-import { Link } from '@sgm/web/router'
+import { fetchApiAffectationsMachinesCreate, fetchApiAffectationsMachinesDestroy, fetchApiAffectationsMachinesPartialUpdate, fetchApiGroupeMachineList, fetchApiSalariesFormOptionsList, useApiFichesMachineAPlanifierList, useApiPlanningMachineList } from '@glowjob/openapi'
+import { BaseBoardCardType, Board, BoardColumnType, CUSTOM_FIRST_COLUMN_ID, TextLink } from '@glowjob/ui'
+import { Link } from '@glowjob/web/router'
 import { Select } from 'chakra-react-select'
 import dayjs from 'dayjs'
 import React, { useEffect, useState } from 'react'
@@ -11,7 +11,7 @@ import { useLoaderData } from 'react-router-typesafe'
 import { toast } from 'react-toastify'
 import { DashboardLayout } from '../../../components/layouts'
 import { PlanningNestedEtapeColumn } from '../../../components/modules'
-import { environment } from '@sgm/web/environments'
+import { environment } from '@glowjob/web/environments'
 
 export const Loader = (() => {
     return Promise.all([

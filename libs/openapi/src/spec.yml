@@ -1,8 +1,8 @@
 openapi: 3.0.3
 info:
-  title: SGM API
+  title: glowjob API
   version: 1.0.0
-  description: SGM planifiction
+  description: glowjob planifiction
 paths:
   /api/affaires/:
     get:
@@ -2087,11 +2087,11 @@ paths:
                 items:
                   $ref: '#/components/schemas/CustomUserDetail'
           description: ''
-  /api/tasks/resync_data_sgm:
+  /api/tasks/resync_data_glowjob:
     post:
-      operationId: api_tasks_resync_data_sgm_create
-      description: Sync les données SGM affaire avec la base de données django
-      summary: Sync data SGM
+      operationId: api_tasks_resync_data_glowjob_create
+      description: Sync les données glowjob affaire avec la base de données django
+      summary: Sync data glowjob
       tags:
       - Tasks
       security:
@@ -2352,7 +2352,7 @@ components:
           minimum: 0
           nullable: true
           title: Numéro d'affaire correspondant à l'affaire dans la base de données
-            de SGM
+            de glowjob
         validation_ingenieur:
           type: boolean
           title: Validation de l'ingénieur
@@ -2454,7 +2454,7 @@ components:
           minimum: 0
           nullable: true
           title: Numéro d'affaire correspondant à l'affaire dans la base de données
-            de SGM
+            de glowjob
         validation_ingenieur:
           type: boolean
           title: Validation de l'ingénieur
@@ -2510,7 +2510,7 @@ components:
           minimum: 0
           nullable: true
           title: Numéro d'affaire correspondant à l'affaire dans la base de données
-            de SGM
+            de glowjob
         validation_ingenieur:
           type: boolean
           title: Validation de l'ingénieur
@@ -2543,7 +2543,7 @@ components:
           minimum: 0
           nullable: true
           title: Numéro d'affaire correspondant à l'affaire dans la base de données
-            de SGM
+            de glowjob
         validation_ingenieur:
           type: boolean
           title: Validation de l'ingénieur
@@ -2577,7 +2577,7 @@ components:
           minimum: 0
           nullable: true
           title: Numéro d'affaire correspondant à l'affaire dans la base de données
-            de SGM
+            de glowjob
       required:
       - id
     AffaireStatsGlobal:
@@ -3461,7 +3461,7 @@ components:
           minimum: 0
           nullable: true
           title: Numéro d'affaire correspondant à l'affaire dans la base de données
-            de SGM
+            de glowjob
           readOnly: true
         affaire_id:
           type: integer
@@ -3545,7 +3545,7 @@ components:
           minimum: 0
           nullable: true
           title: Numéro d'affaire correspondant à l'affaire dans la base de données
-            de SGM
+            de glowjob
           readOnly: true
         affaire_id:
           type: integer
@@ -3635,7 +3635,7 @@ components:
           minimum: 0
           nullable: true
           title: Numéro d'affaire correspondant à l'affaire dans la base de données
-            de SGM
+            de glowjob
           readOnly: true
         affaire_id:
           type: integer
@@ -4177,7 +4177,7 @@ components:
           minimum: 0
           nullable: true
           title: Numéro d'affaire correspondant à l'affaire dans la base de données
-            de SGM
+            de glowjob
         validation_ingenieur:
           type: boolean
           title: Validation de l'ingénieur
@@ -4611,7 +4611,7 @@ components:
           minimum: 0
           nullable: true
           title: Numéro d'affaire correspondant à l'affaire dans la base de données
-            de SGM
+            de glowjob
         fiches:
           type: array
           items:
@@ -4631,7 +4631,7 @@ components:
           minimum: 0
           nullable: true
           title: Numéro d'affaire correspondant à l'affaire dans la base de données
-            de SGM
+            de glowjob
         fiches:
           type: array
           items:

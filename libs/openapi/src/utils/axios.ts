@@ -1,5 +1,5 @@
-import { AuthService } from '@sgm/web/auth'
-import { environment } from '@sgm/web/environments'
+import { AuthService } from '@glowjob/web/auth'
+import { environment } from '@glowjob/web/environments'
 import defaultAxios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { toast } from 'react-toastify'
 import { ErrorWrapper } from '../generated/apiFetcher'

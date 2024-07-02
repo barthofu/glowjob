@@ -1,6 +1,6 @@
 import { Box, Button, HStack } from '@chakra-ui/react'
-import { MachineDetail, fetchApiMachinesDeleteCreate, fetchApiMachinesPartialUpdate, useApiGroupeMachineMachinesRetrieve } from '@sgm/openapi'
-import { Table, TableLayout, createColumnMeta } from '@sgm/ui'
+import { MachineDetail, fetchApiMachinesDeleteCreate, fetchApiMachinesPartialUpdate, useApiGroupeMachineMachinesRetrieve } from '@glowjob/openapi'
+import { Table, TableLayout, createColumnMeta } from '@glowjob/ui'
 import { createColumnHelper } from '@tanstack/react-table'
 import React from 'react'
 import { toast } from 'react-toastify'

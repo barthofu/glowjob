@@ -1,5 +1,5 @@
 import { ColorProps, HStack, Icon, Text } from '@chakra-ui/react'
-import { Link, Path } from '@sgm/web/router'
+import { Link, Path } from '@glowjob/web/router'
 import React from 'react'
 import { IconType } from 'react-icons'
 

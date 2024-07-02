@@ -1,4 +1,4 @@
-import { Navigate } from "@sgm/web/router"
+import { Navigate } from "@glowjob/web/router"
 
 const HomePage = () => <Navigate to='/affaires'/>
 

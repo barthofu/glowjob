@@ -1,6 +1,6 @@
 import { HStack, Text, Tooltip, VStack } from '@chakra-ui/react'
-import { NoteDetail } from '@sgm/openapi'
-import { dayjs } from '@sgm/utils'
+import { NoteDetail } from '@glowjob/openapi'
+import { dayjs } from '@glowjob/utils'
 import React from 'react'
 
 type AffaireNoteProps = {

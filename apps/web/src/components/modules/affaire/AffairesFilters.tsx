@@ -1,6 +1,6 @@
 import { Flex, HStack, Input, Select } from '@chakra-ui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { affaireStatus } from '@sgm/openapi'
+import { affaireStatus } from '@glowjob/openapi'
 import debounce from 'debounce'
 import React, { BaseSyntheticEvent } from 'react'
 import { useForm } from 'react-hook-form'

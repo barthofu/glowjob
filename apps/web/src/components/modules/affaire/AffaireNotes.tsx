@@ -1,5 +1,5 @@
 import { Button, Textarea, VStack } from '@chakra-ui/react'
-import { NoteDetail, fetchApiNotesCreate } from '@sgm/openapi'
+import { NoteDetail, fetchApiNotesCreate } from '@glowjob/openapi'
 import React, { KeyboardEvent, useEffect, useRef } from 'react'
 import { AffaireNote } from './AffaireNote'
 

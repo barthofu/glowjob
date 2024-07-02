@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: sgm-web-staging
-    namespace: sgm-staging
+    name: glowjob-web-staging
+    namespace: glowjob-staging
     labels:
-        app: sgm-web-staging
+        app: glowjob-web-staging
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: sgm-web-staging
+            app: glowjob-web-staging
     template:
         metadata:
             labels:
-                app: sgm-web-staging
+                app: glowjob-web-staging
         spec:
             containers:
-                - name: sgm-web-staging
-                  image: aimerisson/sgm-web-staging:IMAGE_LABEL
+                - name: glowjob-web-staging
+                  image: aimerisson/glowjob-web-staging:IMAGE_LABEL
                   ports:
                       - containerPort: 80
 

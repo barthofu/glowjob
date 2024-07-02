@@ -1,4 +1,4 @@
-import { Navigate, Path } from '@sgm/web/router'
+import { Navigate, Path } from '@glowjob/web/router'
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { useToken } from '../hooks/useToken'

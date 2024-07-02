@@ -1,5 +1,5 @@
 import { Button, Icon, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react'
-import { fetchApiModelesFichesCopyCreate, useApiAffairesNumsList } from '@sgm/openapi'
+import { fetchApiModelesFichesCopyCreate, useApiAffairesNumsList } from '@glowjob/openapi'
 import { Select } from 'chakra-react-select'
 import React, { useState } from 'react'
 import { BiSolidCopy } from 'react-icons/bi'

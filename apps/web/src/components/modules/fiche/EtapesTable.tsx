@@ -1,6 +1,6 @@
 import { Box, Button } from '@chakra-ui/react'
-import { EtapeDetail, EtapeDetailAjustage, GroupeMachine, fetchApiEtapesCreate, fetchApiEtapesDeleteCreate, fetchApiEtapesPartialUpdate, useApiFichesEtapesRetrieve } from '@sgm/openapi'
-import { DefaultTableCell, Table, TableLayout, createColumnMeta } from '@sgm/ui'
+import { EtapeDetail, EtapeDetailAjustage, GroupeMachine, fetchApiEtapesCreate, fetchApiEtapesDeleteCreate, fetchApiEtapesPartialUpdate, useApiFichesEtapesRetrieve } from '@glowjob/openapi'
+import { DefaultTableCell, Table, TableLayout, createColumnMeta } from '@glowjob/ui'
 import { createColumnHelper } from '@tanstack/react-table'
 import React from 'react'
 import { toast } from 'react-toastify'

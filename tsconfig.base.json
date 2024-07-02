@@ -15,14 +15,14 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
-			"@sgm/cli": ["libs/cli/src/index.ts"],
-			"@sgm/openapi": ["libs/openapi/src/index.ts"],
-			"@sgm/theme": ["libs/theme/src/index.ts"],
-			"@sgm/ui": ["libs/ui/src/index.ts"],
-			"@sgm/utils": ["libs/utils/src/index.ts"],
-			"@sgm/web/auth": ["libs/web/auth/src/index.ts"],
-			"@sgm/web/environments": ["libs/web/environments/src/index.ts"],
-			"@sgm/web/router": ["libs/web/router/src/index.ts"]
+			"@glowjob/cli": ["libs/cli/src/index.ts"],
+			"@glowjob/openapi": ["libs/openapi/src/index.ts"],
+			"@glowjob/theme": ["libs/theme/src/index.ts"],
+			"@glowjob/ui": ["libs/ui/src/index.ts"],
+			"@glowjob/utils": ["libs/utils/src/index.ts"],
+			"@glowjob/web/auth": ["libs/web/auth/src/index.ts"],
+			"@glowjob/web/environments": ["libs/web/environments/src/index.ts"],
+			"@glowjob/web/router": ["libs/web/router/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

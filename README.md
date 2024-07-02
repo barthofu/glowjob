@@ -1,4 +1,4 @@
-# SGM
+# glowjob
 
 - [Description](#description)
 - [Project structure](#project-structure)
@@ -23,7 +23,7 @@
 
 ## Description
 
-Monorepo for the SGM project.
+Monorepo for the glowjob project.
 
 ## Project structure
 

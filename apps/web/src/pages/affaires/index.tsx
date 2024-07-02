@@ -5,9 +5,9 @@ import {
     fetchApiAffairesPartialUpdate,
     fetchApiGroupeMachineList,
     useApiAffairesList
-} from '@sgm/openapi'
-import {DefaultTableCell, Table, TableLayout, TextLink, createColumnMeta, useTableQueryHelper} from '@sgm/ui'
-import {Link, useNavigate} from '@sgm/web/router'
+} from '@glowjob/openapi'
+import {DefaultTableCell, Table, TableLayout, TextLink, createColumnMeta, useTableQueryHelper} from '@glowjob/ui'
+import {Link, useNavigate} from '@glowjob/web/router'
 import {createColumnHelper} from '@tanstack/react-table'
 import React from 'react'
 import {LoaderFunction, useLoaderData} from 'react-router-typesafe'
