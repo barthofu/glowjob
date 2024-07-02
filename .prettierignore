@@ -1,0 +1,16 @@
+# projects to ignore
+libs/prisma/src/migrations/
+libs/prisma/src/generated/
+
+# misc
+dist/
+coverage/
+node_modules/
+.env*
+*.json
+*.lock
+*-lock*
+*.log
+*.yml
+*.md
+*.hbs

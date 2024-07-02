@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+
+  api:
+    container_name: cinestia-api
+    build: 
+      context: .
+      dockerfile: ./infra/docker/api.Dockerfile
+    restart: always
+    env_file: ./apps/api/.env
+    ports:
+      - 8001:3000
+    volumes:
+      - ./data:/app/data
+    
+  web:
+    container_name: cinestia-web
+    build: 
+      context: .
+      dockerfile: ./infra/docker/web.Dockerfile
+    restart: always
+    ports:
+      - 8000:80

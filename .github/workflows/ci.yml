@@ -1,0 +1,19 @@
+name: CI
+
+on:
+    push:
+        branches:
+            - dev
+    pull_request:
+
+jobs:
+    # affected:
+    #     uses: ./.github/workflows/_affected.yml
+    #     with:
+    #         all_projects: true
+
+    build:
+        uses: ./.github/workflows/_build.yml
+        with:
+            affected_projects: '["api"]'
+            should_upload_artifacts: false

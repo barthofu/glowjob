@@ -1,0 +1,77 @@
+name: Component / Affected
+
+on:
+    # Allows you to include this workflow in other workflows
+    workflow_call:
+        outputs:
+            affected_projects:
+                description: 'Affected projects'
+                value: ${{ jobs.affected.outputs.affected_projects }}
+            nx_base:
+                description: 'Base SHA for Nx'
+                value: ${{ jobs.affected.outputs.nx_base }}
+            nx_head:
+                description: 'Head SHA for Nx'
+                value: ${{ jobs.affected.outputs.nx_head }}
+
+        inputs:
+            all_projects:
+                type: boolean
+                required: false
+
+jobs:
+    affected:
+        name: Get affected projects
+        runs-on: ubuntu-latest
+
+        steps:
+            #---------------------------
+            #       Repository
+            #---------------------------
+
+            - name: Checkout repository
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+
+            - name: Get Nx affected base and head
+              uses: nrwl/nx-set-shas@v3
+              id: set-shas
+              with:
+                  main-branch-name: ${{ github.event_name == 'pull_request' && github.base_ref || github.ref_name }}
+
+            #---------------------------
+            #       Node.js
+            #---------------------------
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+
+            - name: Cache dependencies
+              uses: actions/cache@v2
+              with:
+                  path: ~/.npm
+                  key: npm-${{ hashFiles('package-lock.json') }}
+                  restore-keys: npm-
+
+            - name: Install dependencies
+              run: npm ci --ignore-scripts
+
+            #---------------------------
+            #         Nx
+            #---------------------------
+
+            - name: Get projects to build
+              id: get-projects-to-build
+              if: inputs.all_projects == 'false'
+              run: |
+                  affected_projects=$(npx nx show projects --affected --json -p 'apps/*' | jq -c)
+                  echo "Affected projects : ${affected_projects}"
+                  echo "affected_projects=${affected_projects}" >> $GITHUB_OUTPUT
+
+        outputs:
+            affected_projects: ${{ inputs.all_projects && '["api","web"]' || steps.get-projects-to-build.outputs.affected_projects}}
+            nx_base: ${{ steps.set-shas.outputs.base }}
+            nx_head: ${{ steps.set-shas.outputs.head }}

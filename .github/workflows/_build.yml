@@ -1,0 +1,77 @@
+name: Component / Build & Test
+
+on:
+    # Allows you to include this workflow in other workflows
+    workflow_call:
+        inputs:
+            affected_projects:
+                type: string
+                required: true
+            should_upload_artifacts:
+                type: boolean
+                required: true
+
+jobs:
+    build:
+        name: Build - ${{ matrix.project }}
+        runs-on: ubuntu-latest
+        if: inputs.affected_projects != '[]'
+        # env:
+
+        strategy:
+            matrix:
+                project: ${{ fromJson(inputs.affected_projects) }}
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+
+            #---------------------------
+            #       Node.js
+            #---------------------------
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+
+            - name: Cache dependencies
+              uses: actions/cache@v2
+              with:
+                  path: ~/.npm
+                  key: npm-${{ hashFiles('package-lock.json') }}
+                  restore-keys: npm-
+
+            - name: Install dependencies
+              run: npm ci --include=optional
+
+            #---------------------------
+            #        NX
+            #---------------------------
+
+            # - name: Lint
+            #   run: npx nx run ${{ matrix.project }}:lint
+
+            - name: Prisma generate
+              run: npx nx run prisma:generate
+
+            - name: Test
+              run: npx nx run ${{ matrix.project }}:test
+
+            - name: Build
+              run: |
+                cat libs/web/router/src/router.ts
+                npx nx run ${{ matrix.project }}:build
+
+            #---------------------------
+            #        Artifacts
+            #---------------------------
+
+            - name: Upload artifacts
+              if: ${{ inputs.should_upload_artifacts }}
+              uses: actions/upload-artifact@v3
+              with:
+                  name: ${{ matrix.project }}-build
+                  path: dist/
