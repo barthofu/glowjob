@@ -1,4 +1,4 @@
-package fr.glowjob.hackaton;
+package fr.glowjob.hackathon;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -18,11 +18,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 	)
 )
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = "fr.glowjob.hackaton.repository")
-public class HackatonApplication {
+@EnableJpaRepositories(basePackages = "fr.glowjob.hackathon.repository")
+public class HackathonApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HackatonApplication.class, args);
+		SpringApplication.run(HackathonApplication.class, args);
 	}
 
 }

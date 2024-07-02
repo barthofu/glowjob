@@ -1,4 +1,4 @@
-package fr.glowjob.hackaton.configuration;
+package fr.glowjob.hackathon.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

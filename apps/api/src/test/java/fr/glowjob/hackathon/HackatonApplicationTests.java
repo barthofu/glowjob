@@ -1,4 +1,4 @@
-package fr.glowjob.hackaton;
+package fr.glowjob.hackathon;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
