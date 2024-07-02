@@ -1,5 +1,8 @@
-import { Navigate } from "@glowjob/web/router"
+const HomePage = () => {
 
-const HomePage = () => <Navigate to='/affaires'/>
+    return <>
+        Hello world
+    </>
+}
 
 export default HomePage
