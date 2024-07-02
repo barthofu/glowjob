@@ -47,7 +47,7 @@ const LoginPage: React.FC = () => {
         >
             <Flex flex='1' justifyContent='center' alignItems='center' overflow='hidden'>
                 <Image
-                    src='/logoGlowjob.png'  // Chemin relatif à partir de `public`
+                    src='/logoGlowjob.png'
                     alt='Logo Glowjob'
                     objectFit='contain'
                     maxH='100%'

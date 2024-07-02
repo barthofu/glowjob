@@ -10,12 +10,15 @@ import { z } from 'zod'
 
 const authFormSchema = z.object({
     email: z.string().email(),
-    password: z.string().min(6, { message: "Password must be at least 6 characters" })
+    password: z.string().min(6, { message: "Password must be at least 6 characters" }),
+    firstName: z.string().nonempty({ message: "First name is required" }),
+    lastName: z.string().nonempty({ message: "Last name is required" }),
+    age: z.number().min(18, { message: "You must be at least 18 years old" })
 })
 
 type AuthFormSchema = z.infer<typeof authFormSchema>
 
-const LoginPage: React.FC = () => {
+const SignupPage: React.FC = () => {
 
     const navigate = useNavigate()
 
@@ -27,14 +30,12 @@ const LoginPage: React.FC = () => {
         resolver: zodResolver(authFormSchema)
     })
 
-    const onSubmit: SubmitHandler<AuthFormSchema> = ({ email, password }) => {
-
-        fetchAuthTokenCreate({ body: { email, password } })
-            .then(data => {
-                AuthService.login(data.access, data.refresh)
-                navigate('/')
-            })
-            .catch(err => console.log(err))
+    const onSubmit: SubmitHandler<AuthFormSchema> = ({ email, password, firstName, lastName, age }) => {
+        const userData = { email, password, firstName, lastName, age }
+        // Appel à l'API pour l'inscription (remplacez cette partie avec votre logique d'inscription)
+        // AuthService.login(userData.email, userData.password, userData.firstName, userData.lastName, userData.age)
+        console.log(userData)
+        navigate('/')  // Redirection vers la page de connexion après inscription
     }
 
     return (
@@ -44,10 +45,11 @@ const LoginPage: React.FC = () => {
             justifyContent='center'
             alignItems='center'
             backgroundColor='#521262'
+            flexDirection={{ base: 'column', md: 'row' }}
         >
             <Flex flex='1' justifyContent='center' alignItems='center' overflow='hidden'>
                 <Image
-                    src='/logoGlowjob.png'  // Chemin relatif à partir de `public`
+                    src='/logoGlowjob.png'
                     alt='Logo Glowjob'
                     objectFit='contain'
                     maxH='100%'
@@ -61,10 +63,8 @@ const LoginPage: React.FC = () => {
                     height='100%'
                     padding='2rem'
                 >
-                    <Heading as='h1'
-                        fontSize='1.5rem'
-                    >
-                        Se connecter
+                    <Heading as='h1' fontSize='1.5rem'>
+                        S'inscrire
                     </Heading>
 
                     <FormControl isRequired isInvalid={false}>
@@ -77,6 +77,21 @@ const LoginPage: React.FC = () => {
                         <Input type='password' placeholder="Mot de passe" {...register('password', { required: true })} />
                     </FormControl>
 
+                    <FormControl isRequired isInvalid={false}>
+                        <FormLabel>Nom</FormLabel>
+                        <Input placeholder="Nom" {...register('lastName', { required: true })} />
+                    </FormControl>
+
+                    <FormControl isRequired isInvalid={false}>
+                        <FormLabel>Prénom</FormLabel>
+                        <Input placeholder="Prénom" {...register('firstName', { required: true })} />
+                    </FormControl>
+
+                    <FormControl isRequired isInvalid={false}>
+                        <FormLabel>Âge</FormLabel>
+                        <Input type='number' placeholder="Âge" {...register('age', { required: true })} />
+                    </FormControl>
+
                     <Button
                         w='100%'
                         variant='primary'
@@ -84,13 +99,13 @@ const LoginPage: React.FC = () => {
                         isLoading={isSubmitting}
                         type='submit'
                     >
-                        Se connecter
+                        S'inscrire
                     </Button>
 
                     <Text mt='1rem' textAlign='center' fontSize='sm'>
-                        Tu n'as pas de compte ?{" "}
-                        <Link href="/signup" color="blue.500">
-                            Inscrit toi
+                        Tu as déjà un compte ?{" "}
+                        <Link href="/login" color="blue.500">
+                            Se connecter
                         </Link>
                     </Text>
                 </Card>
@@ -99,4 +114,4 @@ const LoginPage: React.FC = () => {
     )
 }
 
-export default LoginPage
+export default SignupPage
