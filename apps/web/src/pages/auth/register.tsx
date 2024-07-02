@@ -1,9 +1,9 @@
-import { Button, Flex, FormControl, FormLabel, Heading, Input, Image, Link, Text } from '@chakra-ui/react'
+import { Button, Flex, FormControl, FormLabel, Heading, Input, Image, Text } from '@chakra-ui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { fetchAuthTokenCreate } from '@glowjob/openapi'
 import { Card } from '@glowjob/ui'
 import { AuthService, useToken } from '@glowjob/web/auth'
-import { useNavigate } from '@glowjob/web/router'
+import { Link, useNavigate } from '@glowjob/web/router'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -52,8 +52,8 @@ const SignupPage: React.FC = () => {
                     src='/logoGlowjob.png'
                     alt='Logo Glowjob'
                     objectFit='contain'
-                    maxH='100%'
-                    width='100%'
+                    maxH='70%'
+                    width='70%'
                 />
             </Flex>
             <form onSubmit={handleSubmit(onSubmit)} style={{ flex: '1', padding: '2rem' }}>
@@ -104,8 +104,10 @@ const SignupPage: React.FC = () => {
 
                     <Text mt='1rem' textAlign='center' fontSize='sm'>
                         Tu as déjà un compte ?{" "}
-                        <Link href="/login" color="blue.500">
-                            Se connecter
+                        <Link to="/auth/login">
+                            <Text color="blue.500" as="span">
+                                Se connecter
+                            </Text>
                         </Link>
                     </Text>
                 </Card>
