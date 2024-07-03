@@ -5,5 +5,205 @@ info:
 servers:
 - url: /
   description: API
-paths: {}
-components: {}
+paths:
+  /api/offer/{id}:
+    get:
+      tags:
+      - offer-controller
+      summary: Search one offer by id across France Travail
+      operationId: findById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Offer"
+  /api/offer/search:
+    get:
+      tags:
+      - offer-controller
+      summary: Search offers across France Travail
+      operationId: search
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ListResultOffer"
+components:
+  schemas:
+    Contact:
+      type: object
+      properties:
+        nom:
+          type: string
+        coordonnees1:
+          type: string
+        coordonnees2:
+          type: string
+        coordonnees3:
+          type: string
+        telephone:
+          type: string
+        courriel:
+          type: string
+        commentaire:
+          type: string
+        urlRecruteur:
+          type: string
+        urlPostulation:
+          type: string
+    Entreprise:
+      type: object
+      properties:
+        nom:
+          type: string
+        description:
+          type: string
+        logo:
+          type: string
+        url:
+          type: string
+        entrepriseAdaptee:
+          type: boolean
+    LieuTravail:
+      type: object
+      properties:
+        libelle:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        codePostal:
+          type: string
+        commune:
+          type: string
+    Offer:
+      type: object
+      properties:
+        id:
+          type: string
+        intitule:
+          type: string
+        description:
+          type: string
+        dateCreation:
+          type: string
+          format: date-time
+        dateActualisation:
+          type: string
+          format: date-time
+        lieuTravail:
+          $ref: "#/components/schemas/LieuTravail"
+        romeCode:
+          type: string
+        romeLibelle:
+          type: string
+        appellationLibelle:
+          type: string
+        entreprise:
+          $ref: "#/components/schemas/Entreprise"
+        typeContrat:
+          type: string
+        typeContratLibelle:
+          type: string
+        natureContrat:
+          type: string
+        experienceExige:
+          type: string
+        experienceLibelle:
+          type: string
+        salaire:
+          $ref: "#/components/schemas/Salaire"
+        dureeTravailLibelle:
+          type: string
+        dureeTravailLibelleConverti:
+          type: string
+        alternance:
+          type: boolean
+        contact:
+          $ref: "#/components/schemas/Contact"
+        accessibleTH:
+          type: boolean
+        qualificationCode:
+          type: string
+        qualificationLibelle:
+          type: string
+        codeNAF:
+          type: string
+        secteurActivite:
+          type: string
+        secteurActiviteLibelle:
+          type: string
+        origineOffre:
+          $ref: "#/components/schemas/OrigineOffre"
+        offresManqueCandidats:
+          type: boolean
+    OrigineOffre:
+      type: object
+      properties:
+        origine:
+          type: string
+        urlOrigine:
+          type: string
+        partenaires:
+          type: array
+          items:
+            $ref: "#/components/schemas/PartenaireOffre"
+    PartenaireOffre:
+      type: object
+      properties:
+        nom:
+          type: string
+        url:
+          type: string
+        logo:
+          type: string
+    Salaire:
+      type: object
+      properties:
+        libelle:
+          type: string
+        commentaire:
+          type: string
+        complement1:
+          type: string
+        complement2:
+          type: string
+    AggregationPossibility:
+      type: object
+      properties:
+        valeurPossible:
+          type: string
+        nbResultats:
+          type: integer
+          format: int32
+    FilterPossibility:
+      type: object
+      properties:
+        filtre:
+          type: string
+        agregation:
+          type: array
+          items:
+            $ref: "#/components/schemas/AggregationPossibility"
+    ListResultOffer:
+      type: object
+      properties:
+        resultats:
+          type: array
+          items:
+            $ref: "#/components/schemas/Offer"
+        filtresPossibles:
+          type: array
+          items:
+            $ref: "#/components/schemas/FilterPossibility"
