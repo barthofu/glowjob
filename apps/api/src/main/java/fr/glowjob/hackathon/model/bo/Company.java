@@ -13,6 +13,7 @@ import java.util.UUID;
 @Table(name = "company")
 public class Company {
   @Id
+  @Column(name = "id")
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
 
@@ -28,7 +29,12 @@ public class Company {
   @ManyToMany
   private List<User> users;
 
+  @Column(name = "name")
   private String name;
+
+  @Column(name = "siret")
   private String siret;
+
+  @Column(name = "address")
   private String address;
 }

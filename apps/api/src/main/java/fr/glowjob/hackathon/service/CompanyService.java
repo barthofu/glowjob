@@ -15,7 +15,13 @@ public class CompanyService {
   private final CompanyMapper companyMapper;
   private final CompanyRepository companyRepository;
 
-  public Company save(CompanyDto companyDto) {;
-    return companyRepository.save(companyMapper.toBO(companyDto));
+  private final ContactService contactService;
+
+  public CompanyDto save(CompanyDto companyDto) {;
+    var contact = contactService.save(companyDto.contact());
+    var company = companyMapper.toBO(companyDto);
+
+    company.setContact(contact);
+    return companyMapper.toDto(companyRepository.save(company));
   }
 }
