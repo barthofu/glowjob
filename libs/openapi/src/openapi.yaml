@@ -7,6 +7,24 @@ servers:
 - url: http://localhost:8080
   description: API
 paths:
+  /api/company:
+    post:
+      tags:
+      - company-controller
+      operationId: save
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CompanyDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CompanyDto"
   /api/offer/{id}:
     get:
       tags:
@@ -137,18 +155,13 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Offer"
-  /api/job/search:
+  /api/company/recommended:
     get:
       tags:
-      - job-controller
-      summary: Search jobs across
-      operationId: search_1
-      parameters:
-      - name: query
-        in: query
-        required: true
-        schema:
-          type: string
+      - company-controller
+      summary: Get recommended compagnies with user preferences such as location and
+        jobs
+      operationId: getRecommendedCompanies
       responses:
         "200":
           description: OK
@@ -157,9 +170,34 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/PredictionMetier"
+                  $ref: "#/components/schemas/Company"
 components:
   schemas:
+    CompanyDto:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        siret:
+          type: string
+        address:
+          type: string
+        contact:
+          $ref: "#/components/schemas/ContactLightDto"
+    ContactLightDto:
+      type: object
+      properties:
+        phone:
+          type: string
+        email:
+          type: string
+        website:
+          type: string
     Contact:
       type: object
       properties:
@@ -350,32 +388,55 @@ components:
           type: string
         libelle:
           type: string
-    MetierRome:
+    Company:
       type: object
       properties:
-        libelleAppellation:
+        rome:
           type: string
-        codeAppellation:
+        id:
+          type: integer
+          format: int32
+        siret:
           type: string
-        libelleRome:
+        companyName:
           type: string
-        codeRome:
+        officeName:
           type: string
-        scorePrediction:
+        headcountMin:
+          type: integer
+          format: int32
+        headcountMax:
+          type: integer
+          format: int32
+        naf:
+          type: string
+        nafLabel:
+          type: string
+        location:
+          $ref: "#/components/schemas/Location"
+        city:
+          type: string
+        citycode:
+          type: string
+        postcode:
+          type: string
+        department:
+          type: string
+        region:
+          type: string
+        departmentNumber:
+          type: string
+        hiringPotential:
           type: number
           format: double
-    PredictionMetier:
+        isHighPotential:
+          type: boolean
+    Location:
       type: object
       properties:
-        metiersRome:
-          type: array
-          items:
-            $ref: "#/components/schemas/MetierRome"
-        uuidInference:
-          type: string
-        identifiant:
-          type: string
-        intitule:
-          type: string
-        contexte:
-          type: string
+        lat:
+          type: number
+          format: double
+        lon:
+          type: number
+          format: double
