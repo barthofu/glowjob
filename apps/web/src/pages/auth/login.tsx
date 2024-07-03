@@ -27,7 +27,7 @@ const LoginPage: React.FC = () => {
     })
 
     const onSubmit: SubmitHandler<AuthFormSchema> = ({ email, password }) => {
-      
+
     }
 
     return (
