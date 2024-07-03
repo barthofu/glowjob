@@ -60,48 +60,53 @@ const ProfilePage: React.FC = () => {
                     padding="2rem"
                     display="flex"
                     flexDirection="column"
-                    justifyContent="center"
                     alignItems="center"
                 >
-                    <Image
-                        src='/logoGlowjob.png'
-                        alt='Logo Glowjob'
-                        objectFit='contain'
-                        maxH='50%'
-                        width='50%'
-                    />
-                    <Stack spacing={4} width="100%" maxWidth="400px">
-                        <Flex width="100%" justifyContent="space-between">
-                            <FormControl flex="1" marginRight="1rem">
-                                <FormLabel color="white">Nom</FormLabel>
-                                <Input placeholder="Nom" />
-                            </FormControl>
-                            <FormControl flex="1" marginLeft="1rem">
-                                <FormLabel color="white">Prénom</FormLabel>
-                                <Input placeholder="Prénom" />
-                            </FormControl>
-                        </Flex>
-                        <Flex width="100%" justifyContent="space-between">
-                            <FormControl flex="1" marginRight="1rem">
-                                <FormLabel color="white">Mail</FormLabel>
-                                <Input placeholder="Mail" />
-                            </FormControl>
-                            <FormControl flex="1" marginLeft="1rem">
-                                <FormLabel color="white">Mot de Passe</FormLabel>
-                                <Input placeholder="Mot de Passe" />
-                            </FormControl>
-                        </Flex>
-                        <Button
-                            w='100%'
-                            variant='solid'
-                            mt='1rem'
-                            type='submit'
-                            backgroundColor="#2E0A37"
-                            color="white"
-                        >
-                            Mettre à jour
-                        </Button>
-                    </Stack>
+                    <Box width="50%" display="flex" justifyContent="center" alignItems="center" mb="1rem">
+                        <Image
+                            src='/logoGlowjob.png'
+                            alt='Logo Glowjob'
+                            objectFit='contain'
+                            width='75%'
+                        />
+                    </Box>
+                    <Flex width="100%" flex="1" justifyContent="center" alignItems="center">
+                        <Box width="75%">
+                            <Stack spacing={4}>
+                                <Flex width="100%" justifyContent="space-between">
+                                    <FormControl flex="1" marginRight="1rem">
+                                        <FormLabel color="white">Nom</FormLabel>
+                                        <Input placeholder="Nom" color="white" _placeholder={{ color: 'white' }} />
+                                    </FormControl>
+                                    <FormControl flex="1" marginLeft="1rem">
+                                        <FormLabel color="white">Prénom</FormLabel>
+                                        <Input placeholder="Prénom" color="white" _placeholder={{ color: 'white' }} />
+                                    </FormControl>
+                                </Flex>
+                                <Flex width="100%" justifyContent="space-between">
+                                    <FormControl flex="1" marginRight="1rem">
+                                        <FormLabel color="white">Mail</FormLabel>
+                                        <Input placeholder="Mail" color="white" _placeholder={{ color: 'white' }} />
+                                    </FormControl>
+                                    <FormControl flex="1" marginLeft="1rem">
+                                        <FormLabel color="white">Mot de Passe</FormLabel>
+                                        <Input type="password" placeholder="Mot de Passe" color="white" _placeholder={{ color: 'white' }} />
+                                    </FormControl>
+                                </Flex>
+                                <Box display="flex" justifyContent="center" mt="2rem">
+                                    <Button
+                                        w='75%'
+                                        variant='solid'
+                                        type='submit'
+                                        backgroundColor="#2E0A37"
+                                        color="white"
+                                    >
+                                        Mettre à jour
+                                    </Button>
+                                </Box>
+                            </Stack>
+                        </Box>
+                    </Flex>
                 </Box>
             </Flex>
         </Flex>
