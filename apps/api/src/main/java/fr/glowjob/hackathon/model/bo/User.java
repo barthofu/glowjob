@@ -28,10 +28,10 @@ public class User {
   @OneToMany(mappedBy = "user", targetEntity = Review.class)
   List<Review> reviews;
 
-  @ManyToMany
+  @ManyToMany(mappedBy = "users", targetEntity = Company.class)
   private List<Company> interestingCompanies;
 
-  @ManyToMany
+  @ManyToMany(mappedBy = "users", targetEntity = Offer.class)
   private List<Offer> interestingOffers;
 
   @Column(name = "user_type")
