@@ -11,6 +11,10 @@ const Header: React.FC = () => {
             backgroundColor="#521262"
             padding="10px 20px"
             boxShadow="md"
+            position="fixed"
+            top="0"
+            width="100%"
+            zIndex="1000"
         >
             <Image 
                 width="100px"

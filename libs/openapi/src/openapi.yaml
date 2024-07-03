@@ -378,4 +378,8 @@ components:
         intitule:
           type: string
         contexte:
+<<<<<<< HEAD
           type: string
+=======
+          type: string
+>>>>>>> fha/Front
