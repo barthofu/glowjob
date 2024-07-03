@@ -4,7 +4,7 @@ import { DefaultLayout } from '../components/layouts'
 const HomePage = () => {
 	return (
 		<DefaultLayout
-			title='Cinestia'
+			title='Glowjob'
 			fadedImage='https://picsum.photos/100/100.webp'
 			queryStatus={200}
 		>

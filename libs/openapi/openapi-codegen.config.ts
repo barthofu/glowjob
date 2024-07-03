@@ -7,7 +7,7 @@ import {
 export default defineConfig({
 	api: {
 		from: {
-			relativePath: './src/openapi.json',
+			relativePath: './src/openapi.yaml',
 			source: 'file',
 		},
 		outputDir: './src/generated',

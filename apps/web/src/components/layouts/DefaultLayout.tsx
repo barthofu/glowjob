@@ -15,20 +15,20 @@ type DefaultLayoutProps = {
 export const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
 	return (
 		<Box
-			backgroundColor='#13161d'
 			minHeight='100vh'
+			backgroundColor="#2e0a37"
 		>
 			<Helmet>
-				<title>{props.title || 'Cinéstia'}</title>
+				<title>{props.title || 'GlowJob'}</title>
 			</Helmet>
 
 			<Header />
 			<Flex
+				marginTop="10vh"
 				position='absolute'
-				w='100%'
-				h='100%'
-				zIndex={1}
 				justifyContent='center'
+				w='100%'
+				zIndex={1}
 			>
 				<Box maxWidth='70vw'>
 					{props.queryStatus === 404 ? (
@@ -38,7 +38,6 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
 					) : (
 						props.children
 					)}
-					<Box height='5em' />
 				</Box>
 			</Flex>
 		</Box>
