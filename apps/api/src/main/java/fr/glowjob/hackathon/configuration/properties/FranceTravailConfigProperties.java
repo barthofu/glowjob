@@ -10,8 +10,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class FranceTravailConfigProperties {
   private String url;
   private FranceTravailIdentifiantConfigProperties identifiant;
-  private FranceTravailServiceConfigProperties job;
+  private FranceTravailServiceConfigProperties offer;
   private FranceTravailServiceConfigProperties bonneBoite;
+  private FranceTravailServiceConfigProperties job;
 
   @Getter
   @Setter
