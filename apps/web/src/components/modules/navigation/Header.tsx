@@ -1,13 +1,14 @@
 import React from 'react';
 import { Flex, Input, Image, Box, Text } from '@chakra-ui/react';
 import { GoChevronDown } from "react-icons/go";
+import { Link } from '@glowjob/web/router'
 
 const Header: React.FC = () => {
     return (
         <Flex
             justifyContent="space-between"
             alignItems="center"
-            backgroundColor="#4B006E"
+            backgroundColor="#521262"
             padding="10px 20px"
             boxShadow="md"
         >
@@ -27,18 +28,21 @@ const Header: React.FC = () => {
                 color="white"
             />
 
-            <Box display="flex" alignItems="center">
-                <Flex 
-                    textAlign="right"
-                    direction="column"
-                    marginRight="10px"
-                    alignItems="center"
-                >
-                    <Text fontSize="md" fontWeight="bold" color="white">Nom Prenom</Text>
-                    <Text fontSize="sm" color="white">nom.prenom@gmail.com</Text>
-                </Flex>
-                <GoChevronDown color="white" />
-            </Box>
+            <Link to="/users/profile">
+                <Box display="flex" alignItems="center">
+                    <Flex 
+                        textAlign="right"
+                        direction="column"
+                        marginRight="10px"
+                        alignItems="center"
+                    >
+                        <Text fontSize="md" fontWeight="bold" color="white">Nom Prenom</Text>
+                        <Text fontSize="sm" color="white">nom.prenom@gmail.com</Text>
+                    </Flex>
+                    <GoChevronDown color="white" />
+                </Box>
+            </Link>
+
         </Flex>
     );
 }
