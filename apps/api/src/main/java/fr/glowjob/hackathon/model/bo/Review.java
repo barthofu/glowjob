@@ -13,6 +13,7 @@ import java.util.UUID;
 @DiscriminatorValue("review")
 public class Review {
   @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
 
   @ManyToOne(optional = false)

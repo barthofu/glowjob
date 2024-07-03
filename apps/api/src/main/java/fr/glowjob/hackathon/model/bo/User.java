@@ -14,6 +14,7 @@ import java.util.UUID;
 @Table(name = "user")
 public class User {
   @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
 
   @OneToOne()
@@ -29,7 +30,7 @@ public class User {
   private List<Offer> interestingOffers;
 
   private UserType userType;
-  
+
   public boolean isDeleted() {
     return userInfo == null;
   }

@@ -1,10 +1,8 @@
 package fr.glowjob.hackathon.model.enums;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 public enum DiplomeLvl {
 
   NONE("Aucun"),
@@ -18,9 +16,11 @@ public enum DiplomeLvl {
   BAC_P6("BAC+6"),
   BAC_P7("BAC+7"),
   BAC_P8("BAC+8"),
-  BAC_P9("BAC+9"),
-  ;
-
+  BAC_P9("BAC+9");
 
   private final String value;
+
+  DiplomeLvl(String value) {
+    this.value = value;
+  }
 }

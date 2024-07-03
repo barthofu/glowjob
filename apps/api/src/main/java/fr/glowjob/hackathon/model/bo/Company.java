@@ -13,19 +13,20 @@ import java.util.UUID;
 @Table(name = "company")
 public class Company {
   @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
 
   @OneToOne
   private Contact contact;
 
   @OneToMany
-  private List<Offer> offer;
+  private List<Offer> offers;
 
   @OneToMany
-  private List<Review> review;
+  private List<Review> reviews;
 
   @ManyToMany
-  private List<User> user;
+  private List<User> users;
 
   private String name;
   private String siret;

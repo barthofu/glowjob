@@ -1,10 +1,7 @@
 package fr.glowjob.hackathon.model.bo;
 
 import fr.glowjob.hackathon.model.enums.DiplomeLvl;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.UUID;
@@ -13,6 +10,7 @@ import java.util.UUID;
 @Table(name = "user_info")
 public class UserInfo {
   @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
   @OneToOne
   private User user;
