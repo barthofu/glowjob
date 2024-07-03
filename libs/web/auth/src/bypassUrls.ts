@@ -5,4 +5,5 @@ export const bypassUrls: Path[] = [
     '/auth/logout',
     '/auth/register',
     '/users/profile',
+    '/users/favoffers',
 ]

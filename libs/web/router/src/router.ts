@@ -8,6 +8,7 @@ export type Path =
 	| `/auth/login`
 	| `/auth/logout`
 	| `/auth/register`
+	| `/users/favoffers`
 	| `/users/profile`
 
 export type Params = {}

@@ -32,16 +32,18 @@ const ProfilePage: React.FC = () => {
                     <Stack spacing={10} width="100%">
                         <Link to="/users/profile">
                             <Box display="flex" alignItems="center" color="white" fontSize="2xl">
-                                <Icon as={FaUser} marginRight="1rem" color="#9A22B8" boxSize={8} />
-                                <Text color="#9A22B8" as="span">
+                                <Icon as={FaUser} marginRight="1rem" boxSize={8} />
+                                <Text>
                                     Mes Informations
                                 </Text>
                             </Box>
                         </Link>
                         <Link to="/users/favoffers">
                             <Box display="flex" alignItems="center" color="white" fontSize="2xl">
-                                <Icon as={FaClipboardList} marginRight="1rem" boxSize={8} />
-                                <Text>Mes Offres Suivis</Text>
+                                <Icon as={FaClipboardList} marginRight="1rem" color="#9A22B8" boxSize={8} />
+                                <Text color="#9A22B8" as="span">
+                                    Mes Offres Suivis
+                                </Text>
                             </Box>
                         </Link>
                     </Stack>
@@ -71,40 +73,7 @@ const ProfilePage: React.FC = () => {
                         />
                     </Box>
                     <Flex width="100%" flex="1" justifyContent="center" alignItems="center">
-                        <Box width="75%">
-                            <Stack spacing={4}>
-                                <Flex width="100%" justifyContent="space-between">
-                                    <FormControl flex="1" marginRight="1rem">
-                                        <FormLabel color="white">Nom</FormLabel>
-                                        <Input placeholder="Nom" color="white" _placeholder={{ color: 'white' }} />
-                                    </FormControl>
-                                    <FormControl flex="1" marginLeft="1rem">
-                                        <FormLabel color="white">Prénom</FormLabel>
-                                        <Input placeholder="Prénom" color="white" _placeholder={{ color: 'white' }} />
-                                    </FormControl>
-                                </Flex>
-                                <Flex width="100%" justifyContent="space-between">
-                                    <FormControl flex="1" marginRight="1rem">
-                                        <FormLabel color="white">Mail</FormLabel>
-                                        <Input placeholder="Mail" color="white" _placeholder={{ color: 'white' }} />
-                                    </FormControl>
-                                    <FormControl flex="1" marginLeft="1rem">
-                                        <FormLabel color="white">Mot de Passe</FormLabel>
-                                        <Input type="password" placeholder="Mot de Passe" color="white" _placeholder={{ color: 'white' }} />
-                                    </FormControl>
-                                </Flex>
-                                <Box display="flex" justifyContent="center" mt="2rem">
-                                    <Button
-                                        w='75%'
-                                        variant='solid'
-                                        type='submit'
-                                        backgroundColor="#2E0A37"
-                                        color="white"
-                                    >
-                                        Mettre à jour
-                                    </Button>
-                                </Box>
-                            </Stack>
+                        <Box width="75%">   
                         </Box>
                     </Flex>
                 </Box>
