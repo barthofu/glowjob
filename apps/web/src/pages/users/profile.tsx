@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Box,
     Button,
+    Checkbox,
     Flex,
     FormControl,
     FormLabel,
@@ -9,12 +10,24 @@ import {
     Input,
     Stack,
     Text,
-    Image
+    Image,
+    CheckboxGroup
 } from '@chakra-ui/react';
 import { Link } from '@glowjob/web/router';
 import { FaUser, FaClipboardList, FaSignOutAlt } from 'react-icons/fa';
 
 const ProfilePage: React.FC = () => {
+    const [selectedDomains, setSelectedDomains] = useState<string[]>([]);
+    const [selectedJobs, setSelectedJobs] = useState<string[]>([]);
+
+    const handleDomainChange = (domains: string[]) => {
+        setSelectedDomains(domains);
+    };
+
+    const handleJobChange = (jobs: string[]) => {
+        setSelectedJobs(jobs);
+    };
+
     return (
         <Flex direction="column" height="100vh">
             <Flex flex="1">
@@ -91,6 +104,54 @@ const ProfilePage: React.FC = () => {
                                         <Input type="password" placeholder="Mot de Passe" color="white" _placeholder={{ color: 'white' }} />
                                     </FormControl>
                                 </Flex>
+                                <FormControl>
+                                    <FormLabel color="white">Domaines d'activité</FormLabel>
+                                    <Box 
+                                        maxHeight="70px" 
+                                        overflowY="auto" 
+                                        border="1px solid #ccc" 
+                                        borderRadius="md"
+                                        padding="2"
+                                        color="white"
+                                    >
+                                        <CheckboxGroup
+                                            colorScheme="purple"
+                                            value={selectedDomains}
+                                            onChange={handleDomainChange}
+                                        >
+                                            <Stack spacing={1} direction="column">
+                                                <Checkbox value="informatique">Informatique</Checkbox>
+                                                <Checkbox value="marketing">Marketing</Checkbox>
+                                                <Checkbox value="finance">Finance</Checkbox>
+                                                <Checkbox value="labaise">LABAISE</Checkbox>
+                                                <Checkbox value="baro">BARO</Checkbox>
+                                            </Stack>
+                                        </CheckboxGroup>
+                                    </Box>
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel color="white">Métier</FormLabel>
+                                    <Box 
+                                        maxHeight="70px" 
+                                        overflowY="auto" 
+                                        border="1px solid #ccc" 
+                                        borderRadius="md"
+                                        padding="2"
+                                        color="white"
+                                    >
+                                        <CheckboxGroup
+                                            colorScheme="purple"
+                                            value={selectedJobs}
+                                            onChange={handleJobChange}
+                                        >
+                                            <Stack spacing={1} direction="column">
+                                                <Checkbox value="developpeur">Développeur</Checkbox>
+                                                <Checkbox value="designer">Designer</Checkbox>
+                                                <Checkbox value="manager">Manager</Checkbox>
+                                            </Stack>
+                                        </CheckboxGroup>
+                                    </Box>
+                                </FormControl>
                                 <Box display="flex" justifyContent="center" mt="2rem">
                                     <Button
                                         w='75%'
