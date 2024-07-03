@@ -20,13 +20,14 @@ public class Company {
   @OneToOne
   private Contact contact;
 
-  @OneToMany
+  @OneToMany(mappedBy = "company")
   private List<Offer> offers;
 
-  @OneToMany
+  @OneToMany(mappedBy = "company")
   private List<Review> reviews;
 
   @ManyToMany
+  @JoinTable(name = "company_user", joinColumns = @JoinColumn(name = "company_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
   private List<User> users;
 
   @Column(name = "name")

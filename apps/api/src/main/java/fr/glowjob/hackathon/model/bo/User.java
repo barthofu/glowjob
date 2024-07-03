@@ -32,6 +32,7 @@ public class User {
   @ManyToMany
   private List<Offer> interestingOffers;
 
+  @Column(name = "user_type")
   private UserType userType;
 
   public boolean isDeleted() {

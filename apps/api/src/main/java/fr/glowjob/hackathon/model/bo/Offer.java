@@ -17,10 +17,12 @@ public class Offer {
   private UUID id;
 
   @ManyToOne(optional = false)
+  @JoinColumn(name = "company_id", nullable = false)
   private Company company;
 
   @ManyToMany
-  private List<User> user;
+  @JoinTable(name = "offer_user", joinColumns = @JoinColumn(name = "offer_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+  private List<User> users;
 
   private String libelle;
 }
