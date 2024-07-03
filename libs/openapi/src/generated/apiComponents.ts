@@ -53,17 +53,50 @@ export const useFindById = <TData = Schemas.Offer,>(
 	})
 }
 
+export type SearchQueryParams = {
+	/**
+	 * Offers' keywords
+	 */
+	query: string
+	/**
+	 * Offers' area
+	 */
+	area?: string
+	/**
+	 * Offers' department
+	 */
+	department?: string
+	/**
+	 * Offers' city
+	 */
+	city?: string
+	/**
+	 * Offers' inside city's area. Can only be used with city parameter
+	 *
+	 * @format int32
+	 */
+	distance?: number
+	/**
+	 * Offers' contract type
+	 */
+	contractType?: string
+}
+
 export type SearchError = Fetcher.ErrorWrapper<undefined>
 
-export type SearchVariables = ApiContext['fetcherOptions']
+export type SearchVariables = {
+	queryParams: SearchQueryParams
+} & ApiContext['fetcherOptions']
 
 export const fetchSearch = (variables: SearchVariables, signal?: AbortSignal) =>
-	apiFetch<Schemas.ListResultOffer, SearchError, undefined, {}, {}, {}>({
-		url: '/api/offer/search',
-		method: 'get',
-		...variables,
-		signal,
-	})
+	apiFetch<
+		Schemas.ListResultOffer,
+		SearchError,
+		undefined,
+		{},
+		SearchQueryParams,
+		{}
+	>({ url: '/api/offer/search', method: 'get', ...variables, signal })
 
 export const useSearch = <TData = Schemas.ListResultOffer,>(
 	variables: SearchVariables,
@@ -81,6 +114,254 @@ export const useSearch = <TData = Schemas.ListResultOffer,>(
 		}),
 		queryFn: ({ signal }) =>
 			fetchSearch({ ...fetcherOptions, ...variables }, signal),
+		...options,
+		...queryOptions,
+	})
+}
+
+export type DepartmentReferenceError = Fetcher.ErrorWrapper<undefined>
+
+export type DepartmentReferenceResponse = Schemas.DepartmentReference[]
+
+export type DepartmentReferenceVariables = ApiContext['fetcherOptions']
+
+export const fetchDepartmentReference = (
+	variables: DepartmentReferenceVariables,
+	signal?: AbortSignal
+) =>
+	apiFetch<
+		DepartmentReferenceResponse,
+		DepartmentReferenceError,
+		undefined,
+		{},
+		{},
+		{}
+	>({
+		url: '/api/offer/reference/department',
+		method: 'get',
+		...variables,
+		signal,
+	})
+
+export const useDepartmentReference = <TData = DepartmentReferenceResponse,>(
+	variables: DepartmentReferenceVariables,
+	options?: Omit<
+		reactQuery.UseQueryOptions<
+			DepartmentReferenceResponse,
+			DepartmentReferenceError,
+			TData
+		>,
+		'queryKey' | 'queryFn' | 'initialData'
+	>
+) => {
+	const { fetcherOptions, queryOptions, queryKeyFn } = useApiContext(options)
+	return reactQuery.useQuery<
+		DepartmentReferenceResponse,
+		DepartmentReferenceError,
+		TData
+	>({
+		queryKey: queryKeyFn({
+			path: '/api/offer/reference/department',
+			operationId: 'departmentReference',
+			variables,
+		}),
+		queryFn: ({ signal }) =>
+			fetchDepartmentReference(
+				{ ...fetcherOptions, ...variables },
+				signal
+			),
+		...options,
+		...queryOptions,
+	})
+}
+
+export type ContractTypeReferenceError = Fetcher.ErrorWrapper<undefined>
+
+export type ContractTypeReferenceResponse = Schemas.ContractTypeReference[]
+
+export type ContractTypeReferenceVariables = ApiContext['fetcherOptions']
+
+export const fetchContractTypeReference = (
+	variables: ContractTypeReferenceVariables,
+	signal?: AbortSignal
+) =>
+	apiFetch<
+		ContractTypeReferenceResponse,
+		ContractTypeReferenceError,
+		undefined,
+		{},
+		{},
+		{}
+	>({
+		url: '/api/offer/reference/contract-type',
+		method: 'get',
+		...variables,
+		signal,
+	})
+
+export const useContractTypeReference = <
+	TData = ContractTypeReferenceResponse,
+>(
+	variables: ContractTypeReferenceVariables,
+	options?: Omit<
+		reactQuery.UseQueryOptions<
+			ContractTypeReferenceResponse,
+			ContractTypeReferenceError,
+			TData
+		>,
+		'queryKey' | 'queryFn' | 'initialData'
+	>
+) => {
+	const { fetcherOptions, queryOptions, queryKeyFn } = useApiContext(options)
+	return reactQuery.useQuery<
+		ContractTypeReferenceResponse,
+		ContractTypeReferenceError,
+		TData
+	>({
+		queryKey: queryKeyFn({
+			path: '/api/offer/reference/contract-type',
+			operationId: 'contractTypeReference',
+			variables,
+		}),
+		queryFn: ({ signal }) =>
+			fetchContractTypeReference(
+				{ ...fetcherOptions, ...variables },
+				signal
+			),
+		...options,
+		...queryOptions,
+	})
+}
+
+export type AreaReferenceError = Fetcher.ErrorWrapper<undefined>
+
+export type AreaReferenceResponse = Schemas.AreaReference[]
+
+export type AreaReferenceVariables = ApiContext['fetcherOptions']
+
+export const fetchAreaReference = (
+	variables: AreaReferenceVariables,
+	signal?: AbortSignal
+) =>
+	apiFetch<AreaReferenceResponse, AreaReferenceError, undefined, {}, {}, {}>({
+		url: '/api/offer/reference/area',
+		method: 'get',
+		...variables,
+		signal,
+	})
+
+export const useAreaReference = <TData = AreaReferenceResponse,>(
+	variables: AreaReferenceVariables,
+	options?: Omit<
+		reactQuery.UseQueryOptions<
+			AreaReferenceResponse,
+			AreaReferenceError,
+			TData
+		>,
+		'queryKey' | 'queryFn' | 'initialData'
+	>
+) => {
+	const { fetcherOptions, queryOptions, queryKeyFn } = useApiContext(options)
+	return reactQuery.useQuery<
+		AreaReferenceResponse,
+		AreaReferenceError,
+		TData
+	>({
+		queryKey: queryKeyFn({
+			path: '/api/offer/reference/area',
+			operationId: 'areaReference',
+			variables,
+		}),
+		queryFn: ({ signal }) =>
+			fetchAreaReference({ ...fetcherOptions, ...variables }, signal),
+		...options,
+		...queryOptions,
+	})
+}
+
+export type RecommandedError = Fetcher.ErrorWrapper<undefined>
+
+export type RecommandedResponse = Schemas.Offer[]
+
+export type RecommandedVariables = ApiContext['fetcherOptions']
+
+export const fetchRecommanded = (
+	variables: RecommandedVariables,
+	signal?: AbortSignal
+) =>
+	apiFetch<RecommandedResponse, RecommandedError, undefined, {}, {}, {}>({
+		url: '/api/offer/recommanded',
+		method: 'get',
+		...variables,
+		signal,
+	})
+
+export const useRecommanded = <TData = RecommandedResponse,>(
+	variables: RecommandedVariables,
+	options?: Omit<
+		reactQuery.UseQueryOptions<
+			RecommandedResponse,
+			RecommandedError,
+			TData
+		>,
+		'queryKey' | 'queryFn' | 'initialData'
+	>
+) => {
+	const { fetcherOptions, queryOptions, queryKeyFn } = useApiContext(options)
+	return reactQuery.useQuery<RecommandedResponse, RecommandedError, TData>({
+		queryKey: queryKeyFn({
+			path: '/api/offer/recommanded',
+			operationId: 'recommanded',
+			variables,
+		}),
+		queryFn: ({ signal }) =>
+			fetchRecommanded({ ...fetcherOptions, ...variables }, signal),
+		...options,
+		...queryOptions,
+	})
+}
+
+export type Search1QueryParams = {
+	query: string
+}
+
+export type Search1Error = Fetcher.ErrorWrapper<undefined>
+
+export type Search1Response = Schemas.PredictionMetier[]
+
+export type Search1Variables = {
+	queryParams: Search1QueryParams
+} & ApiContext['fetcherOptions']
+
+export const fetchSearch1 = (
+	variables: Search1Variables,
+	signal?: AbortSignal
+) =>
+	apiFetch<
+		Search1Response,
+		Search1Error,
+		undefined,
+		{},
+		Search1QueryParams,
+		{}
+	>({ url: '/api/job/search', method: 'get', ...variables, signal })
+
+export const useSearch1 = <TData = Search1Response,>(
+	variables: Search1Variables,
+	options?: Omit<
+		reactQuery.UseQueryOptions<Search1Response, Search1Error, TData>,
+		'queryKey' | 'queryFn' | 'initialData'
+	>
+) => {
+	const { fetcherOptions, queryOptions, queryKeyFn } = useApiContext(options)
+	return reactQuery.useQuery<Search1Response, Search1Error, TData>({
+		queryKey: queryKeyFn({
+			path: '/api/job/search',
+			operationId: 'search1',
+			variables,
+		}),
+		queryFn: ({ signal }) =>
+			fetchSearch1({ ...fetcherOptions, ...variables }, signal),
 		...options,
 		...queryOptions,
 	})
@@ -105,6 +386,14 @@ export type QueryOperation =
 			variables: DepartmentReferenceVariables
 	  }
 	| {
+<<<<<<< HEAD
+=======
+			path: '/api/offer/reference/department'
+			operationId: 'departmentReference'
+			variables: DepartmentReferenceVariables
+	  }
+	| {
+>>>>>>> 01b6f70 (wip)
 			path: '/api/offer/reference/contract-type'
 			operationId: 'contractTypeReference'
 			variables: ContractTypeReferenceVariables
@@ -123,5 +412,9 @@ export type QueryOperation =
 			path: '/api/job/search'
 			operationId: 'search1'
 			variables: Search1Variables
+<<<<<<< HEAD
 >>>>>>> fha/Front
 	}
+=======
+	  }
+>>>>>>> 01b6f70 (wip)

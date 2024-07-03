@@ -165,5 +165,8 @@ export type PredictionMetier = {
 	identifiant?: string
 	intitule?: string
 	contexte?: string
+<<<<<<< HEAD
 >>>>>>> fha/Front
+=======
+>>>>>>> 01b6f70 (wip)
 }
