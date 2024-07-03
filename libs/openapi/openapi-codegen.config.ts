@@ -7,7 +7,7 @@ import {
 export default defineConfig({
 	api: {
 		from: {
-			relativePath: './src/openapi.json',
+			relativePath: './src/openapi.yaml',
 			source: 'file',
 		},
 		outputDir: './src/generated',
@@ -15,7 +15,7 @@ export default defineConfig({
       		// You can transform the `context.openAPIDocument` here, can be useful to remove internal routes or fixing some known issues in the specs ;)
 
 			const filenamePrefix = 'api'
-			
+
 			// Generate all the schemas types (components & responses)
 			const { schemasFiles } = await generateSchemaTypes(context, {
 				filenamePrefix,
