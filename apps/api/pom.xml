@@ -146,6 +146,17 @@
         </configuration>
       </plugin>
       <plugin>
+        <groupId>org.flywaydb</groupId>
+        <artifactId>flyway-maven-plugin</artifactId>
+        <configuration>
+          <url>jdbc:postgresql://localhost:5432/glowjob</url>
+          <user>glowjob</user>
+          <password>glowjob</password>
+          <cleanDisabled>false</cleanDisabled>
+        </configuration>
+      </plugin>
+
+      <plugin>
         <groupId>org.springdoc</groupId>
         <artifactId>springdoc-openapi-maven-plugin</artifactId>
         <version>1.4</version>
