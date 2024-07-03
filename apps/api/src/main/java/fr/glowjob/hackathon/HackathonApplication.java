@@ -13,10 +13,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @OpenAPIDefinition(
   info = @Info(
     title = "Glowjob",
-    description = "Glowjob API's OpenAPI definitions"
+    description = "Glowjob API's OpenAPI definitions",
+    version = "0.0.1"
   ),
   servers = @Server(
-    url = "/",
+    url = "http://localhost:8080",
     description = "API"
   )
 )

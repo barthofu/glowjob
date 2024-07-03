@@ -2,14 +2,15 @@ openapi: 3.0.1
 info:
   title: Glowjob
   description: Glowjob API's OpenAPI definitions
+  version: 0.0.1
 servers:
-- url: /
-  description: API
+- url: http://localhost:8080
+  description: Generated server url
 paths:
   /api/offer/{id}:
     get:
       tags:
-      - offer-controller
+      - Offer
       summary: Search one offer by id across France Travail
       operationId: findById
       parameters:
@@ -28,9 +29,35 @@ paths:
   /api/offer/search:
     get:
       tags:
-      - offer-controller
+      - Offer
       summary: Search offers across France Travail
       operationId: search
+      parameters:
+      - name: query
+        in: query
+        description: Offers' keywords
+        required: true
+        schema:
+          type: string
+      - name: area
+        in: query
+        description: Offers' area
+        required: false
+        schema:
+          type: string
+      - name: city
+        in: query
+        description: Offers' city
+        required: false
+        schema:
+          type: string
+      - name: distance
+        in: query
+        description: Offers' inside city's area. Can only be used with city parameter
+        required: false
+        schema:
+          type: integer
+          format: int32
       responses:
         "200":
           description: OK
@@ -38,6 +65,81 @@ paths:
             '*/*':
               schema:
                 $ref: "#/components/schemas/ListResultOffer"
+  /api/offer/reference/department:
+    get:
+      tags:
+      - Offer
+      summary: Get department reference for offers search
+      operationId: departmentReference
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DepartmentReference"
+  /api/offer/reference/contract-type:
+    get:
+      tags:
+      - Offer
+      summary: Get contracts' type reference for offers search
+      operationId: contractTypeReference
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ContractTypeReference"
+  /api/offer/reference/city:
+    get:
+      tags:
+      - Offer
+      summary: Get city reference for offers search
+      operationId: cityReference
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CityReference"
+  /api/offer/reference/area:
+    get:
+      tags:
+      - Offer
+      summary: Get area reference for offers search
+      operationId: areaReference
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AreaReference"
+  /api/offer/recommanded:
+    get:
+      tags:
+      - Offer
+      summary: Get recommanded offers using user preferences
+      operationId: recommanded
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Offer"
 components:
   schemas:
     Contact:
@@ -207,3 +309,37 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/FilterPossibility"
+    AreaReference:
+      type: object
+      properties:
+        code:
+          type: string
+        libelle:
+          type: string
+    DepartmentReference:
+      type: object
+      properties:
+        code:
+          type: string
+        libelle:
+          type: string
+        region:
+          $ref: "#/components/schemas/AreaReference"
+    ContractTypeReference:
+      type: object
+      properties:
+        code:
+          type: string
+        libelle:
+          type: string
+    CityReference:
+      type: object
+      properties:
+        code:
+          type: string
+        libelle:
+          type: string
+        codePostal:
+          type: string
+        codeDepartement:
+          type: string
