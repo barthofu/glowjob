@@ -1,6 +1,6 @@
 package fr.glowjob.hackathon.web.france_travail.model.bonne_boite;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,10 +12,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ResultParam {
   private Integer page;
-  @JsonProperty("page_size")
+  @JsonAlias("page_size")
   private Integer pageSize;
-  @JsonProperty("sort_by")
+  @JsonAlias("sort_by")
   private String sortBy;
-  @JsonProperty("sort_direction")
+  @JsonAlias("sort_direction")
   private String sortDirection;
 }
