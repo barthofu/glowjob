@@ -13,7 +13,7 @@ public class UserLoginDto implements Serializable {
   @Serial
   private static final long serialVersionUID = 1;
 
-  private String email;
+  private String login;
   private String password;
 }
 

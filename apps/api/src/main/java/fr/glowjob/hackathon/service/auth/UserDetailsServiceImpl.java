@@ -1,4 +1,4 @@
-package fr.glowjob.hackathon.service;
+package fr.glowjob.hackathon.service.auth;
 
 import fr.glowjob.hackathon.configuration.security.CustomUserDetails;
 import fr.glowjob.hackathon.model.bo.User;

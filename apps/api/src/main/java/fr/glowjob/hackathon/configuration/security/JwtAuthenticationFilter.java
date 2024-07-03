@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.glowjob.hackathon.configuration.props.SecurityPropsConfig;
 import fr.glowjob.hackathon.model.dto.auth.TokenDto;
 import fr.glowjob.hackathon.model.dto.auth.UserLoginDto;
-import fr.glowjob.hackathon.service.TokenService;
+import fr.glowjob.hackathon.service.auth.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,7 +16,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Filtre qui permet de gérer l'authentification.
@@ -50,7 +49,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
       UserLoginDto creds = new ObjectMapper().readValue(req.getInputStream(), UserLoginDto.class);
 
       // Création d'un objet Authentication qui va être envoyé à Spring Boot pour vérifier si l'utilisateur et le mot de passe sont corrects.
-      return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getPassword(), new ArrayList<>()));
+      return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(creds.getLogin(), creds.getPassword(), null));
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

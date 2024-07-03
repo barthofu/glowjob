@@ -1,4 +1,4 @@
-package fr.glowjob.hackathon.service;
+package fr.glowjob.hackathon.service.auth;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

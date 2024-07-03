@@ -9,7 +9,7 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(
   componentModel = MappingConstants.ComponentModel.SPRING,
   unmappedTargetPolicy = ReportingPolicy.ERROR,
-  uses = {LocationMapper.class, JobMapper.class, ContractTypeMapper.class}
+  uses = {LocationMapper.class, JobMapper.class, ContractTypeMapper.class, UserInfoMapper.class}
 )
 public interface UserPreferenceMapper {
   UserPreferenceDto toDto(UserPreference source);

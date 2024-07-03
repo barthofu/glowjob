@@ -3,7 +3,7 @@ package fr.glowjob.hackathon.configuration;
 import fr.glowjob.hackathon.configuration.props.SecurityPropsConfig;
 import fr.glowjob.hackathon.configuration.security.JwtAuthenticationFilter;
 import fr.glowjob.hackathon.configuration.security.JwtAuthorizationFilter;
-import fr.glowjob.hackathon.service.TokenService;
+import fr.glowjob.hackathon.service.auth.TokenService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,18 +30,18 @@ import java.util.List;
 public class SecurityConfig {
   private final UserDetailsService userDetailsService;
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
-  private final SecurityPropsConfig securityApplicationProperties;
+  private final SecurityPropsConfig secProps;
   private final TokenService tokenService;
 
   public SecurityConfig(
     @Qualifier("UserDetailsServiceImpl") UserDetailsService userDetailsService,
     @Lazy BCryptPasswordEncoder bCryptPasswordEncoder,
-    SecurityPropsConfig securityApplicationProperties,
+    SecurityPropsConfig secProps,
     TokenService tokenService
   ) {
     this.userDetailsService = userDetailsService;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    this.securityApplicationProperties = securityApplicationProperties;
+    this.secProps = secProps;
     this.tokenService = tokenService;
   }
 
@@ -49,13 +49,16 @@ public class SecurityConfig {
   public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager auth, CorsConfigurationSource corsConfigurationSource) throws Exception {
     http.authorizeHttpRequests((x) -> x.
         requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
-        .requestMatchers("/actuator/**").permitAll().requestMatchers("/v3/**").permitAll()
-        .requestMatchers("/login").permitAll().anyRequest().authenticated()
+        .requestMatchers("/actuator/**").permitAll()
+        .requestMatchers("/v3/**").permitAll()
+        .requestMatchers(secProps.getSignUpUrl(), secProps.getLoginUrl()).permitAll()
+        .requestMatchers("/login").permitAll()
+        .anyRequest().authenticated()
       )
       .csrf(AbstractHttpConfigurer::disable)
       .cors(c -> c.configurationSource(corsConfigurationSource))
-      .addFilter(new JwtAuthenticationFilter(auth, securityApplicationProperties, tokenService))
-      .addFilter(new JwtAuthorizationFilter(auth, securityApplicationProperties, tokenService))
+      .addFilter(new JwtAuthenticationFilter(auth, secProps, tokenService))
+      .addFilter(new JwtAuthorizationFilter(auth, secProps, tokenService))
       .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
     ;
 

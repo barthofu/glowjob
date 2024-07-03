@@ -2,7 +2,7 @@ package fr.glowjob.hackathon.configuration.security;
 
 import fr.glowjob.hackathon.configuration.props.SecurityPropsConfig;
 import fr.glowjob.hackathon.model.dto.auth.UserTokenDto;
-import fr.glowjob.hackathon.service.TokenService;
+import fr.glowjob.hackathon.service.auth.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
