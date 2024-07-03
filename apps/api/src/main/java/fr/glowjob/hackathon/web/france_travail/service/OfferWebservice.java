@@ -64,9 +64,11 @@ public class OfferWebservice extends AbstractFranceTravailWebservice {
         .uri(uriBuilder -> uriBuilder
           .path("/v2/offres/search")
           .queryParam("motsCles", searchParams.getQuery())
-          .queryParamIfPresent("departement", Optional.ofNullable(searchParams.getArea()))
+          .queryParamIfPresent("region", Optional.ofNullable(searchParams.getArea()))
+          .queryParamIfPresent("departement", Optional.ofNullable(searchParams.getDepartment()))
           .queryParamIfPresent("commune", Optional.ofNullable(searchParams.getCity()))
           .queryParamIfPresent("distance", Optional.ofNullable(searchParams.getDistance()))
+          .queryParamIfPresent("typeContrat", Optional.ofNullable(searchParams.getContractType()))
           .build()
         )
         .header("Authorization", "Bearer " + this.getToken())

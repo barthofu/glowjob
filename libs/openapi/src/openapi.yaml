@@ -5,7 +5,7 @@ info:
   version: 0.0.1
 servers:
 - url: http://localhost:8080
-  description: Generated server url
+  description: API
 paths:
   /api/offer/{id}:
     get:
@@ -45,6 +45,12 @@ paths:
         required: false
         schema:
           type: string
+      - name: department
+        in: query
+        description: Offers' department
+        required: false
+        schema:
+          type: string
       - name: city
         in: query
         description: Offers' city
@@ -58,6 +64,12 @@ paths:
         schema:
           type: integer
           format: int32
+      - name: contractType
+        in: query
+        description: Offers' contract type
+        required: false
+        schema:
+          type: string
       responses:
         "200":
           description: OK

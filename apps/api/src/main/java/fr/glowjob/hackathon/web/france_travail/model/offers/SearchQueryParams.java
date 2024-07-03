@@ -23,6 +23,10 @@ public class SearchQueryParams {
   private String area;
 
   @Nullable
+  @Parameter(description = "Offers' department")
+  private String department;
+
+  @Nullable
   @Parameter(description = "Offers' city")
   private String city;
 
@@ -30,4 +34,8 @@ public class SearchQueryParams {
   @Positive
   @Parameter(description = "Offers' inside city's area. Can only be used with city parameter")
   private Integer distance;
+
+  @Nullable
+  @Parameter(description = "Offers' contract type")
+  private String contractType;
 }
