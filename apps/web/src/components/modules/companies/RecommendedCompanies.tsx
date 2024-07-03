@@ -1,18 +1,20 @@
-import React from 'react'
-import {useGetRecommendedCompanies} from '@glowjob/openapi';
+import React, {useEffect, useState} from 'react'
+import {fetchGetRecommendedCompanies} from '@glowjob/openapi';
 import {RecommendedCompany} from './RecommendedCompany';
 
 type RecommendedCompaniesProps = {}
 
 export const RecommendedCompanies: React.FC<RecommendedCompaniesProps> = () => {
-  const companies = useGetRecommendedCompanies({});
+  const [companies, setCompanies] = useState([]);
+
+  useEffect(() => {
+    fetchGetRecommendedCompanies({})
+      .then((value) => setCompanies(value));
+  }, []);
 
   return (
     <div>
-      {companies.error?.payload || 'test'}
-      {companies.isLoading && <p>Chargement des entreprises à forts potentiels d'embauche...</p>}
-
-      {companies.data?.map((company, index) => (
+      {companies?.map((company, index) => (
         <RecommendedCompany key={index} company={company}/>
       ))}
     </div>
