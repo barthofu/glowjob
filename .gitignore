@@ -6,6 +6,9 @@
 # NX
 .nx
 
+# Java
+application-local.properties
+
 # Compiled output
 dist
 tmp
