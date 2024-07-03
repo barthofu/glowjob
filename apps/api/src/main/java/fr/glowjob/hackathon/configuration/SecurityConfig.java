@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -66,11 +67,15 @@ public class SecurityConfig {
   }
 
   @Bean
-  public AuthenticationManager authManager(HttpSecurity http) throws Exception {
-    AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-    authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(this.bCryptPasswordEncoder);
-    return authenticationManagerBuilder.build();
+  public AuthenticationManager authManager(HttpSecurity http)
+    throws Exception {
+    return http.getSharedObject(AuthenticationManagerBuilder.class)
+      .userDetailsService(this.userDetailsService)
+      .passwordEncoder(this.bCryptPasswordEncoder)
+      .and()
+      .build();
   }
+
 
   @Bean
   CorsConfigurationSource corsConfigurationSource() {
@@ -90,6 +95,11 @@ public class SecurityConfig {
   @Bean
   public BCryptPasswordEncoder bCryptPasswordEncoder() {
     return new BCryptPasswordEncoder();
+  }
+
+  @Bean
+  PasswordEncoder passwordEncoder() {
+    return bCryptPasswordEncoder();
   }
 
 }

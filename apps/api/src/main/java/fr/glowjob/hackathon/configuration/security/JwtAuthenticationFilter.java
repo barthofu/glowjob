@@ -49,7 +49,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
       UserLoginDto creds = new ObjectMapper().readValue(req.getInputStream(), UserLoginDto.class);
 
       // Création d'un objet Authentication qui va être envoyé à Spring Boot pour vérifier si l'utilisateur et le mot de passe sont corrects.
-      return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(creds.getLogin(), creds.getPassword(), null));
+      return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(creds.getLogin(), creds.getPassword()));
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -62,6 +62,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     TokenDto tokenDto = new TokenDto(securityApplicationProperties.getTokenPrefix() + token);
     ObjectMapper objectMapper = new ObjectMapper();
     res.getWriter().write(objectMapper.writeValueAsString(tokenDto));
+  }
+
+  @Override
+  protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    response.getWriter().write("Authentication failed, reason: " + failed.getMessage());
   }
 
 }
