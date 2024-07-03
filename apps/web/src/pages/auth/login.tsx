@@ -28,12 +28,6 @@ const LoginPage: React.FC = () => {
 
     const onSubmit: SubmitHandler<AuthFormSchema> = ({ email, password }) => {
 
-        // fetchAuthTokenCreate({ body: { email, password } })
-        //     .then(data => {
-        //         AuthService.login(data.access, data.refresh)
-        //         navigate('/')
-        //     })
-        //     .catch(err => console.log(err))
     }
 
     return (
