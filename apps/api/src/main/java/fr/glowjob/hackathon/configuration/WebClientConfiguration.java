@@ -22,7 +22,7 @@ public class WebClientConfiguration {
         .builder()
         .codecs(codecs -> codecs
           .defaultCodecs()
-          .maxInMemorySize(700 * 1024))
+          .maxInMemorySize(5 * 1000 * 1024))
         .build())
       .filter((request, next) -> next.exchange(request)
         .retryWhen(Retry.backoff(3, Duration.ofMillis(500)))

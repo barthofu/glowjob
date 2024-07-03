@@ -5,7 +5,6 @@ import fr.glowjob.hackathon.service.OfferService;
 import fr.glowjob.hackathon.web.france_travail.model.offers.Offer;
 import fr.glowjob.hackathon.web.france_travail.model.offers.SearchQueryParams;
 import fr.glowjob.hackathon.web.france_travail.model.offers.reference.AreaReference;
-import fr.glowjob.hackathon.web.france_travail.model.offers.reference.CityReference;
 import fr.glowjob.hackathon.web.france_travail.model.offers.reference.ContractTypeReference;
 import fr.glowjob.hackathon.web.france_travail.model.offers.reference.DepartmentReference;
 import fr.glowjob.hackathon.web.france_travail.model.result.ListResult;
@@ -44,12 +43,6 @@ public class OfferController {
   @Operation(summary = "Search offers across France Travail")
   public ResponseEntity<ListResult<Offer>> search(@Valid SearchQueryParams searchParams) throws HackathonException {
     return ResponseEntity.ok(this.offerService.search(searchParams));
-  }
-
-  @GetMapping("reference/city")
-  @Operation(summary = "Get city reference for offers search")
-  public ResponseEntity<List<CityReference>> cityReference() throws HackathonException {
-    return ResponseEntity.ok(this.offerService.cityReference());
   }
 
   @GetMapping("reference/department")

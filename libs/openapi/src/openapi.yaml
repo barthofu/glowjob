@@ -107,21 +107,6 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/ContractTypeReference"
-  /api/offer/reference/city:
-    get:
-      tags:
-      - Offer
-      summary: Get city reference for offers search
-      operationId: cityReference
-      responses:
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/CityReference"
   /api/offer/reference/area:
     get:
       tags:
@@ -343,15 +328,4 @@ components:
         code:
           type: string
         libelle:
-          type: string
-    CityReference:
-      type: object
-      properties:
-        code:
-          type: string
-        libelle:
-          type: string
-        codePostal:
-          type: string
-        codeDepartement:
           type: string

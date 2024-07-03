@@ -4,7 +4,6 @@ import fr.glowjob.hackathon.model.exception.HackathonException;
 import fr.glowjob.hackathon.web.france_travail.model.offers.Offer;
 import fr.glowjob.hackathon.web.france_travail.model.offers.SearchQueryParams;
 import fr.glowjob.hackathon.web.france_travail.model.offers.reference.AreaReference;
-import fr.glowjob.hackathon.web.france_travail.model.offers.reference.CityReference;
 import fr.glowjob.hackathon.web.france_travail.model.offers.reference.ContractTypeReference;
 import fr.glowjob.hackathon.web.france_travail.model.offers.reference.DepartmentReference;
 import fr.glowjob.hackathon.web.france_travail.model.result.ListResult;
@@ -36,10 +35,6 @@ public class OfferService {
 
   public ListResult<Offer> search(SearchQueryParams searchParams) throws HackathonException {
     return this.offerWebservice.searchOffers(searchParams);
-  }
-
-  public List<CityReference> cityReference() throws HackathonException {
-    return this.offerWebservice.getCityReference();
   }
 
   public List<DepartmentReference> departmentReference() throws HackathonException {

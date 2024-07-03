@@ -5,7 +5,6 @@ import fr.glowjob.hackathon.model.exception.HackathonException;
 import fr.glowjob.hackathon.web.france_travail.model.offers.Offer;
 import fr.glowjob.hackathon.web.france_travail.model.offers.SearchQueryParams;
 import fr.glowjob.hackathon.web.france_travail.model.offers.reference.AreaReference;
-import fr.glowjob.hackathon.web.france_travail.model.offers.reference.CityReference;
 import fr.glowjob.hackathon.web.france_travail.model.offers.reference.ContractTypeReference;
 import fr.glowjob.hackathon.web.france_travail.model.offers.reference.DepartmentReference;
 import fr.glowjob.hackathon.web.france_travail.model.result.ListResult;
@@ -83,7 +82,7 @@ public class OfferWebservice extends AbstractFranceTravailWebservice {
     }
   }
 
-  @Cacheable(value = "offer-getAreaReference", unless = "#result == null")
+  @Cacheable(value = "offer-getAreaReference", unless = "#result == null || #result.empty")
   public List<AreaReference> getAreaReference() throws HackathonException {
     try {
       return this.webClient
@@ -101,12 +100,12 @@ public class OfferWebservice extends AbstractFranceTravailWebservice {
     }
   }
 
-  @Cacheable(value = "offer-getDepartmentReference", unless = "#result == null")
+  @Cacheable(value = "offer-getDepartmentReference", unless = "#result == null || #result.empty")
   public List<DepartmentReference> getDepartmentReference() throws HackathonException {
     try {
       return this.webClient
         .get()
-        .uri("/v2/referentiel/regions")
+        .uri("/v2/referentiel/departements")
         .header("Authorization", "Bearer " + this.getToken())
         .retrieve()
         .bodyToMono(new ParameterizedTypeReference<List<DepartmentReference>>() {
@@ -119,25 +118,7 @@ public class OfferWebservice extends AbstractFranceTravailWebservice {
     }
   }
 
-  @Cacheable(value = "offer-getCityReference", unless = "#result == null")
-  public List<CityReference> getCityReference() throws HackathonException {
-    try {
-      return this.webClient
-        .get()
-        .uri("/v2/referentiel/communes")
-        .header("Authorization", "Bearer " + this.getToken())
-        .retrieve()
-        .bodyToMono(new ParameterizedTypeReference<List<CityReference>>() {
-        })
-        .blockOptional()
-        .orElseGet(List::of);
-    } catch (WebClientException e) {
-      log.error("Error while fetching cities reference source", e);
-      return List.of();
-    }
-  }
-
-  @Cacheable(value = "offer-getContractTypeReference", unless = "#result == null")
+  @Cacheable(value = "offer-getContractTypeReference", unless = "#result == null || #result.empty")
   public List<ContractTypeReference> getContractTypeReference() throws HackathonException {
     try {
       return this.webClient
