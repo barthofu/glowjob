@@ -1,24 +1,21 @@
 import React from 'react';
 import {
     Box,
-    Button,
     Flex,
-    FormControl,
-    FormLabel,
     Icon,
-    Input,
     Stack,
     Text,
     Image
 } from '@chakra-ui/react';
 import { Link } from '@glowjob/web/router';
 import { FaUser, FaClipboardList, FaSignOutAlt } from 'react-icons/fa';
-// import Header from './Header'  // Remplacez par le chemin correct vers votre composant Header
+import { ListJobsItemFav } from '../../components/modules'
+
+const ListJobs = [{"Titre":"Développeur Front-end","Type":"CDI","DateDebut":"2024-07-01","DateFin":"2025-07-01","Entreprise":"Tech Innovators","Lieu":"Paris, France","Niveau":"Junior","Contact":"contact@techinnovators.com"},{"Titre":"Chef de Projet IT","Type":"CDD","DateDebut":"2024-08-15","DateFin":"2025-08-15","Entreprise":"InnoTech","Lieu":"Lyon, France","Niveau":"Senior","Contact":"recrutement@innotech.com"},{"Titre":"Data Scientist","Type":"Freelance","DateDebut":"2024-09-01","DateFin":"2025-09-01","Entreprise":"Data Solutions","Lieu":"Marseille, France","Niveau":"Intermédiaire","Contact":"hr@datasolutions.com"},{"Titre":"Designer UX/UI","Type":"Stage","DateDebut":"2024-07-15","DateFin":"2025-01-15","Entreprise":"Creative Minds","Lieu":"Bordeaux, France","Niveau":"Étudiant","Contact":"interns@creativeminds.com"}];
 
 const ProfilePage: React.FC = () => {
     return (
         <Flex direction="column" height="100vh">
-            {/* <Header /> */}
             <Flex flex="1">
                 <Box 
                     width="30%" 
@@ -70,10 +67,13 @@ const ProfilePage: React.FC = () => {
                             alt='Logo Glowjob'
                             objectFit='contain'
                             width='75%'
-                        />
+                        />  
                     </Box>
                     <Flex width="100%" flex="1" justifyContent="center" alignItems="center">
-                        <Box width="75%">   
+                        <Box width="100%"> 
+                            {ListJobs.map((job, index: number) => (
+                                <ListJobsItemFav key={index} job={job} />
+                            ))}
                         </Box>
                     </Flex>
                 </Box>

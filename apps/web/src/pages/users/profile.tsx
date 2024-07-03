@@ -13,12 +13,10 @@ import {
 } from '@chakra-ui/react';
 import { Link } from '@glowjob/web/router';
 import { FaUser, FaClipboardList, FaSignOutAlt } from 'react-icons/fa';
-// import Header from './Header'  // Remplacez par le chemin correct vers votre composant Header
 
 const ProfilePage: React.FC = () => {
     return (
         <Flex direction="column" height="100vh">
-            {/* <Header /> */}
             <Flex flex="1">
                 <Box 
                     width="30%" 

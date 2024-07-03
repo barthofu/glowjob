@@ -1,8 +1,6 @@
 import { Button, Flex, FormControl, FormLabel, Heading, Input, Image, Text } from '@chakra-ui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { fetchAuthTokenCreate } from '@glowjob/openapi'
 import { Card } from '@glowjob/ui'
-import { AuthService, useToken } from '@glowjob/web/auth'
 import { Link, useNavigate } from '@glowjob/web/router'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
