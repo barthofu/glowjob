@@ -8,7 +8,7 @@ const HomePage = () => {
 			fadedImage='https://picsum.photos/100/100.webp'
 			queryStatus={200}
 		>
-			<Box minHeight='100vh'></Box>
+			
 		</DefaultLayout>
 	)
 }
