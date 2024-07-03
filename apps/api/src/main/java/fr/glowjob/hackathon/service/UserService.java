@@ -34,6 +34,9 @@ public class UserService {
       .userType(userSignupDto.getUserType())
       .build());
 
+    usri.setUser(usr);
+    userInfoRepository.save(usri);
+
     return userMapper.toDto(usr);
   }
 
