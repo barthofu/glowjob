@@ -11,21 +11,27 @@ import {
     Stack,
     Text,
     Image,
-    CheckboxGroup
+    CheckboxGroup,
+    Select
 } from '@chakra-ui/react';
 import { Link } from '@glowjob/web/router';
 import { FaUser, FaClipboardList, FaSignOutAlt } from 'react-icons/fa';
 
 const ProfilePage: React.FC = () => {
-    const [selectedDomains, setSelectedDomains] = useState<string[]>([]);
     const [selectedJobs, setSelectedJobs] = useState<string[]>([]);
-
-    const handleDomainChange = (domains: string[]) => {
-        setSelectedDomains(domains);
-    };
+    const [selectedRegion, setSelectedRegion] = useState<string>('');
+    const [selectedContractType, setSelectedContractType] = useState<string>('');
 
     const handleJobChange = (jobs: string[]) => {
         setSelectedJobs(jobs);
+    };
+
+    const handleRegionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedRegion(event.target.value);
+    };
+
+    const handleContractTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedContractType(event.target.value);
     };
 
     return (
@@ -104,31 +110,43 @@ const ProfilePage: React.FC = () => {
                                         <Input type="password" placeholder="Mot de Passe" color="white" _placeholder={{ color: 'white' }} />
                                     </FormControl>
                                 </Flex>
-                                <FormControl>
-                                    <FormLabel color="white">Domaines d'activité</FormLabel>
-                                    <Box 
-                                        maxHeight="70px" 
-                                        overflowY="auto" 
-                                        border="1px solid #ccc" 
-                                        borderRadius="md"
-                                        padding="2"
-                                        color="white"
-                                    >
-                                        <CheckboxGroup
-                                            colorScheme="purple"
-                                            value={selectedDomains}
-                                            onChange={handleDomainChange}
+                                <Flex width="100%" justifyContent="space-between">
+                                    <FormControl flex="1" marginRight="1rem">
+                                        <FormLabel color="white">Localisation</FormLabel>
+                                        <Select 
+                                            placeholder="Sélectionnez une région" 
+                                            color="white" 
+                                            onChange={handleRegionChange} 
+                                            sx={{
+                                                '> option': {
+                                                    background: '#521262',
+                                                    color: 'white',
+                                                },
+                                            }}
                                         >
-                                            <Stack spacing={1} direction="column">
-                                                <Checkbox value="informatique">Informatique</Checkbox>
-                                                <Checkbox value="marketing">Marketing</Checkbox>
-                                                <Checkbox value="finance">Finance</Checkbox>
-                                                <Checkbox value="labaise">LABAISE</Checkbox>
-                                                <Checkbox value="baro">BARO</Checkbox>
-                                            </Stack>
-                                        </CheckboxGroup>
-                                    </Box>
-                                </FormControl>
+                                            <option value="ile-de-france">Île-de-France</option>
+                                        </Select>
+                                    </FormControl>
+                                    <FormControl flex="1" marginLeft="1rem">
+                                        <FormLabel color="white">Type de Contrat</FormLabel>
+                                        <Select 
+                                            placeholder="Sélectionnez un type de contrat" 
+                                            color="white" 
+                                            onChange={handleContractTypeChange}
+                                            sx={{
+                                                '> option': {
+                                                    background: '#521262',
+                                                    color: 'white',
+                                                },
+                                            }}
+                                        >
+                                            <option value="alternance">Alternance</option>
+                                            <option value="stage">Stage</option>
+                                            <option value="cdd">CDD</option>
+                                            <option value="cdi">CDI</option>
+                                        </Select>
+                                    </FormControl>
+                                </Flex>
                                 <FormControl>
                                     <FormLabel color="white">Métier</FormLabel>
                                     <Box 
