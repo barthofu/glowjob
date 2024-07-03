@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 import { AuthService } from '../services/AuthService'
-import { useNavigate } from '@sgm/web/router'
+import { useNavigate } from '@glowjob/web/router'
 
 export const useToken = () => {
 

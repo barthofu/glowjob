@@ -1,6 +1,6 @@
 import type { QueryKey, UseQueryOptions } from '@tanstack/react-query'
 import { QueryOperation } from './apiComponents'
-import { useToken } from '@sgm/web/auth'
+import { useToken } from '@glowjob/web/auth'
 
 export type ApiContext = {
 	fetcherOptions: {

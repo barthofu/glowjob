@@ -1,5 +1,5 @@
-import { AuthService, useToken } from '@sgm/web/auth'
-import { Navigate } from '@sgm/web/router'
+import { AuthService, useToken } from '@glowjob/web/auth'
+import { Navigate } from '@glowjob/web/router'
 import React, { useEffect } from 'react'
 
 const LogoutPage: React.FC = () => {

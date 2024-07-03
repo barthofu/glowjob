@@ -1,4 +1,4 @@
-# SGM
+# Glowjob
 
 - [Description](#description)
 - [Project structure](#project-structure)
@@ -23,19 +23,18 @@
 
 ## Description
 
-Monorepo for the SGM project.
+Monorepo for the glowjob project.
 
 ## Project structure
 
 ``` bash
 /
 ├── apps 
-│   ├── api # Django API
+│   ├── api # Spring boot api
 │   └── web # React web app powered by vite
 └── libs
     ├── ui # Common UI components, hooks and utils
     ├── theme # Centralized Chakra-UI theme for all components
-    ├── storybook # Storybook for components
     └── openapi # OpenAPI schema for API and auto-generated client services and typescript models
 ```
 
@@ -53,7 +52,6 @@ This ensures that the client is always up to date with the API.
 
 The output of the codegen is located in `libs/openapi/src/generated` and the openapi specification is located in `libs/openapi/src/openapi.yaml`.
 
-
 Concretly, the codegen generates :
 - `apiSchemas.ts`: all the typescript models synced on the request input and response data output of the api controllers.
 - `apiComponents.ts`: `@tanstack/query` (previously `react-query`) hooks for each API endpoint their associated fetch functions for classic async/await calls.
@@ -70,32 +68,17 @@ In addition to classic `nx` generators commands, the project have additionnal co
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/en/) (>=18)
-- [PNPM](https://pnpm.io/) (>=8)
-- [Python](https://www.python.org/) (3.9)
-- [Pango](https://pango.gnome.org/)
-    ```bash
-    sudo apt-get install libpangocairo-1.0-0
-    ```
-- [Poetry](https://python-poetry.org/)
+- [Node.js](https://nodejs.org/en/) (>=20)
 
 ### Initialize the project
 
 1. Install Node dependencies
     ```bash
-    pnpm install
+    npm install --legacy-peer-deps
     ```
 2. Install `nx` globally
     ```bash
-    pnpm install -g nx
-    ```
-3. Install Python dependencies for the API
-    ```bash
-    nx run api:install 
-    ```
-4. Run the API migrations
-    ```bash
-    nx run api:migrate
+    npm install -g nx
     ```
 
 ## Usage
@@ -127,13 +110,6 @@ nx run web:build
 #### Serve the build
 ```bash
 nx run web:preview
-```
-
-### Storybook
-
-#### Start storybook locally
-```bash
-nx run storybook:start
 ```
 
 ### OpenApi

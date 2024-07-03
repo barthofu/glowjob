@@ -20,6 +20,9 @@ public class User {
   @OneToOne()
   private UserInfo userInfo;
 
+  @OneToOne(mappedBy = "user", cascade = CascadeType.DETACH, optional = false, orphanRemoval = true)
+  private UserPreference userPreference;
+
   @OneToMany(mappedBy = "user", targetEntity = Review.class)
   List<Review> reviews;
 

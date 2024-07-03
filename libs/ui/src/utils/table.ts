@@ -1,4 +1,4 @@
-import { Paginated, Result } from '@sgm/utils'
+import { Paginated, Result } from '@glowjob/utils'
 import { Column, Row } from '@tanstack/react-table'
 
 type Types = 'text' | 'number' | 'date' | 'select' | 'boolean' | 'file'

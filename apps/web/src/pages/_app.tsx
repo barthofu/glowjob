@@ -1,5 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react'
-import { AuthContext, AuthGuard } from '@sgm/web/auth'
+import { AuthContext, AuthGuard } from '@glowjob/web/auth'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'

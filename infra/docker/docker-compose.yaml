@@ -10,7 +10,7 @@ services:
 
     restart: unless-stopped
   web:
-    image: aimerisson/sgm-api-staging:latest
+    image: aimerisson/glowjob-api-staging:latest
     command: >
       sh -c "python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"

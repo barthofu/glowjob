@@ -1,7 +1,7 @@
 # Refonte de l'application web
 
-Ce document a pour but de décrire les méthodes et technologies mis en place pour la refonte de l'application web SGM.
-Il ne s'agit pas réellement d'un cahier des charges, ce dernier se trouvant sur notion [à cette adresse](https://faceted-calendula-4a5.notion.site/SGM-045b728ee5fb4dfc93ce11d335314b7c?pvs=4).
+Ce document a pour but de décrire les méthodes et technologies mis en place pour la refonte de l'application web glowjob.
+Il ne s'agit pas réellement d'un cahier des charges, ce dernier se trouvant sur notion [à cette adresse](https://faceted-calendula-4a5.notion.site/glowjob-045b728ee5fb4dfc93ce11d335314b7c?pvs=4).
 
 - [Principes](#principes)
 - [Technologies](#technologies)

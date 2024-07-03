@@ -1,5 +1,5 @@
 import { Box, ChakraProps, Table as ChakraTable, TableProps as ChakraTableProps, Checkbox, Icon, IconButton, Skeleton, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
-import { Paginated, createObjectFromPath } from '@sgm/utils'
+import { Paginated, createObjectFromPath } from '@glowjob/utils'
 import { ColumnDef, DeepKeys, PaginationState, Row, RowData, SortingState, flexRender, getCoreRowModel, getExpandedRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
 import React, { Fragment, MouseEvent, useEffect, useMemo, useState } from 'react'
 import { FaArrowDown, FaArrowUp, FaChevronDown, FaChevronRight, FaPlus } from 'react-icons/fa'

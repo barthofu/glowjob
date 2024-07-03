@@ -1,4 +1,4 @@
-import { AuthService } from '@sgm/web/auth';
+import { AuthService } from '@glowjob/web/auth';
 import { AxiosRequestConfig } from 'axios';
 import { axiosInstance } from '../utils/axios';
 import { ApiContext } from './apiContext';

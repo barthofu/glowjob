@@ -4345,40 +4345,40 @@ export const useApiSalariesFormOptionsList = <
 	})
 }
 
-export type ApiTasksResyncDataSgmCreateError = Fetcher.ErrorWrapper<undefined>
+export type ApiTasksResyncDataglowjobCreateError = Fetcher.ErrorWrapper<undefined>
 
-export type ApiTasksResyncDataSgmCreateVariables = ApiContext['fetcherOptions']
+export type ApiTasksResyncDataglowjobCreateVariables = ApiContext['fetcherOptions']
 
 /**
- * Sync les données SGM affaire avec la base de données django
+ * Sync les données glowjob affaire avec la base de données django
  */
-export const fetchApiTasksResyncDataSgmCreate = (
-	variables: ApiTasksResyncDataSgmCreateVariables,
+export const fetchApiTasksResyncDataglowjobCreate = (
+	variables: ApiTasksResyncDataglowjobCreateVariables,
 	signal?: AbortSignal
 ) =>
 	apiFetch<
 		undefined,
-		ApiTasksResyncDataSgmCreateError,
+		ApiTasksResyncDataglowjobCreateError,
 		undefined,
 		{},
 		{},
 		{}
 	>({
-		url: '/api/tasks/resync_data_sgm',
+		url: '/api/tasks/resync_data_glowjob',
 		method: 'post',
 		...variables,
 		signal,
 	})
 
 /**
- * Sync les données SGM affaire avec la base de données django
+ * Sync les données glowjob affaire avec la base de données django
  */
-export const useApiTasksResyncDataSgmCreate = (
+export const useApiTasksResyncDataglowjobCreate = (
 	options?: Omit<
 		reactQuery.UseMutationOptions<
 			undefined,
-			ApiTasksResyncDataSgmCreateError,
-			ApiTasksResyncDataSgmCreateVariables
+			ApiTasksResyncDataglowjobCreateError,
+			ApiTasksResyncDataglowjobCreateVariables
 		>,
 		'mutationFn'
 	>
@@ -4386,11 +4386,11 @@ export const useApiTasksResyncDataSgmCreate = (
 	const { fetcherOptions } = useApiContext()
 	return reactQuery.useMutation<
 		undefined,
-		ApiTasksResyncDataSgmCreateError,
-		ApiTasksResyncDataSgmCreateVariables
+		ApiTasksResyncDataglowjobCreateError,
+		ApiTasksResyncDataglowjobCreateVariables
 	>({
-		mutationFn: (variables: ApiTasksResyncDataSgmCreateVariables) =>
-			fetchApiTasksResyncDataSgmCreate({
+		mutationFn: (variables: ApiTasksResyncDataglowjobCreateVariables) =>
+			fetchApiTasksResyncDataglowjobCreate({
 				...fetcherOptions,
 				...variables,
 			}),

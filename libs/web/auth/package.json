@@ -1,5 +1,5 @@
 {
-	"name": "@sgm/web/auth",
+	"name": "@glowjob/web/auth",
 	"version": "0.0.1",
 	"main": "./index.js",
 	"types": "./index.d.ts",

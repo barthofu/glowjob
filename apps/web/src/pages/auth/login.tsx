@@ -1,16 +1,16 @@
-import { Button, Flex, FormControl, FormLabel, Heading, Input } from '@chakra-ui/react'
+import { Button, Flex, FormControl, FormLabel, Heading, Input, Image, Text } from '@chakra-ui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { fetchAuthTokenCreate } from '@sgm/openapi'
-import { Card } from '@sgm/ui'
-import { AuthService, useToken } from '@sgm/web/auth'
-import { useNavigate } from '@sgm/web/router'
+import { fetchAuthTokenCreate } from '@glowjob/openapi'
+import { Card } from '@glowjob/ui'
+import { AuthService } from '@glowjob/web/auth'
+import { Link, useNavigate } from '@glowjob/web/router'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 const authFormSchema = z.object({
     email: z.string().email(),
-    password: z.string().min(6, { message: "Password must be atleast 6 characters" })
+    password: z.string().min(6, { message: "Password must be at least 6 characters" })
 })
 
 type AuthFormSchema = z.infer<typeof authFormSchema>
@@ -37,35 +37,42 @@ const LoginPage: React.FC = () => {
             .catch(err => console.log(err))
     }
 
-	return <>
-
+    return (
         <Flex
             width='100vw'
             height='100vh'
             justifyContent='center'
             alignItems='center'
-            backgroundColor='#0f172a'
+            backgroundColor='#521262'
         >
-            <form onSubmit={handleSubmit(onSubmit)}>
-
+            <Flex flex='1' justifyContent='center' alignItems='center' overflow='hidden'>
+                <Image
+                    src='/logoGlowjob.png'
+                    alt='Logo Glowjob'
+                    objectFit='contain'
+                    maxH='70%'
+                    width='70%'
+                />
+            </Flex>
+            <form onSubmit={handleSubmit(onSubmit)} style={{ flex: '1', padding: '2rem' }}>
                 <Card
                     center={true}
-                    width='40vw'
-                    mt='-25vh'
+                    width='100%'
+                    height='100%'
+                    padding='2rem'
                 >
-
                     <Heading as='h1'
                         fontSize='1.5rem'
                     >
                         Se connecter
                     </Heading>
 
-                    <FormControl isRequired>
+                    <FormControl isRequired isInvalid={false}>
                         <FormLabel>Email</FormLabel>
-                        <Input placeholder="Email" {...register('email', { required: true })}/>
+                        <Input placeholder="Email" {...register('email', { required: true })} />
                     </FormControl>
 
-                    <FormControl isRequired>
+                    <FormControl isRequired isInvalid={false}>
                         <FormLabel>Mot de passe</FormLabel>
                         <Input type='password' placeholder="Mot de passe" {...register('password', { required: true })} />
                     </FormControl>
@@ -79,10 +86,19 @@ const LoginPage: React.FC = () => {
                     >
                         Se connecter
                     </Button>
+
+                    <Text mt='1rem' textAlign='center' fontSize='sm'>
+                        Tu n'as pas de compte ?{" "}
+                        <Link to="/auth/register">
+                            <Text color="blue.500" as="span">
+                                Inscrit toi
+                            </Text>
+                        </Link>
+                    </Text>
                 </Card>
             </form>
         </Flex>
-    </>
+    )
 }
 
 export default LoginPage
