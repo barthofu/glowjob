@@ -1,6 +1,6 @@
-import {Button, Card, CardBody, CardFooter, Flex, Heading, Image, Link, Stack, Text} from '@chakra-ui/react';
-import React, {useEffect, useState} from 'react';
-import {Contact, fetchRecommanded, Offer, Salaire} from '@glowjob/openapi';
+import { Button, Card, CardBody, CardFooter, Flex, Heading, Link, Stack, Text } from '@chakra-ui/react';
+import { Contact, Offer, Salaire } from '@glowjob/openapi';
+import React from 'react';
 
 type OfferItemProps = {
   offer: Offer;
@@ -25,12 +25,12 @@ export const OfferItem: React.FC<OfferItemProps> = ({offer}) => {
       overflow='hidden'
       variant='outline'
     >
-      <Image
+      {/* <Image
         objectFit='cover'
         maxW={{ base: '100%', sm: '200px' }}
         src={offer.entreprise?.logo ?? "https://via.placeholder.com/200"}
         alt={offer.entreprise?.nom}
-      />
+      /> */}
 
       <Stack>
         <CardBody>
@@ -42,7 +42,7 @@ export const OfferItem: React.FC<OfferItemProps> = ({offer}) => {
             <Text><strong>Salaire:</strong> {formatSalaire(offer.salaire)}</Text>
             {offer.experienceLibelle && <Text><strong>Expérience requise:</strong> {offer.experienceLibelle}</Text>}
             <Text><strong>Volume horaire:</strong> {offer.dureeTravailLibelle} - {offer.dureeTravailLibelleConverti}</Text>
-            {offer.contact && <Text><strong>Contact:</strong> {formatContact(offer.contact)}</Text>}
+            {/* {offer.contact && <Text><strong>Contact:</strong> {formatContact(offer.contact)}</Text>} */}
           </Flex>
         </CardBody>
 

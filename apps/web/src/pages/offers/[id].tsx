@@ -1,6 +1,8 @@
 import React from 'react'
 import { DefaultLayout } from '../../components/layouts'
 import { Box, Flex, Image, Text } from '@chakra-ui/react'
+import { LoaderFunction, useLoaderData } from 'react-router-typesafe'
+import { fetchFindById } from '@glowjob/openapi'
 
 const job = {
     Titre: 'Développeur Front-end',
@@ -13,11 +15,20 @@ const job = {
     Contact: 'contact@techinnovators.com',
 }
 
+export const Loader = (async ({ params }) => {
+    if (!params.id) throw new Error('No id provided')
+
+    return fetchFindById({ pathParams: { id: params.id }})
+}) satisfies LoaderFunction
+
 const JobDetailsPage: React.FC = () => {
+
+    const offer = useLoaderData<typeof Loader>()
+
     return (
         <DefaultLayout
-            title='GlowJob'
-            fadedImage='https://picsum.photos/100/100.webp'
+            title={'test'}
+            fadedImage=''
             queryStatus={200}
         >
             <Flex
@@ -27,36 +38,27 @@ const JobDetailsPage: React.FC = () => {
                 padding='5%'
                 flexWrap="wrap"
             >
-                <Image 
-                    src='https://picsum.photos/500/500.webp' 
-                    borderRadius="10px" 
-                    boxShadow="lg" 
-                    maxWidth="40%" 
-                    marginBottom={{ base: "20px", md: "0" }}
-                />
                 <Flex 
                     direction="column"
                     flex="1"
                 >
                     <Text
-                        as='u'
                         fontSize='2xl'
-                        padding='10px'
                         width="fit-content"
                         marginBottom="20px"
+                        fontWeight={600}
                     >
-                        {job.Titre}
+                        {offer.intitule}
                     </Text>
                     <Flex
                         direction="column"
                         gap="10px"
                     >
                         <Text>Type: {job.Type}</Text>
-                        <Text>Date de début: {job.DateDebut}</Text>
-                        <Text>Date de fin: {job.DateFin}</Text>
-                        <Text>Entreprise: {job.Entreprise}</Text>
-                        <Text>Lieu: {job.Lieu}</Text>
+                        <Text>Entreprise: {offer.entreprise?.nom}</Text>
+                        <Text>Lieu: {offer.lieuTravail?.libelle}</Text>
                         <Text>Niveau: {job.Niveau}</Text>
+                        <Text>{offer.description}</Text>
                     </Flex>
                 </Flex>
             </Flex>

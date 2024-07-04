@@ -1,9 +1,12 @@
 import React from 'react';
 import { Flex, Input, Image, Box, Text } from '@chakra-ui/react';
 import { GoChevronDown } from "react-icons/go";
-import { Link } from '@glowjob/web/router'
+import { Link, useNavigate } from '@glowjob/web/router'
 
 const Header: React.FC = () => {
+
+    const navigate = useNavigate()
+
     return (
         <Flex
             justifyContent="space-between"
@@ -20,6 +23,7 @@ const Header: React.FC = () => {
                 width="100px"
                 src="/logoGlowjob.png"
                 alt="Glowjob logo"
+                onClick={() => navigate('/')}
             />
 
             <Input
