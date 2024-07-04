@@ -39,7 +39,7 @@ const OffersPage: React.FC = () => {
                     borderRadius="23px"
                     onClick={() => handleButtonClick(true)}
                 >
-                    Spontannées
+                    Spontanées
                 </Button>
             </Flex>
 
@@ -48,7 +48,6 @@ const OffersPage: React.FC = () => {
                 padding="2%"
                 border="2px solid white"
                 borderRadius="23px"
-
             >
               {!isAlternate ?
                 ListJobs.map((job, index: number) => (

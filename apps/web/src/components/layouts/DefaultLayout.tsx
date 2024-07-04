@@ -30,7 +30,7 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
 				w='100%'
 				zIndex={1}
 			>
-				<Box maxWidth='70vw'>
+				<Box width='70vw'>
 					{props.queryStatus === 404 ? (
 						<NotFoundPage />
 					) : props.queryStatus === 500 ? (

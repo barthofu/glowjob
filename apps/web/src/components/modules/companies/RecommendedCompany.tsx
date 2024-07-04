@@ -11,14 +11,21 @@ export const RecommendedCompany: React.FC<RecommendedCompanyProps> = ({company})
   return (
     <Card>
       <CardHeader>
-        <Heading size='md'>{company.companyName} ({company.hiringPotential?.toFixed(2) ?? '?'}%)</Heading>
+        <Heading size='md'>
+          {company.companyName} ({company.hiringPotential?.toFixed(2) ?? '?'}%)
+        </Heading>
+        {company.isHighPotential &&
+          <Heading marginTop="1em" size='xs' textTransform='uppercase' color="#521262">
+            Fort potentiel d'embauche ! 💪
+          </Heading>
+        }
       </CardHeader>
 
       <CardBody>
         <Stack divider={<StackDivider/>} spacing='4'>
           <Box>
             <Heading size='xs' textTransform='uppercase'>
-              Information sur l'activité exercée
+              Information sur l'activité exercée 💼
             </Heading>
             <Text pt='2' fontSize='sm'>
               {company.nafLabel}
@@ -26,17 +33,16 @@ export const RecommendedCompany: React.FC<RecommendedCompanyProps> = ({company})
           </Box>
           <Box>
             <Heading size='xs' textTransform='uppercase'>
-              Localisation
+              Localisation 📍
             </Heading>
             <Text pt='2' fontSize='sm'>
-              {company.city} - {company.department} - {company.region}
+              <strong>Ville:</strong> {company.city}
+              <br/>
+              <strong>Département:</strong> {company.department}
+              <br/>
+              <strong>Région:</strong> {company.region}
             </Text>
           </Box>
-          {company.isHighPotential && <Box>
-            <Heading size='xs' textTransform='uppercase'>
-              Faut potentiel d'embauche ! 💪
-            </Heading>
-          </Box>}
         </Stack>
       </CardBody>
     </Card>

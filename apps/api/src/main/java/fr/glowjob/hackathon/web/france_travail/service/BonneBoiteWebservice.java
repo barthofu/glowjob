@@ -50,10 +50,11 @@ public class BonneBoiteWebservice extends AbstractFranceTravailWebservice {
         .retrieve()
         .bodyToMono(new ParameterizedTypeReference<Result<Company>>() {
         })
-        .block();
+        .blockOptional()
+        .orElseGet(Result::new);
     } catch (WebClientException e) {
       log.error("Error while fetching best compagnies", e);
-      return null;
+      return new Result<>();
     }
   }
 }
