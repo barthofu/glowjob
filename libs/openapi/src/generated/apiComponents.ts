@@ -355,6 +355,52 @@ export const useRecommanded = <TData = RecommandedResponse,>(
 	})
 }
 
+export type Search1QueryParams = {
+	query: string
+}
+
+export type Search1Error = Fetcher.ErrorWrapper<undefined>
+
+export type Search1Response = Schemas.PredictionMetier[]
+
+export type Search1Variables = {
+	queryParams: Search1QueryParams
+} & ApiContext['fetcherOptions']
+
+export const fetchSearch1 = (
+	variables: Search1Variables,
+	signal?: AbortSignal
+) =>
+	apiFetch<
+		Search1Response,
+		Search1Error,
+		undefined,
+		{},
+		Search1QueryParams,
+		{}
+	>({ url: '/api/job/search', method: 'get', ...variables, signal })
+
+export const useSearch1 = <TData = Search1Response,>(
+	variables: Search1Variables,
+	options?: Omit<
+		reactQuery.UseQueryOptions<Search1Response, Search1Error, TData>,
+		'queryKey' | 'queryFn' | 'initialData'
+	>
+) => {
+	const { fetcherOptions, queryOptions, queryKeyFn } = useApiContext(options)
+	return reactQuery.useQuery<Search1Response, Search1Error, TData>({
+		queryKey: queryKeyFn({
+			path: '/api/job/search',
+			operationId: 'search1',
+			variables,
+		}),
+		queryFn: ({ signal }) =>
+			fetchSearch1({ ...fetcherOptions, ...variables }, signal),
+		...options,
+		...queryOptions,
+	})
+}
+
 export type GetRecommendedCompaniesError = Fetcher.ErrorWrapper<undefined>
 
 export type GetRecommendedCompaniesResponse = Schemas.Company[]
@@ -410,16 +456,14 @@ export const useGetRecommendedCompanies = <
 
 export type QueryOperation =
 	| {
-		path: '/api/offer/{id}'
-		operationId: 'findById'
-		variables: FindByIdVariables
-	}
+			path: '/api/offer/{id}'
+			operationId: 'findById'
+			variables: FindByIdVariables
+	  }
 	| {
-		path: '/api/offer/search'
-		operationId: 'search'
-		variables: SearchVariables
-<<<<<<< HEAD
-=======
+			path: '/api/offer/search'
+			operationId: 'search'
+			variables: SearchVariables
 	  }
 	| {
 			path: '/api/offer/reference/department'
@@ -445,5 +489,9 @@ export type QueryOperation =
 			path: '/api/job/search'
 			operationId: 'search1'
 			variables: Search1Variables
->>>>>>> fha/Front
-	}
+	  }
+	| {
+			path: '/api/company/recommended'
+			operationId: 'getRecommendedCompanies'
+			variables: GetRecommendedCompaniesVariables
+	  }
