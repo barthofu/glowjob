@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 /**
- * DTO for {@link fr.glowjob.hackathon.model.bo.Company}
+ * Dto for {@link fr.glowjob.hackathon.model.bo.Company}
  */
 public record CompanyDto(
   UUID id,

@@ -410,14 +410,16 @@ export const useGetRecommendedCompanies = <
 
 export type QueryOperation =
 	| {
-			path: '/api/offer/{id}'
-			operationId: 'findById'
-			variables: FindByIdVariables
-	  }
+		path: '/api/offer/{id}'
+		operationId: 'findById'
+		variables: FindByIdVariables
+	}
 	| {
-			path: '/api/offer/search'
-			operationId: 'search'
-			variables: SearchVariables
+		path: '/api/offer/search'
+		operationId: 'search'
+		variables: SearchVariables
+<<<<<<< HEAD
+=======
 	  }
 	| {
 			path: '/api/offer/reference/department'
@@ -440,7 +442,8 @@ export type QueryOperation =
 			variables: RecommandedVariables
 	  }
 	| {
-			path: '/api/company/recommended'
-			operationId: 'getRecommendedCompanies'
-			variables: GetRecommendedCompaniesVariables
-	  }
+			path: '/api/job/search'
+			operationId: 'search1'
+			variables: Search1Variables
+>>>>>>> fha/Front
+	}

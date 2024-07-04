@@ -7,4 +7,5 @@ export const bypassUrls: Path[] = [
     '/auth/register',
     '/users/profile',
     '/users/favoffers',
+    '/offers'
 ]

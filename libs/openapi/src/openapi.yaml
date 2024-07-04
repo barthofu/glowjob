@@ -434,9 +434,19 @@ components:
     Location:
       type: object
       properties:
-        lat:
-          type: number
-          format: double
-        lon:
-          type: number
-          format: double
+        metiersRome:
+          type: array
+          items:
+            $ref: "#/components/schemas/MetierRome"
+        uuidInference:
+          type: string
+        identifiant:
+          type: string
+        intitule:
+          type: string
+        contexte:
+<<<<<<< HEAD
+          type: string
+=======
+          type: string
+>>>>>>> fha/Front

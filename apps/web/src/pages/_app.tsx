@@ -13,23 +13,24 @@ import { EditorProvider } from 'react-simple-wysiwyg'
 const queryClient = new QueryClient()
 
 const App: React.FC = () => {
-
 	const [token, setToken] = useState(localStorage.getItem('token'))
 
-	return <>
-		<AuthContext.Provider value={{ token, setToken }}>
-			<QueryClientProvider client={queryClient}>
-				<AuthGuard>
-					<EditorProvider>
-						<ChakraProvider theme={theme}>
-							<Outlet />
-						</ChakraProvider>
-					</EditorProvider>
-				</AuthGuard>
-			</QueryClientProvider>
-		</AuthContext.Provider>
-		<ToastContainer position='bottom-center' />
-	</>
+	return (
+		<>
+			<AuthContext.Provider value={{ token, setToken }}>
+				<QueryClientProvider client={queryClient}>
+					<AuthGuard>
+						<EditorProvider>
+							<ChakraProvider theme={theme}>
+								<Outlet />
+							</ChakraProvider>
+						</EditorProvider>
+					</AuthGuard>
+				</QueryClientProvider>
+			</AuthContext.Provider>
+			<ToastContainer position='bottom-center' />
+		</>
+	)
 }
 
 export default App

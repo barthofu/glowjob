@@ -1,2 +1,1 @@
-export * from './DashboardLayout'
-export * from './RawLayout'
+export * from './DefaultLayout'

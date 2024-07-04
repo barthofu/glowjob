@@ -95,6 +95,33 @@ export type PartenaireOffre = {
 	nom?: string
 	url?: string
 	logo?: string
+<<<<<<< HEAD
+}
+
+export type Salaire = {
+	libelle?: string
+	commentaire?: string
+	complement1?: string
+	complement2?: string
+}
+
+export type AggregationPossibility = {
+	valeurPossible?: string
+	/**
+	 * @format int32
+	 */
+	nbResultats?: number
+}
+
+export type FilterPossibility = {
+	filtre?: string
+	agregation?: AggregationPossibility[]
+}
+
+export type ListResultOffer = {
+	resultats?: Offer[]
+	filtresPossibles?: FilterPossibility[]
+=======
 }
 
 export type Salaire = {
@@ -138,46 +165,22 @@ export type ContractTypeReference = {
 	libelle?: string
 }
 
-export type Company = {
-	rome?: string
-	/**
-	 * @format int32
-	 */
-	id?: number
-	siret?: string
-	companyName?: string
-	officeName?: string
-	/**
-	 * @format int32
-	 */
-	headcountMin?: number
-	/**
-	 * @format int32
-	 */
-	headcountMax?: number
-	naf?: string
-	nafLabel?: string
-	location?: Location
-	city?: string
-	citycode?: string
-	postcode?: string
-	department?: string
-	region?: string
-	departmentNumber?: string
+export type MetierRome = {
+	libelleAppellation?: string
+	codeAppellation?: string
+	libelleRome?: string
+	codeRome?: string
 	/**
 	 * @format double
 	 */
-	hiringPotential?: number
-	isHighPotential?: boolean
+	scorePrediction?: number
 }
 
-export type Location = {
-	/**
-	 * @format double
-	 */
-	lat?: number
-	/**
-	 * @format double
-	 */
-	lon?: number
+export type PredictionMetier = {
+	metiersRome?: MetierRome[]
+	uuidInference?: string
+	identifiant?: string
+	intitule?: string
+	contexte?: string
+>>>>>>> fha/Front
 }
