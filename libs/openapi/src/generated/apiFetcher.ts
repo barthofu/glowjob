@@ -38,7 +38,7 @@ export async function apiFetch<
 	TQueryParams,
 	TPathParams
 >): Promise<TData> {
-	
+
 	const processedHeaders: HeadersInit = {
 		...axiosInstance.head,
 		...headers,
@@ -48,7 +48,7 @@ export async function apiFetch<
 	if (
 		processedHeaders['Content-Type']?.toLowerCase().includes('multipart/form-data')
 	) delete processedHeaders['Content-Type']
-	
+
 	if (processedHeaders['authorization'] === undefined) {
 		const token = AuthService.getToken()
 		if (token) processedHeaders['authorization'] = `Bearer ${token}`
@@ -62,6 +62,7 @@ export async function apiFetch<
 		headers: processedHeaders
 	}
 
+  console.log(config);
 	return axiosInstance.request(config)
 }
 

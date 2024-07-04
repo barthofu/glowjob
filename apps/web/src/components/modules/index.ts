@@ -1,3 +1,5 @@
 export * from './navigation/Header'
 export * from './Offers/ListJobsItem'
 export * from './Offers/ListJobsItemFav'
+export * from './companies/RecommendedCompanies'
+export * from './companies/RecommendedCompany'

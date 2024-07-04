@@ -9,7 +9,6 @@ export type Path =
 	| `/auth/login`
 	| `/auth/logout`
 	| `/auth/register`
-	| `/offers`
 	| `/offers/:id`
 	| `/users/favoffers`
 	| `/users/profile`

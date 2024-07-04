@@ -3,50 +3,6 @@
  *
  * @version 0.0.1
  */
-export type UserSignupDto = {
-	login?: string
-	password?: string
-	userType?: 'STUDENT' | 'SCHOOL' | 'COMPANY'
-}
-
-export type UserDto = {
-	/**
-	 * @format uuid
-	 */
-	id?: string
-	userInfo?: UserInfoDto
-}
-
-export type UserInfoDto = {
-	/**
-	 * @format uuid
-	 */
-	id?: string
-	firstName?: string
-	lastName?: string
-	email?: string
-	phone?: string
-	address?: string
-	/**
-	 * @format date-time
-	 */
-	birthDate?: string
-	lastDiplome?: string
-	diplomeLvl?:
-		| 'NONE'
-		| 'CAP'
-		| 'BAC'
-		| 'BAC_P1'
-		| 'BAC_P2'
-		| 'BAC_P3'
-		| 'BAC_P4'
-		| 'BAC_P5'
-		| 'BAC_P6'
-		| 'BAC_P7'
-		| 'BAC_P8'
-		| 'BAC_P9'
-}
-
 export type CompanyDto = {
 	/**
 	 * @format uuid
@@ -199,4 +155,48 @@ export type PredictionMetier = {
 	identifiant?: string
 	intitule?: string
 	contexte?: string
+}
+
+export type Company = {
+	rome?: string
+	/**
+	 * @format int32
+	 */
+	id?: number
+	siret?: string
+	companyName?: string
+	officeName?: string
+	/**
+	 * @format int32
+	 */
+	headcountMin?: number
+	/**
+	 * @format int32
+	 */
+	headcountMax?: number
+	naf?: string
+	nafLabel?: string
+	location?: Location
+	city?: string
+	citycode?: string
+	postcode?: string
+	department?: string
+	region?: string
+	departmentNumber?: string
+	/**
+	 * @format double
+	 */
+	hiringPotential?: number
+	isHighPotential?: boolean
+}
+
+export type Location = {
+	/**
+	 * @format double
+	 */
+	lat?: number
+	/**
+	 * @format double
+	 */
+	lon?: number
 }

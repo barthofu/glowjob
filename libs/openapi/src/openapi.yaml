@@ -7,25 +7,7 @@ servers:
 - url: http://localhost:8080
   description: API
 paths:
-  /sign-up:
-    post:
-      tags:
-      - auth-controller
-      operationId: signUp
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UserSignupDto"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: "#/components/schemas/UserDto"
-  /company:
+  /api/company:
     post:
       tags:
       - company-controller
@@ -194,84 +176,24 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/PredictionMetier"
-  /login:
-    post:
+  /api/company/recommended:
+    get:
       tags:
-      - login-endpoint
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                username:
-                  type: string
-                password:
-                  type: string
+      - company-controller
+      summary: Get recommended compagnies with user preferences such as location and
+        jobs
+      operationId: getRecommendedCompanies
       responses:
         "200":
           description: OK
-        "403":
-          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Company"
 components:
   schemas:
-    UserSignupDto:
-      type: object
-      properties:
-        login:
-          type: string
-        password:
-          type: string
-        userType:
-          type: string
-          enum:
-          - STUDENT
-          - SCHOOL
-          - COMPANY
-    UserDto:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        userInfo:
-          $ref: "#/components/schemas/UserInfoDto"
-    UserInfoDto:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        phone:
-          type: string
-        address:
-          type: string
-        birthDate:
-          type: string
-          format: date-time
-        lastDiplome:
-          type: string
-        diplomeLvl:
-          type: string
-          enum:
-          - NONE
-          - CAP
-          - BAC
-          - BAC_P1
-          - BAC_P2
-          - BAC_P3
-          - BAC_P4
-          - BAC_P5
-          - BAC_P6
-          - BAC_P7
-          - BAC_P8
-          - BAC_P9
     CompanyDto:
       required:
       - name
@@ -516,3 +438,55 @@ components:
           type: string
         contexte:
           type: string
+    Company:
+      type: object
+      properties:
+        rome:
+          type: string
+        id:
+          type: integer
+          format: int32
+        siret:
+          type: string
+        companyName:
+          type: string
+        officeName:
+          type: string
+        headcountMin:
+          type: integer
+          format: int32
+        headcountMax:
+          type: integer
+          format: int32
+        naf:
+          type: string
+        nafLabel:
+          type: string
+        location:
+          $ref: "#/components/schemas/Location"
+        city:
+          type: string
+        citycode:
+          type: string
+        postcode:
+          type: string
+        department:
+          type: string
+        region:
+          type: string
+        departmentNumber:
+          type: string
+        hiringPotential:
+          type: number
+          format: double
+        isHighPotential:
+          type: boolean
+    Location:
+      type: object
+      properties:
+        lat:
+          type: number
+          format: double
+        lon:
+          type: number
+          format: double
