@@ -1,7 +1,7 @@
 import { Flex, Image, Link, Text, Button } from '@chakra-ui/react';
 import React from 'react';
 
-type ListJobsItemProps = {
+type OfferItemFavProps = {
   job: {
     Titre: string;
     Type: string;
@@ -14,7 +14,7 @@ type ListJobsItemProps = {
   };
 };
 
-export const ListJobsItemFav: React.FC<ListJobsItemProps> = ({ job }) => {
+export const OfferItemFav: React.FC<OfferItemFavProps> = ({ job }) => {
   return (
     <Flex
       border="2px solid #9a22b8"
