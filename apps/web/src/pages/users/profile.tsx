@@ -10,22 +10,28 @@ import {
 } from '@glowjob/openapi';
 import {Link} from '@glowjob/web/router';
 import {AsyncSelect} from 'chakra-react-select';
+import debounce from 'debounce';
 import React, {useEffect, useState} from 'react';
 import {FaClipboardList, FaSignOutAlt, FaUser} from 'react-icons/fa';
 
-const loadJobs = async (inputValue: string) => {
-  return fetchSearch1({
-    queryParams: {
-      query: 'boucher'
-    }
-  }).then(response =>
-    (response.flatMap(
-      (job) => job.metiersRome).map(
-      (job) => ({value: job?.codeRome!, label: job?.libelleAppellation!}))))
+const loadJobs = async (inputValue: string, callback: any) => {
+    if (!inputValue) return callback(null)
+    const jobs = await fetchSearch1({
+        queryParams: {
+            query: inputValue
+        }
+    })
+    
+    const options = jobs
+        .flatMap(job => job.metiersRome)
+        .map(job => ({ value: job?.codeRome!, label: job?.libelleAppellation! }))
+    
+    callback(options)
 }
 
+
 const ProfilePage: React.FC = () => {
-  const [selectedJobs, setSelectedJobs] = useState<string[]>([]);
+  const [selectedJobs, setSelectedJobs] = useState<any[]>([]);
   const [selectedRegion, setSelectedRegion] = useState<AreaReference>({});
   const [selectedDepartment, setSelectedDepartment] = useState<DepartmentReference>({});
   const [selectedContractType, setSelectedContractType] = useState<ContractTypeReference>({});
@@ -37,6 +43,10 @@ const ProfilePage: React.FC = () => {
   const handleJobChange = (jobs: string[]) => {
     setSelectedJobs(jobs);
   };
+
+  useEffect(() => {
+    console.log(selectedJobs);
+  }, [selectedJobs])
 
   const handleRegionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedRegion(event.target.value);
@@ -197,18 +207,11 @@ const ProfilePage: React.FC = () => {
                   </FormControl>
                   <FormControl flex="1">
                     <FormLabel color="white">Métier</FormLabel>
-                    <Box
-                      maxHeight="70px"
-                      overflowY="auto"
-                      border="1px solid #ccc"
-                      borderRadius="md"
-                      padding="2"
-                      color="white"
-                    >
                       <AsyncSelect
-                        loadOptions={loadJobs}
+                        isMulti
+                        value={selectedJobs}
+                        loadOptions={debounce(loadJobs, 1000)}
                       />
-                    </Box>
                   </FormControl>
                 </Flex>
 

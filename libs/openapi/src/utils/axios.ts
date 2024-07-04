@@ -6,7 +6,7 @@ import { ErrorWrapper } from '../generated/apiFetcher'
 
 export const axiosInstance = defaultAxios.create({
 	baseURL: environment.apiBaseUrl, // Replace with your base URL
-	timeout: 10000, // Set a reasonable timeout
+	timeout: 30000, // Set a reasonable timeout
 	headers: {
 		'Content-Type': 'application/json',
 	},
