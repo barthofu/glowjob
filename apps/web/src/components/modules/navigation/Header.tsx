@@ -16,25 +16,27 @@ const Header: React.FC = () => {
             width="100%"
             zIndex="1000"
         >
-            <Image 
+            <Image
                 width="100px"
                 src="/logoGlowjob.png"
                 alt="Glowjob logo"
             />
 
-            <Input 
-                variant="filled" 
-                placeholder="Search" 
+            <Input
+                variant="filled"
+                placeholder="Recherche une offre"
                 borderRadius="23px"
                 backgroundColor="white"
                 width="30%"
                 margin="0 20px"
                 color="white"
+                borderColor="gray.400"
+                focusBorderColor="gray.700"
             />
 
             <Link to="/users/profile">
                 <Box display="flex" alignItems="center">
-                    <Flex 
+                    <Flex
                         textAlign="right"
                         direction="column"
                         marginRight="10px"
