@@ -155,6 +155,27 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Offer"
+  /api/job/search:
+    get:
+      tags:
+      - job-controller
+      summary: Search jobs across
+      operationId: search_1
+      parameters:
+      - name: query
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PredictionMetier"
   /api/company/recommended:
     get:
       tags:
@@ -388,6 +409,35 @@ components:
           type: string
         libelle:
           type: string
+    MetierRome:
+      type: object
+      properties:
+        libelleAppellation:
+          type: string
+        codeAppellation:
+          type: string
+        libelleRome:
+          type: string
+        codeRome:
+          type: string
+        scorePrediction:
+          type: number
+          format: double
+    PredictionMetier:
+      type: object
+      properties:
+        metiersRome:
+          type: array
+          items:
+            $ref: "#/components/schemas/MetierRome"
+        uuidInference:
+          type: string
+        identifiant:
+          type: string
+        intitule:
+          type: string
+        contexte:
+          type: string
     Company:
       type: object
       properties:
@@ -434,19 +484,9 @@ components:
     Location:
       type: object
       properties:
-        metiersRome:
-          type: array
-          items:
-            $ref: "#/components/schemas/MetierRome"
-        uuidInference:
-          type: string
-        identifiant:
-          type: string
-        intitule:
-          type: string
-        contexte:
-<<<<<<< HEAD
-          type: string
-=======
-          type: string
->>>>>>> fha/Front
+        lat:
+          type: number
+          format: double
+        lon:
+          type: number
+          format: double
