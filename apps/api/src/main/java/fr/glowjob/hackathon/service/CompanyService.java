@@ -38,7 +38,7 @@ public class CompanyService {
       .bestCompagnies(SearchQueryParams
         .builder()
         .rome(List.of("M1805"))
-        .area(List.of("Auvergne-Rhône-Alpes"))
+        .department(List.of("Rhône"))
         .build()
       )
       .getItems()

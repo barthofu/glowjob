@@ -68,6 +68,7 @@ public class OfferWebservice extends AbstractFranceTravailWebservice {
           .queryParamIfPresent("commune", Optional.ofNullable(searchParams.getCity()))
           .queryParamIfPresent("distance", Optional.ofNullable(searchParams.getDistance()))
           .queryParamIfPresent("typeContrat", Optional.ofNullable(searchParams.getContractType()))
+          .queryParamIfPresent("alternance", Optional.ofNullable(searchParams.getAlternance()))
           .build()
         )
         .header("Authorization", "Bearer " + this.getToken())

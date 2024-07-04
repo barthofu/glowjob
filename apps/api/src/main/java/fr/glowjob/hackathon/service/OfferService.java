@@ -29,6 +29,9 @@ public class OfferService {
       SearchQueryParams
         .builder()
         .query("Développeur")
+        .department("69")
+        .contractType("CDD")
+        .alternance(Boolean.TRUE)
         .build()
     ).getResultats();
   }

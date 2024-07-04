@@ -54,7 +54,7 @@ public class SecurityConfig {
         .requestMatchers("/v3/**").permitAll()
         .requestMatchers(secProps.getSignUpUrl(), secProps.getLoginUrl()).permitAll()
         .requestMatchers("/login").permitAll()
-        .anyRequest().authenticated()
+        .anyRequest().permitAll()
       )
       .csrf(AbstractHttpConfigurer::disable)
       .cors(c -> c.configurationSource(corsConfigurationSource))

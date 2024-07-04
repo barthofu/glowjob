@@ -38,4 +38,8 @@ public class SearchQueryParams {
   @Nullable
   @Parameter(description = "Offers' contract type")
   private String contractType;
+
+  @Nullable
+  @Parameter(description = "Offers' contract type is alternance")
+  private Boolean alternance;
 }
