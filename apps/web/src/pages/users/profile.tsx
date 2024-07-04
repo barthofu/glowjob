@@ -9,7 +9,7 @@ import {
   fetchSearch1
 } from '@glowjob/openapi';
 import {Link} from '@glowjob/web/router';
-import {AsyncSelect} from 'chakra-react-select';
+import {AsyncSelect, MultiValue} from 'chakra-react-select';
 import debounce from 'debounce';
 import React, {useEffect, useState} from 'react';
 import {FaClipboardList, FaSignOutAlt, FaUser} from 'react-icons/fa';
@@ -21,11 +21,11 @@ const loadJobs = async (inputValue: string, callback: any) => {
             query: inputValue
         }
     })
-    
+
     const options = jobs
         .flatMap(job => job.metiersRome)
         .map(job => ({ value: job?.codeRome!, label: job?.libelleAppellation! }))
-    
+
     callback(options)
 }
 
@@ -40,9 +40,9 @@ const ProfilePage: React.FC = () => {
   const [areaReference, setAreaReference] = useState<AreaReference[]>([]);
   const [departmentReference, setDepartmentReference] = useState<DepartmentReference[]>([]);
 
-  const handleJobChange = (jobs: string[]) => {
-    setSelectedJobs(jobs);
-  };
+  const handleJobChange = (values: MultiValue<any>): void => {
+    setSelectedJobs([...selectedJobs, ...values]);
+  }
 
   useEffect(() => {
     console.log(selectedJobs);
@@ -209,8 +209,14 @@ const ProfilePage: React.FC = () => {
                     <FormLabel color="white">Métier</FormLabel>
                       <AsyncSelect
                         isMulti
+                        cacheOptions
                         value={selectedJobs}
                         loadOptions={debounce(loadJobs, 1000)}
+                        onChange={handleJobChange}
+                        isClearable
+                        placeholder="Sélectionnez un métier"
+                        loadingMessage={() => <p>Chargement...</p>}
+                        noOptionsMessage={() => <p>Aucun résultat</p>}
                       />
                   </FormControl>
                 </Flex>
