@@ -1,5 +1,4 @@
 import { ChakraProps } from '@chakra-ui/react'
-import { UniqueIdentifier } from '@dnd-kit/core'
 import { Dispatch, ReactNode, SetStateAction } from 'react'
 import { DropResult } from 'react-beautiful-dnd'
 
@@ -20,7 +19,7 @@ export type BaseBoardCardType = {
 
 export type Collapsable = {
 	collapsed: boolean
-	setCollapsed: Dispatch<SetStateAction<UniqueIdentifier[]>>
+	setCollapsed: Dispatch<SetStateAction<string[]>>
 }
 
 export type BaseBoardColumnProps<TData extends BaseBoardCardType> = {
