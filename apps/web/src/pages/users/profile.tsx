@@ -12,7 +12,7 @@ import {Link} from '@glowjob/web/router';
 import {AsyncSelect, MultiValue} from 'chakra-react-select';
 import debounce from 'debounce';
 import React, {useEffect, useState} from 'react';
-import {FaClipboardList, FaSignOutAlt, FaUser} from 'react-icons/fa';
+import {FaClipboardList, FaHome, FaSignOutAlt, FaUser} from 'react-icons/fa';
 
 const loadJobs = async (inputValue: string, callback: any) => {
     if (!inputValue) return callback(null)
@@ -76,7 +76,7 @@ const ProfilePage: React.FC = () => {
     <Flex direction="column" height="100vh">
       <Flex flex="1">
         <Box
-          width="30%"
+          width="20%"
           height="100%"
           backgroundColor="#2E0A37"
           padding="2rem"
@@ -86,29 +86,40 @@ const ProfilePage: React.FC = () => {
         >
           <Stack spacing={10} width="100%">
             <Link to="/users/profile">
-              <Box display="flex" alignItems="center" color="white" fontSize="2xl">
+              <Box display="flex" alignItems="center" color="white" fontSize="xl">
                 <Icon as={FaUser} marginRight="1rem" color="#9A22B8" boxSize={8}/>
                 <Text color="#9A22B8" as="span">
-                  Mes Informations
+                  Mes informations
                 </Text>
               </Box>
             </Link>
             <Link to="/users/favoffers">
-              <Box display="flex" alignItems="center" color="white" fontSize="2xl">
+              <Box display="flex" alignItems="center" color="white" fontSize="xl">
                 <Icon as={FaClipboardList} marginRight="1rem" boxSize={8}/>
-                <Text>Mes Offres Suivis</Text>
+                <Text>Mes offres suivies</Text>
               </Box>
             </Link>
           </Stack>
-          <Box width="100%" marginTop="auto">
-            <Link to="/auth/login">
-              <Box display="flex" alignItems="center" color="white" fontSize="2xl">
-                <Icon as={FaSignOutAlt} marginRight="1rem" boxSize={8}/>
-                <Text>Déconnexion</Text>
-              </Box>
-            </Link>
+          <Box marginTop="auto">
+            <Box width="100%">
+              <Link to="/auth/login">
+                <Box display="flex" alignItems="center" color="white" fontSize="xl">
+                  <Icon as={FaHome} marginRight="1rem" boxSize={8}/>
+                  <Text>Déconnexion</Text>
+                </Box>
+              </Link>
+            </Box>
+            <Box width="100%" marginTop="2em">
+              <Link to="/">
+                <Box display="flex" alignItems="center" color="white" fontSize="xl">
+                  <Icon as={FaSignOutAlt} marginRight="1rem" boxSize={8}/>
+                  <Text>Accueil</Text>
+                </Box>
+              </Link>
+            </Box>
           </Box>
         </Box>
+
         <Box
           flex="1"
           backgroundColor="#521262"

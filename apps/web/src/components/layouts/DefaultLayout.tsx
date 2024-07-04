@@ -16,7 +16,6 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
 	return (
 		<Box
 			minHeight='100vh'
-			backgroundColor="#2e0a37"
 		>
 			<Helmet>
 				<title>{props.title || 'GlowJob'}</title>

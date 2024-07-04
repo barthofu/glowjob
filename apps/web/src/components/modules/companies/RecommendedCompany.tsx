@@ -12,7 +12,7 @@ export const RecommendedCompany: React.FC<RecommendedCompanyProps> = ({company})
     <Card>
       <CardHeader>
         <Heading size='md'>
-          {company.companyName} ({company.hiringPotential?.toFixed(2) ?? '?'}%)
+          {company.companyName}
         </Heading>
         {company.isHighPotential &&
           <Heading marginTop="1em" size='xs' textTransform='uppercase' color="#521262">

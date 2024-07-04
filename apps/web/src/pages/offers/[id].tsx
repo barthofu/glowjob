@@ -25,7 +25,6 @@ const JobDetailsPage: React.FC = () => {
                 justifyContent='space-between'
                 gap="10%"
                 padding='5%'
-                color="white"
                 flexWrap="wrap"
             >
                 <Image 
