@@ -12,41 +12,6 @@ export const axiosInstance = defaultAxios.create({
 	},
 })
 
-const refreshAuthLogic = async () => {
-
-	const token = AuthService.getToken()
-	const refreshToken = AuthService.getRefreshToken()
-
-	if (!refreshToken || !token) {
-		return Promise.reject()
-	}
-
-	try {
-
-		// We need to use the default Fetch API here to not trigger the interceptor
-		const response = await window.fetch(`${environment.apiBaseUrl}/auth/token/refresh`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				access: token,
-				refresh: refreshToken,
-			}),
-		})
-
-		const { access: newToken } = await response.json()
-		AuthService.login(newToken, refreshToken, false)
-
-		return newToken
-
-	} catch (e) {
-		console.error('error refreshing token', e)
-		return Promise.reject()
-	}
-
-}
-
 // Request interceptor to handle multipart/form-data and set headers
 axiosInstance.interceptors.request.use((config) => {
 
@@ -88,30 +53,7 @@ axiosInstance.interceptors.response.use(
 				payload: error.response.data,
 			}
 
-			if (error.response.status === 401) {
-
-				console.log(originalConfig._retry)
-
-				if (originalConfig._retry) {
-					AuthService.logout()
-				}
-				else {
-
-					originalConfig._retry = true
-
-					return refreshAuthLogic()
-						.then(newToken => {
-
-							originalConfig.headers.Authorization = `Bearer ${newToken}`
-							console.log('retrying request')
-							return axiosInstance.request(originalConfig)
-						})
-						.catch(() => {
-							AuthService.logout()
-							return Promise.reject(errorWrapper)
-						})
-				}
-			} else if (error.response.status === 400) {
+			if (error.response.status === 400) {
 				for (const [key, value] of Object.entries(errorWrapper.payload)) {
 					toast.error(`${key}: ${(value as Array<any>).join(', ')}`, { toastId: key })
 				}

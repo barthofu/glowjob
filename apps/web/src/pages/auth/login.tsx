@@ -6,6 +6,7 @@ import { Link, useNavigate } from '@glowjob/web/router'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { axiosInstance } from '@glowjob/openapi'
 
 const authFormSchema = z.object({
     email: z.string().email(),
@@ -27,7 +28,15 @@ const LoginPage: React.FC = () => {
     })
 
     const onSubmit: SubmitHandler<AuthFormSchema> = ({ email, password }) => {
-
+        axiosInstance.post('/login', {
+            login: email,
+            password: password,
+        }).then((response) => {
+            AuthService.login(response.data.token)
+            navigate('/')
+        }).catch((error) => {
+            console.log(error)
+        })
     }
 
     return (

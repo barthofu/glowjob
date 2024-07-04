@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
 import {
     Box,
     Button,
-    Checkbox,
     Flex,
     FormControl,
     FormLabel,
@@ -11,11 +9,24 @@ import {
     Stack,
     Text,
     Image,
-    CheckboxGroup,
     Select
 } from '@chakra-ui/react';
+import { fetchSearch1 } from '@glowjob/openapi';
 import { Link } from '@glowjob/web/router';
-import { FaUser, FaClipboardList, FaSignOutAlt } from 'react-icons/fa';
+import { AsyncSelect } from 'chakra-react-select';
+import React, { useState } from 'react';
+import { FaClipboardList, FaSignOutAlt, FaUser } from 'react-icons/fa';
+
+const loadJobs = async (inputValue: string) => {
+    return fetchSearch1({
+        queryParams: {
+            query: 'boucher'
+        }
+    }).then(response => 
+        (response.flatMap(
+            (job) => job.metiersRome).map(
+                (job) => ({ value: job?.codeRome!, label: job?.libelleAppellation! }))))
+}
 
 const ProfilePage: React.FC = () => {
     const [selectedJobs, setSelectedJobs] = useState<string[]>([]);
@@ -157,17 +168,9 @@ const ProfilePage: React.FC = () => {
                                         padding="2"
                                         color="white"
                                     >
-                                        <CheckboxGroup
-                                            colorScheme="purple"
-                                            value={selectedJobs}
-                                            onChange={handleJobChange}
-                                        >
-                                            <Stack spacing={1} direction="column">
-                                                <Checkbox value="developpeur">Développeur</Checkbox>
-                                                <Checkbox value="designer">Designer</Checkbox>
-                                                <Checkbox value="manager">Manager</Checkbox>
-                                            </Stack>
-                                        </CheckboxGroup>
+                                        <AsyncSelect
+                                            loadOptions={loadJobs}
+                                        />
                                     </Box>
                                 </FormControl>
                                 <Box display="flex" justifyContent="center" mt="2rem">

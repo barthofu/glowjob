@@ -1,4 +1,4 @@
-package fr.glowjob.hackathon;
+package fr.glowjob.hackathon.model.dto;
 
 import java.io.Serializable;
 
