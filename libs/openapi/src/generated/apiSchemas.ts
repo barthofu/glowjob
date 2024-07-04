@@ -3,6 +3,67 @@
  *
  * @version 0.0.1
  */
+export type UserSignupDto = {
+	login?: string
+	password?: string
+	userType?: 'STUDENT' | 'SCHOOL' | 'COMPANY'
+}
+
+export type UserDto = {
+	/**
+	 * @format uuid
+	 */
+	id?: string
+	userInfo?: UserInfoDto
+}
+
+export type UserInfoDto = {
+	/**
+	 * @format uuid
+	 */
+	id?: string
+	firstName?: string
+	lastName?: string
+	email?: string
+	phone?: string
+	address?: string
+	/**
+	 * @format date-time
+	 */
+	birthDate?: string
+	lastDiplome?: string
+	diplomeLvl?:
+		| 'NONE'
+		| 'CAP'
+		| 'BAC'
+		| 'BAC_P1'
+		| 'BAC_P2'
+		| 'BAC_P3'
+		| 'BAC_P4'
+		| 'BAC_P5'
+		| 'BAC_P6'
+		| 'BAC_P7'
+		| 'BAC_P8'
+		| 'BAC_P9'
+}
+
+export type CompanyDto = {
+	/**
+	 * @format uuid
+	 */
+	id?: string
+	name: string
+	siret?: string
+	address?: string
+	contact?: ContactLightDto
+}
+
+export type ContactLightDto = {
+	phone?: string
+	email?: string
+	website?: string
+}
+
 export type Contact = {
 	nom?: string
 	coordonnees1?: string
@@ -78,33 +139,6 @@ export type PartenaireOffre = {
 	nom?: string
 	url?: string
 	logo?: string
-<<<<<<< HEAD
-}
-
-export type Salaire = {
-	libelle?: string
-	commentaire?: string
-	complement1?: string
-	complement2?: string
-}
-
-export type AggregationPossibility = {
-	valeurPossible?: string
-	/**
-	 * @format int32
-	 */
-	nbResultats?: number
-}
-
-export type FilterPossibility = {
-	filtre?: string
-	agregation?: AggregationPossibility[]
-}
-
-export type ListResultOffer = {
-	resultats?: Offer[]
-	filtresPossibles?: FilterPossibility[]
-=======
 }
 
 export type Salaire = {
@@ -165,8 +199,4 @@ export type PredictionMetier = {
 	identifiant?: string
 	intitule?: string
 	contexte?: string
-<<<<<<< HEAD
->>>>>>> fha/Front
-=======
->>>>>>> 01b6f70 (wip)
 }

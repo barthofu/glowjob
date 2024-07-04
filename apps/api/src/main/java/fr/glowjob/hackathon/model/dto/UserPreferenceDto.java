@@ -1,8 +1,5 @@
 package fr.glowjob.hackathon.model.dto;
 
-import fr.glowjob.hackathon.ContractTypeDto;
-import fr.glowjob.hackathon.JobDto;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;

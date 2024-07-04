@@ -9,6 +9,76 @@ import type * as Fetcher from './apiFetcher'
 import { apiFetch } from './apiFetcher'
 import type * as Schemas from './apiSchemas'
 
+export type SignUpError = Fetcher.ErrorWrapper<undefined>
+
+export type SignUpVariables = {
+	body?: Schemas.UserSignupDto
+} & ApiContext['fetcherOptions']
+
+export const fetchSignUp = (variables: SignUpVariables, signal?: AbortSignal) =>
+	apiFetch<Schemas.UserDto, SignUpError, Schemas.UserSignupDto, {}, {}, {}>({
+		url: '/sign-up',
+		method: 'post',
+		...variables,
+		signal,
+	})
+
+export const useSignUp = (
+	options?: Omit<
+		reactQuery.UseMutationOptions<
+			Schemas.UserDto,
+			SignUpError,
+			SignUpVariables
+		>,
+		'mutationFn'
+	>
+) => {
+	const { fetcherOptions } = useApiContext()
+	return reactQuery.useMutation<
+		Schemas.UserDto,
+		SignUpError,
+		SignUpVariables
+	>({
+		mutationFn: (variables: SignUpVariables) =>
+			fetchSignUp({ ...fetcherOptions, ...variables }),
+		...options,
+	})
+}
+
+export type SaveError = Fetcher.ErrorWrapper<undefined>
+
+export type SaveVariables = {
+	body: Schemas.CompanyDto
+} & ApiContext['fetcherOptions']
+
+export const fetchSave = (variables: SaveVariables, signal?: AbortSignal) =>
+	apiFetch<Schemas.CompanyDto, SaveError, Schemas.CompanyDto, {}, {}, {}>({
+		url: '/company',
+		method: 'post',
+		...variables,
+		signal,
+	})
+
+export const useSave = (
+	options?: Omit<
+		reactQuery.UseMutationOptions<
+			Schemas.CompanyDto,
+			SaveError,
+			SaveVariables
+		>,
+		'mutationFn'
+	>
+) => {
+	const { fetcherOptions } = useApiContext()
+	return reactQuery.useMutation<Schemas.CompanyDto, SaveError, SaveVariables>(
+		{
+			mutationFn: (variables: SaveVariables) =>
+				fetchSave({ ...fetcherOptions, ...variables }),
+			...options,
+		}
+	)
+}
+
 export type FindByIdPathParams = {
 	id: string
 }
@@ -369,16 +439,14 @@ export const useSearch1 = <TData = Search1Response,>(
 
 export type QueryOperation =
 	| {
-		path: '/api/offer/{id}'
-		operationId: 'findById'
-		variables: FindByIdVariables
-	}
+			path: '/api/offer/{id}'
+			operationId: 'findById'
+			variables: FindByIdVariables
+	  }
 	| {
-		path: '/api/offer/search'
-		operationId: 'search'
-		variables: SearchVariables
-<<<<<<< HEAD
-=======
+			path: '/api/offer/search'
+			operationId: 'search'
+			variables: SearchVariables
 	  }
 	| {
 			path: '/api/offer/reference/department'
@@ -386,14 +454,6 @@ export type QueryOperation =
 			variables: DepartmentReferenceVariables
 	  }
 	| {
-<<<<<<< HEAD
-=======
-			path: '/api/offer/reference/department'
-			operationId: 'departmentReference'
-			variables: DepartmentReferenceVariables
-	  }
-	| {
->>>>>>> 01b6f70 (wip)
 			path: '/api/offer/reference/contract-type'
 			operationId: 'contractTypeReference'
 			variables: ContractTypeReferenceVariables
@@ -412,9 +472,4 @@ export type QueryOperation =
 			path: '/api/job/search'
 			operationId: 'search1'
 			variables: Search1Variables
-<<<<<<< HEAD
->>>>>>> fha/Front
-	}
-=======
 	  }
->>>>>>> 01b6f70 (wip)
