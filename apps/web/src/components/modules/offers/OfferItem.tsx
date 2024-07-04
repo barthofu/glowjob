@@ -1,4 +1,5 @@
 import { Button, Card, CardBody, CardFooter, Flex, Heading, Link, Stack, Text } from '@chakra-ui/react';
+import { Link as RouterLink } from '@glowjob/web/router';
 import { Contact, Offer, Salaire } from '@glowjob/openapi';
 import React from 'react';
 
@@ -34,7 +35,9 @@ export const OfferItem: React.FC<OfferItemProps> = ({offer}) => {
 
       <Stack>
         <CardBody>
-          <Heading size='md'>{offer.intitule}</Heading>
+          <RouterLink to="/offers/:id" params={{ id: offer.id! }}>
+            <Heading size='md'>{offer.intitule}</Heading>
+          </RouterLink>
 
           <Flex direction="column" py={2}>
             <Text noOfLines={4}>{offer.description}</Text>

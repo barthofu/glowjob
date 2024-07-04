@@ -1,13 +1,9 @@
+import { Box, Flex, Image, Text } from '@chakra-ui/react';
+import { Link } from '@glowjob/web/router';
 import React from 'react';
-import {Box, Flex, Image, Text} from '@chakra-ui/react';
-import {GoChevronDown} from "react-icons/go";
-import {Link} from '@glowjob/web/router'
-import {SearchBar} from '../search/SearchBar';
-import {useNavigate} from 'react-router-dom';
+import { SearchBar } from '../search/SearchBar';
 
 const Header: React.FC = () => {
-
-    const navigate = useNavigate()
 
     return (
         <Flex
@@ -21,12 +17,13 @@ const Header: React.FC = () => {
             width="100%"
             zIndex="1000"
         >
-            <Image
-                width="100px"
-                src="/logoGlowjob.png"
-                alt="Glowjob logo"
-                onClick={() => navigate('/')}
-            />
+            <Link to="/">
+                <Image
+                    width="100px"
+                    src="/logoGlowjob.png"
+                    alt="Glowjob logo"
+                />
+            </Link>
 
             <SearchBar />
 
@@ -38,10 +35,9 @@ const Header: React.FC = () => {
                         marginRight="10px"
                         alignItems="center"
                     >
-                        <Text fontSize="md" fontWeight="bold" color="white">Nom Prenom</Text>
-                        <Text fontSize="sm" color="white">nom.prenom@gmail.com</Text>
+                        <Text fontSize="md" fontWeight="bold" color="white">Test Test</Text>
+                        <Text fontSize="sm" color="white">test.test@gmail.com</Text>
                     </Flex>
-                    <GoChevronDown color="white" />
                 </Box>
             </Link>
 

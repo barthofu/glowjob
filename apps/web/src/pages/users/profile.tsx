@@ -49,14 +49,17 @@ const ProfilePage: React.FC = () => {
   }, [selectedJobs])
 
   const handleRegionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    // @ts-ignore
     setSelectedRegion(event.target.value);
   };
 
   const handleDepartmentChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    // @ts-ignore
     setSelectedDepartment(event.target.value);
   };
 
   const handleContractTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    // @ts-ignore
     setSelectedContractType(event.target.value);
   };
 
@@ -174,6 +177,7 @@ const ProfilePage: React.FC = () => {
                       }}
                     >
                       {areaReference?.map((type, index) => (
+                        // @ts-ignore
                         <option key={index} value={type}>{type.libelle}</option>
                       ))}
                     </Select>
@@ -192,6 +196,7 @@ const ProfilePage: React.FC = () => {
                       }}
                     >
                       {departmentReference?.map((type, index) => (
+                        // @ts-ignore
                         <option key={index} value={type}>{type.libelle}</option>
                       ))}
                     </Select>
@@ -212,6 +217,7 @@ const ProfilePage: React.FC = () => {
                       }}
                     >
                       {contractTypeReference?.map((type, index) => (
+                        // @ts-ignore
                         <option key={index} value={type}>{type.libelle}</option>
                       ))}
                     </Select>
