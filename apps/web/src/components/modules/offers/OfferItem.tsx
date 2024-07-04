@@ -39,6 +39,7 @@ export const OfferItem: React.FC<OfferItemProps> = ({offer}) => {
           <Flex direction="column" py={2}>
             <Text noOfLines={4}>{offer.description}</Text>
             <Text><strong>Type:</strong> {offer.typeContrat}</Text>
+            {offer.lieuTravail?.libelle && <Text><strong>Localisation:</strong> {offer.lieuTravail.libelle}</Text>}
             <Text><strong>Salaire:</strong> {formatSalaire(offer.salaire)}</Text>
             {offer.experienceLibelle && <Text><strong>Expérience requise:</strong> {offer.experienceLibelle}</Text>}
             <Text><strong>Volume horaire:</strong> {offer.dureeTravailLibelle} - {offer.dureeTravailLibelleConverti}</Text>
