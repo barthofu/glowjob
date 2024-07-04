@@ -24,9 +24,8 @@ export const OfferItemFav: React.FC<OfferItemFavProps> = ({ job }) => {
       color="white"
       justifyContent="space-around"
     >
-      <Image src="https://picsum.photos/100/100.webp" alt="logo entreprise" />
-      <Flex direction="column" width="80%">
-        <Text as="u">{job.Titre}</Text>
+      <Flex direction="column" width="100%">
+        <Text fontSize='1.5em' fontWeight='bold'>{job.Titre}</Text>
         <Flex justifyContent="space-between" align="center">
           <Flex width="70%" justifyContent="flex-start" gap="3%">
             <Flex direction="column">
@@ -44,9 +43,8 @@ export const OfferItemFav: React.FC<OfferItemFavProps> = ({ job }) => {
             <Button
               backgroundColor="#9a22b8"
               color="white"
-              border="2px solid white"
-              borderRadius="23px"
-              padding="5px"
+              borderRadius="1em"
+              paddingX="10px"
               marginBottom="10px"
             >
               Supprimer des favoris
@@ -54,9 +52,8 @@ export const OfferItemFav: React.FC<OfferItemFavProps> = ({ job }) => {
             <Link
               backgroundColor="#9a22b8"
               color="white"
-              border="2px solid white"
-              borderRadius="23px"
-              padding="5px"
+              borderRadius="1em"
+              paddingX="10px"
               href={`mailto:${job.Contact}`}
             >
               Consulter
