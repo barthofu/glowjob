@@ -8,5 +8,9 @@ public class UserSignupDto {
   private String login;
   private String password;
 
+  private String firstName;
+  private String lastName;
+  private Integer age;
+
   private UserType userType;
 }

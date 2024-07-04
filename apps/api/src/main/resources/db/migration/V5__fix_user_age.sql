@@ -1,0 +1,2 @@
+ALTER TABLE user_info DROP COLUMN birth_date;
+ALTER TABLE user_info ADD COLUMN age INT NOT NULL DEFAULT 18;

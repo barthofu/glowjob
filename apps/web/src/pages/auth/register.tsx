@@ -1,17 +1,20 @@
-import { Button, Flex, FormControl, FormLabel, Heading, Input, Image, Text } from '@chakra-ui/react'
+import { Button, Flex, FormControl, FormLabel, Heading, Input, Image, Text, Select } from '@chakra-ui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Card } from '@glowjob/ui'
 import { Link, useNavigate } from '@glowjob/web/router'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { axiosInstance } from '@glowjob/openapi'
+import { AuthService } from '@glowjob/web/auth'
 
 const authFormSchema = z.object({
-    email: z.string().email(),
+    login: z.string(),
     password: z.string().min(6, { message: "Password must be at least 6 characters" }),
     firstName: z.string().nonempty({ message: "First name is required" }),
     lastName: z.string().nonempty({ message: "Last name is required" }),
-    age: z.number().min(18, { message: "You must be at least 18 years old" })
+    age: z.string(),
+    user_type: z.enum(['student', 'company'], { message: "You must select a user type" })
 })
 
 type AuthFormSchema = z.infer<typeof authFormSchema>
@@ -28,12 +31,18 @@ const SignupPage: React.FC = () => {
         resolver: zodResolver(authFormSchema)
     })
 
-    const onSubmit: SubmitHandler<AuthFormSchema> = ({ email, password, firstName, lastName, age }) => {
-        const userData = { email, password, firstName, lastName, age }
+    const onSubmit: SubmitHandler<AuthFormSchema> = ({ login, password, firstName, lastName, age, user_type }) => {
+        const userData = { login, password, firstName, lastName, age, user_type}
         // Appel à l'API pour l'inscription (remplacez cette partie avec votre logique d'inscription)
         // AuthService.login(userData.email, userData.password, userData.firstName, userData.lastName, userData.age)
         console.log(userData)
-        navigate('/')  // Redirection vers la page de connexion après inscription
+        axiosInstance.post('/sign-up', {
+            ...userData
+        }).then((data: any) => {
+            navigate('/auth/login')
+        }).catch((error) => {
+            console.log(error)
+        })
     }
 
     return (
@@ -66,8 +75,8 @@ const SignupPage: React.FC = () => {
                     </Heading>
 
                     <FormControl isRequired isInvalid={false}>
-                        <FormLabel>Email</FormLabel>
-                        <Input placeholder="Email" {...register('email', { required: true })} />
+                        <FormLabel>Login</FormLabel>
+                        <Input placeholder="Login" {...register('login', { required: true })} />
                     </FormControl>
 
                     <FormControl isRequired isInvalid={false}>
@@ -87,7 +96,15 @@ const SignupPage: React.FC = () => {
 
                     <FormControl isRequired isInvalid={false}>
                         <FormLabel>Âge</FormLabel>
-                        <Input type='number' placeholder="Âge" {...register('age', { required: true })} />
+                        <Input placeholder="Âge" {...register('age', { required: true })} />
+                    </FormControl>
+
+                    <FormControl isInvalid={false}>
+                        <FormLabel>Vous êtes ?</FormLabel>
+                        <Select>
+                            <option value='student'>Un étudiant</option>
+                            <option value='company'>Une entreprise</option>
+                        </Select>
                     </FormControl>
 
                     <Button

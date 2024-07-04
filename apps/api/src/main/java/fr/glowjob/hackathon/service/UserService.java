@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -27,6 +29,9 @@ public class UserService {
       UserInfo.builder()
         .login(userSignupDto.getLogin())
         .password(this.bCryptPasswordEncoder.encode(userSignupDto.getPassword()))
+        .age(userSignupDto.getAge())
+        .firstName(userSignupDto.getFirstName())
+        .lastName(userSignupDto.getLastName())
         .build()
     );
 

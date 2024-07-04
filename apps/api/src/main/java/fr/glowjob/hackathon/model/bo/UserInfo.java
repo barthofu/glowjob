@@ -31,7 +31,7 @@ public class UserInfo {
   private String email;
   private String phone;
   private String address;
-  private Date birthDate;
+  private Integer age;
   private String lastDiplome;
   private DiplomeLvl DiplomeLvl;
 }
