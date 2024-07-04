@@ -17,9 +17,4 @@ public class UserDto implements Serializable {
   UUID id;
   UserType userType;
   UserInfoDto userInfo;
-
-  public UserDto(UUID id, UserInfoDto userInfo) {
-    this.id = id;
-    this.userInfo = userInfo;
-  }
 }
