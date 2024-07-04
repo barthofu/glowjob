@@ -1,7 +1,9 @@
 import React from 'react';
-import { Flex, Input, Image, Box, Text } from '@chakra-ui/react';
-import { GoChevronDown } from "react-icons/go";
-import { Link, useNavigate } from '@glowjob/web/router'
+import {Box, Flex, Image, Text} from '@chakra-ui/react';
+import {GoChevronDown} from "react-icons/go";
+import {Link} from '@glowjob/web/router'
+import {SearchBar} from '../search/SearchBar';
+import {useNavigate} from 'react-router-dom';
 
 const Header: React.FC = () => {
 
@@ -26,16 +28,7 @@ const Header: React.FC = () => {
                 onClick={() => navigate('/')}
             />
 
-            <Input
-                variant="outline"
-                placeholder="Recherche une offre"
-                borderRadius="23px"
-                backgroundColor="white"
-                width="30%"
-                margin="0 20px"
-                borderColor="gray.400"
-                focusBorderColor="gray.700"
-            />
+            <SearchBar />
 
             <Link to="/users/profile">
                 <Box display="flex" alignItems="center">
