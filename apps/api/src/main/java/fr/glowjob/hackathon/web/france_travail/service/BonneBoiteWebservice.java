@@ -38,6 +38,8 @@ public class BonneBoiteWebservice extends AbstractFranceTravailWebservice {
   public Result<Company> bestCompagnies(SearchQueryParams queryParams) throws HackathonException {
     try {
       return this.webClient
+        .mutate()
+        .build()
         .get()
         .uri(uriBuilder -> uriBuilder
           .path("/v2/recherche")

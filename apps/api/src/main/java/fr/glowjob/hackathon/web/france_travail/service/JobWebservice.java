@@ -58,6 +58,8 @@ public class JobWebservice extends AbstractFranceTravailWebservice {
         .build();
 
       return this.webClient
+        .mutate()
+        .build()
         .post()
         .uri("/v2/predictionMetiers")
         .header("Authorization", "Bearer " + this.getToken())

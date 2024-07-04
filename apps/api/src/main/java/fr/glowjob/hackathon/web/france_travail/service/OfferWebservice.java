@@ -41,6 +41,8 @@ public class OfferWebservice extends AbstractFranceTravailWebservice {
   public Optional<Offer> findById(String id) throws HackathonException {
     try {
       return this.webClient
+        .mutate()
+        .build()
         .get()
         .uri(uriBuilder -> uriBuilder
           .path("/v2/offres/{id}")
@@ -59,6 +61,8 @@ public class OfferWebservice extends AbstractFranceTravailWebservice {
   public ListResult<Offer> searchOffers(SearchQueryParams searchParams) throws HackathonException {
     try {
       return this.webClient
+        .mutate()
+        .build()
         .get()
         .uri(uriBuilder -> uriBuilder
           .path("/v2/offres/search")
@@ -87,6 +91,8 @@ public class OfferWebservice extends AbstractFranceTravailWebservice {
   public List<AreaReference> getAreaReference() throws HackathonException {
     try {
       return this.webClient
+        .mutate()
+        .build()
         .get()
         .uri("/v2/referentiel/regions")
         .header("Authorization", "Bearer " + this.getToken())
@@ -105,6 +111,8 @@ public class OfferWebservice extends AbstractFranceTravailWebservice {
   public List<DepartmentReference> getDepartmentReference() throws HackathonException {
     try {
       return this.webClient
+        .mutate()
+        .build()
         .get()
         .uri("/v2/referentiel/departements")
         .header("Authorization", "Bearer " + this.getToken())
@@ -123,6 +131,8 @@ public class OfferWebservice extends AbstractFranceTravailWebservice {
   public List<ContractTypeReference> getContractTypeReference() throws HackathonException {
     try {
       return this.webClient
+        .mutate()
+        .build()
         .get()
         .uri("/v2/referentiel/typesContrats")
         .header("Authorization", "Bearer " + this.getToken())
