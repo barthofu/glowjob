@@ -10,11 +10,11 @@ import { AuthService } from '@glowjob/web/auth'
 
 const authFormSchema = z.object({
     login: z.string(),
-    password: z.string(),
-    firstName: z.string(),
-    lastName: z.string(),
+    password: z.string().min(6, { message: "Password must be at least 6 characters" }),
+    firstName: z.string().nonempty({ message: "First name is required" }),
+    lastName: z.string().nonempty({ message: "Last name is required" }),
     age: z.string(),
-    // user_type: z.enum(['student', 'company'], { message: "You must select a user type" })
+    user_type: z.enum(['student', 'company'], { message: "You must select a user type" })
 })
 
 type AuthFormSchema = z.infer<typeof authFormSchema>
@@ -99,12 +99,13 @@ const SignupPage: React.FC = () => {
                         <Input placeholder="Âge" {...register('age', { required: true })} />
                     </FormControl>
 
-                    {/* <FormControl isInvalid={false}>
+                    <FormControl isInvalid={false}>
+                        <FormLabel>Vous êtes ?</FormLabel>
                         <Select>
                             <option value='student'>Un étudiant</option>
                             <option value='company'>Une entreprise</option>
                         </Select>
-                    </FormControl> */}
+                    </FormControl>
 
                     <Button
                         w='100%'
