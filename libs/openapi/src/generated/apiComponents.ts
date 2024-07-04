@@ -9,42 +9,6 @@ import type * as Fetcher from './apiFetcher'
 import { apiFetch } from './apiFetcher'
 import type * as Schemas from './apiSchemas'
 
-export type SignUpError = Fetcher.ErrorWrapper<undefined>
-
-export type SignUpVariables = {
-	body?: Schemas.UserSignupDto
-} & ApiContext['fetcherOptions']
-
-export const fetchSignUp = (variables: SignUpVariables, signal?: AbortSignal) =>
-	apiFetch<Schemas.UserDto, SignUpError, Schemas.UserSignupDto, {}, {}, {}>({
-		url: '/sign-up',
-		method: 'post',
-		...variables,
-		signal,
-	})
-
-export const useSignUp = (
-	options?: Omit<
-		reactQuery.UseMutationOptions<
-			Schemas.UserDto,
-			SignUpError,
-			SignUpVariables
-		>,
-		'mutationFn'
-	>
-) => {
-	const { fetcherOptions } = useApiContext()
-	return reactQuery.useMutation<
-		Schemas.UserDto,
-		SignUpError,
-		SignUpVariables
-	>({
-		mutationFn: (variables: SignUpVariables) =>
-			fetchSignUp({ ...fetcherOptions, ...variables }),
-		...options,
-	})
-}
-
 export type SaveError = Fetcher.ErrorWrapper<undefined>
 
 export type SaveVariables = {
@@ -53,7 +17,7 @@ export type SaveVariables = {
 
 export const fetchSave = (variables: SaveVariables, signal?: AbortSignal) =>
 	apiFetch<Schemas.CompanyDto, SaveError, Schemas.CompanyDto, {}, {}, {}>({
-		url: '/company',
+		url: '/api/company',
 		method: 'post',
 		...variables,
 		signal,
@@ -437,6 +401,59 @@ export const useSearch1 = <TData = Search1Response,>(
 	})
 }
 
+export type GetRecommendedCompaniesError = Fetcher.ErrorWrapper<undefined>
+
+export type GetRecommendedCompaniesResponse = Schemas.Company[]
+
+export type GetRecommendedCompaniesVariables = ApiContext['fetcherOptions']
+
+export const fetchGetRecommendedCompanies = (
+	variables: GetRecommendedCompaniesVariables,
+	signal?: AbortSignal
+) =>
+	apiFetch<
+		GetRecommendedCompaniesResponse,
+		GetRecommendedCompaniesError,
+		undefined,
+		{},
+		{},
+		{}
+	>({ url: '/api/company/recommended', method: 'get', ...variables, signal })
+
+export const useGetRecommendedCompanies = <
+	TData = GetRecommendedCompaniesResponse,
+>(
+	variables: GetRecommendedCompaniesVariables,
+	options?: Omit<
+		reactQuery.UseQueryOptions<
+			GetRecommendedCompaniesResponse,
+			GetRecommendedCompaniesError,
+			TData
+		>,
+		'queryKey' | 'queryFn' | 'initialData'
+	>
+) => {
+	const { fetcherOptions, queryOptions, queryKeyFn } = useApiContext(options)
+	return reactQuery.useQuery<
+		GetRecommendedCompaniesResponse,
+		GetRecommendedCompaniesError,
+		TData
+	>({
+		queryKey: queryKeyFn({
+			path: '/api/company/recommended',
+			operationId: 'getRecommendedCompanies',
+			variables,
+		}),
+		queryFn: ({ signal }) =>
+			fetchGetRecommendedCompanies(
+				{ ...fetcherOptions, ...variables },
+				signal
+			),
+		...options,
+		...queryOptions,
+	})
+}
+
 export type QueryOperation =
 	| {
 			path: '/api/offer/{id}'
@@ -472,4 +489,9 @@ export type QueryOperation =
 			path: '/api/job/search'
 			operationId: 'search1'
 			variables: Search1Variables
+	  }
+	| {
+			path: '/api/company/recommended'
+			operationId: 'getRecommendedCompanies'
+			variables: GetRecommendedCompaniesVariables
 	  }
