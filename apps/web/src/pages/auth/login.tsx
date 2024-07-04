@@ -9,7 +9,7 @@ import { z } from 'zod'
 import { axiosInstance } from '@glowjob/openapi'
 
 const authFormSchema = z.object({
-    email: z.string().email(),
+    login: z.string(),
     password: z.string().min(6, { message: "Password must be at least 6 characters" })
 })
 
@@ -27,12 +27,13 @@ const LoginPage: React.FC = () => {
         resolver: zodResolver(authFormSchema)
     })
 
-    const onSubmit: SubmitHandler<AuthFormSchema> = ({ email, password }) => {
+    const onSubmit: SubmitHandler<AuthFormSchema> = ({ login, password }) => {
         axiosInstance.post('/login', {
-            login: email,
+            login: login,
             password: password,
-        }).then((response) => {
-            AuthService.login(response.data.token)
+        }).then((data: any) => {
+            AuthService.login(data.token)
+            console.log(AuthService.getToken())
             navigate('/')
         }).catch((error) => {
             console.log(error)
@@ -70,8 +71,8 @@ const LoginPage: React.FC = () => {
                     </Heading>
 
                     <FormControl isRequired isInvalid={false}>
-                        <FormLabel>Email</FormLabel>
-                        <Input placeholder="Email" {...register('email', { required: true })} />
+                        <FormLabel>Login</FormLabel>
+                        <Input placeholder="Login" {...register('login', { required: true })} />
                     </FormControl>
 
                     <FormControl isRequired isInvalid={false}>

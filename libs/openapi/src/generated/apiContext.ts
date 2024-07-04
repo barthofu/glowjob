@@ -50,10 +50,11 @@ export function useApiContext<
 	return {
 		fetcherOptions: {
 			headers: {
-				authorization: `Bearer ${token}`,
+				authorization: token ?? '',
 			}
 		},
 		queryOptions: {
+			// @ts-ignore
 			enabled: token !== null && (queryOptions?.enabled ?? true)
 		},
 		queryKeyFn,

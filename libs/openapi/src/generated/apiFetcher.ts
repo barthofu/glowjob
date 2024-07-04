@@ -51,7 +51,7 @@ export async function apiFetch<
 
 	if (processedHeaders['authorization'] === undefined) {
 		const token = AuthService.getToken()
-		if (token) processedHeaders['authorization'] = `Bearer ${token}`
+		if (token) processedHeaders['authorization'] = token
 	}
 
 	const config: AxiosRequestConfig = {
