@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class SecurityPropsConfig {
   private String secret;
   private Long expirationTime;
-  private String tokenPrefix;
+  private String tokenPrefix = "";
   private String headerString;
   private String signUpUrl;
   private String loginUrl;
