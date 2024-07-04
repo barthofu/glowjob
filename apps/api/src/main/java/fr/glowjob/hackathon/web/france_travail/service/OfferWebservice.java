@@ -28,13 +28,13 @@ public class OfferWebservice extends AbstractFranceTravailWebservice {
     super(config);
     this.webClient = webClient
       .mutate()
-      .baseUrl("%s/%s".formatted(config.getUrl(), config.getJob().getPath()))
+      .baseUrl("%s/%s".formatted(config.getUrl(), config.getOffer().getPath()))
       .build();
   }
 
   @Override
   protected String getScope() {
-    return this.config.getJob().getScope();
+    return this.config.getOffer().getScope();
   }
 
   @Cacheable(value = "offer-findById", key = "#id", unless = "#result == null")
