@@ -36,13 +36,12 @@ export const SearchBar: React.FC<SearchBarProps> = () => {
 
   return <>
     <Input
-      variant="filled"
+      variant="outline"
       placeholder="Recherche une offre"
       borderRadius="23px"
       backgroundColor="white"
       width="30%"
       margin="0 20px"
-      color="white"
       borderColor="gray.400"
       focusBorderColor="gray.700"
       onChange={debouncedResults}
