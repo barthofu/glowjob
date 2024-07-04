@@ -5,6 +5,7 @@ import fr.glowjob.hackathon.model.bo.User;
 import fr.glowjob.hackathon.model.bo.UserInfo;
 import fr.glowjob.hackathon.model.dto.UserDto;
 import fr.glowjob.hackathon.model.dto.auth.UserSignupDto;
+import fr.glowjob.hackathon.model.enums.UserType;
 import fr.glowjob.hackathon.repository.UserInfoRepository;
 import fr.glowjob.hackathon.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -31,7 +32,7 @@ public class UserService {
 
     var usr = this.userRepository.save(User.builder()
       .userInfo(usri)
-      .userType(userSignupDto.getUserType())
+      .userType(userSignupDto.getUserType() == null ? UserType.STUDENT : userSignupDto.getUserType())
       .build());
 
     usri.setUser(usr);
