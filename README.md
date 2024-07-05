@@ -1,25 +1,24 @@
 # Glowjob
 
-- [Description](#description)
-- [Project structure](#project-structure)
-- [Understanding the project](#understanding-the-project)
-  - [API auto-generated client](#api-auto-generated-client)
-  - [CLI commands](#cli-commands)
-- [Requirements](#requirements)
-  - [Initialize the project](#initialize-the-project)
-- [Usage](#usage)
-  - [API](#api)
-    - [Start the server in dev mode](#start-the-server-in-dev-mode)
-    - [Start the server in production mode](#start-the-server-in-production-mode)
-  - [Web](#web)
-    - [Start in dev mode](#start-in-dev-mode)
-    - [Build](#build)
-    - [Serve the build](#serve-the-build)
-  - [Storybook](#storybook)
-    - [Start storybook locally](#start-storybook-locally)
-  - [OpenApi](#openapi)
-    - [Generate client](#generate-client)
-- [Todo](#todo)
+* [Glowjob](#glowjob)
+  * [Description](#description)
+  * [Project structure](#project-structure)
+  * [Understanding the project](#understanding-the-project)
+    * [API auto-generated client](#api-auto-generated-client)
+    * [CLI commands](#cli-commands)
+  * [Requirements](#requirements)
+    * [Initialize the project](#initialize-the-project)
+  * [Usage](#usage)
+    * [API](#api)
+      * [Before starting the server](#before-starting-the-server)
+      * [Start the server](#start-the-server)
+      * [Generate the OpenAPI's server definitions](#generate-the-openapis-server-definitions)
+    * [Web](#web)
+      * [Start in dev mode](#start-in-dev-mode)
+      * [Build](#build)
+      * [Serve the build](#serve-the-build)
+    * [OpenApi](#openapi)
+      * [Generate client](#generate-client)
 
 ## Description
 
@@ -44,7 +43,7 @@ Monorepo for the glowjob project.
 
 The front-end http client is auto-generated from the API OpenAPI schema using [openapi-codegen](https://github.com/fabien0102/openapi-codegen).
 The codegen is run in 3 different situations :
-- Each time a `.py` file is modified and saved in the `api` app source code.
+- Each time a `.java` file is modified and saved in the `api` app source code.
 - Each time the `web` app is build.
 - On demand with the `nx run openapi:generate` command.
 
@@ -80,19 +79,31 @@ In addition to classic `nx` generators commands, the project have additionnal co
     ```bash
     npm install -g nx
     ```
+3. Install Java dependencies
+    ```bash
+   mvn -f apps/api/pom.xml dependency:resolve
+   ```
 
 ## Usage
 
 ### API
 
-#### Start the server in dev mode
+#### Before starting the server
+Launch the Docker Compose stack used by the API
+
 ```bash
-nx run api:dev
+docker compose -f infra/docker/compose.yml up -d
 ```
 
-#### Start the server in production mode
+#### Start the server
 ```bash
-nx run api:start
+mvn -f apps/api/pom.xml spring-boot:run
+```
+
+#### Generate the OpenAPI's server definitions
+Be sure to launch the API before generating the definitions
+```bash
+mvn -f apps/api/pom.xml springdoc-openapi:generate
 ```
 
 ### Web
@@ -118,8 +129,3 @@ nx run web:preview
 ```bash
 nx run openapi:generate
 ```
-
-## Todo
-
-- [ ] Devops
-    - [ ] Staging env
